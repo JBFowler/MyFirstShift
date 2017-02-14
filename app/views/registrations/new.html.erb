@@ -5,26 +5,44 @@
 <h4>Create Profie</h4>
 
 <div>
-  <%= form_for @user, url: register_path do |f| %>
+  <%= form_for @organization, url: register_path do |f| %>
+    <%= f.fields_for :users do |users_form| %>
+      <div>
+        <%= users_form.label :first_name %>
+        <%= users_form.text_field :first_name %>
+      </div>
+      <div>
+        <%= users_form.label :last_name %>
+        <%= users_form.text_field :last_name %>
+      </div>
+      <div>
+        <%= users_form.label :email %>
+        <%= users_form.email_field :email %>  
+      </div>
+      <div>
+        <%= users_form.label :username %>
+        <%= users_form.text_field :username %>  
+      </div>
+      <div>
+        <%= users_form.label :password %>
+        <%= users_form.password_field :password %>  
+      </div>
+    <% end %>
     <div>
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
     </div>
     <div>
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
+      <%= f.label :size %>
+      <%= f.number_field :size %>
     </div>
     <div>
-      <%= f.label :email %>
-      <%= f.email_field :email %>  
+      <%= f.label :sector %>
+      <%= f.text_field :sector %>  
     </div>
     <div>
-      <%= f.label :username %>
-      <%= f.text_field :username %>  
-    </div>
-    <div>
-      <%= f.label :password %>
-      <%= f.password_field :password %>  
+      <%= f.label :subdomain %>
+      <%= f.text_field :subdomain %>  
     </div>
     <%= f.submit "Create Profile" %>
   <% end %>

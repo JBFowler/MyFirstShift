@@ -1,15 +1,17 @@
 class RegistrationsController < ApplicationController
-  
+  require 'pry'
   def new
-    @user = User.new  
+    @organization = Organization.new
+    @organization.users.build
   end
 
   def create
-    @user = User.new(user_params)
+    binding.pry
+    @organization = Organization.new(organization_params)
 
-    if @user.save
-      flash["success"] = "Your profile was successfully created"
-      redirect_to user_path(@user)
+    if @organization.save
+      flash["success"] = "Your profile and organization were successfully created"
+      redirect_to home_path(subdomain: @organization.subdomain)
     else
       render :new
     end
@@ -17,7 +19,7 @@ class RegistrationsController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :username, :password)
+  def organization_params
+    params.require(:organization).permit(:name, :size, :sector, :subdomain, users_attributes: [:first_name, :last_name, :email, :username, :password])
   end
 end
