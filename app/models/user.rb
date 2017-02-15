@@ -3,5 +3,5 @@ class User < ActiveRecord::Base
 
   validates_presence_of(:first_name, :last_name, :email, :password)
 
-  belongs_to :organization
+  belongs_to :organization, inverse_of: :users
 end

@@ -1,12 +1,11 @@
 class RegistrationsController < ApplicationController
-  require 'pry'
+
   def new
     @organization = Organization.new
     @organization.users.build
   end
 
   def create
-    binding.pry
     @organization = Organization.new(organization_params)
 
     if @organization.save

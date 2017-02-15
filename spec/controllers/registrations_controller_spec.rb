@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe RegistrationsController, :type => :controller do
-  let(:user) { FactoryGirl.build(:user) }
-  let(:valid_organization_params) { FactoryGirl.attributes_for(:organization, :user_id => user) }
+  let(:user_params) { FactoryGirl.attributes_for(:user) }
+  let(:organization_params) { FactoryGirl.attributes_for(:organization, users_attributes: {"0" => user_params} ) }
 
   describe "GET #new" do
     it "renders the new template" do
@@ -15,7 +15,7 @@ describe RegistrationsController, :type => :controller do
   describe "POST #create" do
     context "when there are valid params present" do
       it "creates a user and an organization" do
-        post :create, organization: valid_organization_params
+        post :create, organization: organization_params
 
         expect(User.all.count).to eq(1)
         expect(Organization.all.count).to eq(1)

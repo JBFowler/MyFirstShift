@@ -1,5 +1,18 @@
 <h2>My First Shift</h2>
 
+
+<% if @organization.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@organization.errors.count, "error") %> prohibited this article from being saved:</h2>
+ 
+    <ul>
+    <% @organization.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <br/>
 
 <h4>Create Profie</h4>
