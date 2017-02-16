@@ -15,7 +15,7 @@ describe RegistrationsController, :type => :controller do
   describe "POST #create" do
     context "when there are valid params present" do
       it "creates a user and an organization" do
-        post :create, organization: organization_params
+        post :create, params: { organization: organization_params }
 
         expect(User.all.count).to eq(1)
         expect(Organization.all.count).to eq(1)
@@ -24,13 +24,14 @@ describe RegistrationsController, :type => :controller do
       end
     end
 
-    # context "when the user has invalid params" do
-    #   it "renders the new template with validation errors" do
-    #     post :create, user: {first_name: "Joe"}
+    context "when the user has invalid params" do
+      it "renders the new template with validation errors" do
+        post :create, params: { organization: {name: "Test Company"} }
 
-    #     expect(User.all.count).to eq(0)
-    #     expect(response).to render_template(:new)
-    #   end
-    # end
+        expect(User.all.count).to eq(0)
+        expect(Organization.all.count).to eq(0)
+        expect(response).to render_template(:new)
+      end
+    end
   end
 end
