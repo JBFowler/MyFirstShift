@@ -6,9 +6,12 @@ Rails.application.routes.draw do
 
   constraints(subdomain: "www") do
     get '/', to: 'front#index'
-    devise_scope :user do
-      get '/register', to: 'registrations#new'
-      post'/register', to: 'registrations#create'
+    
+    scope module: 'organizations' do
+      devise_scope :user do
+        get '/register', to: 'registrations#new'
+        post'/register', to: 'registrations#create'
+      end
     end
 
     namespace :sign_in do
@@ -30,7 +33,6 @@ Rails.application.routes.draw do
       
       get 'home', to: 'home#index'    
       # https://joetestcompany.slack.com/invite/MTQxMTYyMDEzMTA4LTE0ODcwNDkwMjMtODY5NDI2Mjk0Yg
-      get 'join', to: 'users#new', as: :join_org
       resources :users, only: [:show]
     end
   end
