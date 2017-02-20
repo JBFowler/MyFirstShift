@@ -1,5 +1,4 @@
 class Organizations::RegistrationsController < Devise::RegistrationsController
-  require 'pry'
 
   def new
     @organization = Organization.new
@@ -15,12 +14,11 @@ class Organizations::RegistrationsController < Devise::RegistrationsController
     if @organization.persisted?
       if @user.active_for_authentication?
         flash["success"] = "Your profile and organization were successfully created"
-        sign_in @user
-        redirect_to home_url(subdomain: @organization.subdomain)
-      else
-        set_flash_message! :notice, :"signed_up_but_#{@user.inactive_message}"
-        expire_data_after_sign_in!
-        respond_with resource, location: after_inactive_sign_up_path_for(@user)
+        redirect_to new_user_session_url(subdomain: @organization.subdomain)
+      # else
+      #   set_flash_message! :notice, :"signed_up_but_#{@user.inactive_message}"
+      #   expire_data_after_sign_in!
+      #   respond_with resource, location: after_inactive_sign_up_path_for(@user)
       end
     else
       clean_up_passwords(@user)
