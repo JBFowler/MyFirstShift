@@ -4,6 +4,5 @@ FactoryGirl.define do
     size 30
     sector "Technology"
     subdomain "testcompany"
-    user
   end
 end
