@@ -1,0 +1,68 @@
+<h2>My First Shift</h2>
+
+<br/>
+
+<h4>Create Profie</h4>
+
+<div>
+  <%= form_for @organization, url: register_path do |f| %>
+    <% if @organization.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@organization.errors.count, "error") %> prohibited your account from being created:</h2>
+     
+        <ul>
+        <% @organization.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= f.fields_for :users do |users_form| %>
+      <div>
+        <%= users_form.label :first_name %>
+        <%= users_form.text_field :first_name, autofocus: true %>
+      </div>
+      <div>
+        <%= users_form.label :last_name %>
+        <%= users_form.text_field :last_name %>
+      </div>
+      <div>
+        <%= users_form.label :email %>
+        <%= users_form.email_field :email %>  
+      </div>
+      <div>
+        <%= users_form.label :username %>
+        <%= users_form.text_field :username %>  
+      </div>
+      <div>
+        <%= users_form.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= users_form.password_field :password, autocomplete: "off" %>  
+      </div>
+      <div class="field">
+        <%= users_form.label :password_confirmation %><br />
+        <%= users_form.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+    <% end %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <%= f.label :size %>
+      <%= f.number_field :size %>
+    </div>
+    <div>
+      <%= f.label :sector %>
+      <%= f.text_field :sector %>  
+    </div>
+    <div>
+      <%= f.label :subdomain %>
+      <%= f.text_field :subdomain %>  
+    </div>
+    <%= f.submit "Create Profile" %>
+  <% end %>
+</div>
