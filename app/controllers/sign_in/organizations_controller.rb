@@ -1,7 +1,6 @@
 class SignIn::OrganizationsController < ApplicationController
 
   def index
-    
   end
 
   def find_subdomain
@@ -10,8 +9,8 @@ class SignIn::OrganizationsController < ApplicationController
     if @organization
       redirect_to new_user_session_url(subdomain: @organization.subdomain)
     else
-      flash.now[:error] = "The subdomain could not be found.  Please enter a different subdomain."
-      render :index
+      flash[:error] = "The subdomain could not be found.  Please enter a different subdomain."
+      redirect_to sign_in_path
     end
   end
   
