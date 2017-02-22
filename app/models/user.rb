@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
     where(:email => warden_conditions[:email], :subdomain => warden_conditions[:subdomain]).first
   end
 
+  def owner?
+    role == "owner"
+  end
+
   protected
 
   def password_required?

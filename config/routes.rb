@@ -29,7 +29,14 @@ Rails.application.routes.draw do
         delete '/sign_out', to: 'sessions#destroy', as: :destroy_user_session
       end
 
-      namespace :admin do
+      namespace :owner do
+        get '/home', to: 'home#index'
+      end
+
+      resources :units do
+        namespace :manager do
+          get '/home', to: 'home#index'
+        end
       end
       
       get 'home', to: 'home#index'

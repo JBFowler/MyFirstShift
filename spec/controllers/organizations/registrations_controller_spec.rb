@@ -23,6 +23,8 @@ describe Organizations::RegistrationsController, :type => :controller do
         post :create, params: { organization: organization_params }
 
         expect(User.all.count).to eq(1)
+        expect(User.first.role).to eq("owner")
+        expect(User.first.subdomain).to eq(Organization.first.subdomain)
         expect(Organization.all.count).to eq(1)
         expect(flash[:success]).to eq("Your profile and organization were successfully created")
         expect(response).to redirect_to new_user_session_url(subdomain: Organization.first.subdomain)
