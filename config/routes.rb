@@ -13,8 +13,8 @@ Rails.application.routes.draw do
     end
 
     namespace :sign_in do
-      get '/', to: 'organizations#find_subdomain'
-      post '/', to: 'organizations#find_subdomain', as: :find_subdomain
+      get '/', to: 'organizations#index'
+      get '/find_subdomain', to: 'organizations#find_subdomain'
       get '/find', to: 'organizations#find_user'
       post '/find', to: 'organizations#find_user', as: :find_user 
     end

@@ -1,0 +1,9 @@
+<h2>Search for a subdomain</h2>
+
+<%= form_tag sign_in_find_subdomain_path, method: "get" do %>
+  <div>
+    <%= label_tag :search_term, "Search" %>
+    <%= text_field_tag :search_term %>
+  </div>
+  <%= submit_tag "Search" %>
+<% end %>

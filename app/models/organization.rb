@@ -6,4 +6,9 @@ class Organization < ActiveRecord::Base
 
   has_many :users, inverse_of: :organization
   accepts_nested_attributes_for :users
+
+  def self.search_by_subdomain(search_term)
+    return nil if search_term.blank?
+    where("subdomain LIKE ?", "%#{search_term}%").first
+  end
 end
