@@ -29,8 +29,11 @@ Rails.application.routes.draw do
         delete '/sign_out', to: 'sessions#destroy', as: :destroy_user_session
       end
 
+      # resources :invites, only: [:index, :new, :create, :destroy]
+
       namespace :owner do
         get '/home', to: 'home#index'
+        get '/invite_members', to: 'invites#new'
       end
 
       resources :units do
