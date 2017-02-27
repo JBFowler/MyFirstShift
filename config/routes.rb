@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       namespace :owner do
         get '/home', to: 'home#index'
         get '/invite_members', to: 'invites#new'
+        resources :invites, only: [:create]
       end
 
       resources :units do
@@ -43,6 +44,7 @@ Rails.application.routes.draw do
       end
       
       get 'home', to: 'home#index'
+      get '/invite/:id', to: 'invites#show'
       # https://joetestcompany.slack.com/invite/MTQxMTYyMDEzMTA4LTE0ODcwNDkwMjMtODY5NDI2Mjk0Yg
       # resources :users, only: [:show]
     end
