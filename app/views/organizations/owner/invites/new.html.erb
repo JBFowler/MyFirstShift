@@ -2,17 +2,7 @@
 
 <div>
   <%= form_for @invite, url: owner_invites_path do |f| %>
-    <% if @invite.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@invite.errors.count, "error") %> prohibited your invite from being sent:</h2>
-     
-        <ul>
-        <% @invite.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <%= render 'shared/errors', obj: @invite %>
 
     <div>
       <%= f.label :email %>

@@ -27,6 +27,8 @@ Rails.application.routes.draw do
         get '/', to: 'sessions#new', as: :new_user_session
         post '/', to: 'sessions#create', as: :session
         delete '/sign_out', to: 'sessions#destroy', as: :destroy_user_session
+        get '/invite/:id', to: 'invites#show'
+        post '/invite/:id/redeem', to: 'invites#redeem', as: :redeem_invite
       end
 
       # resources :invites, only: [:index, :new, :create, :destroy]
@@ -44,7 +46,7 @@ Rails.application.routes.draw do
       end
       
       get 'home', to: 'home#index'
-      get '/invite/:id', to: 'invites#show'
+
       # https://joetestcompany.slack.com/invite/MTQxMTYyMDEzMTA4LTE0ODcwNDkwMjMtODY5NDI2Mjk0Yg
       # resources :users, only: [:show]
     end

@@ -6,6 +6,10 @@ class Invite < ActiveRecord::Base
   
   before_create :assign_unique_token
 
+  def redeem(user)
+    self.update_attributes(redeemed_at: DateTime.current, redeemed_by: user.id)
+  end
+
   private
 
   def assign_unique_token
