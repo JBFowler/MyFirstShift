@@ -37,7 +37,7 @@ class Organizations::InvitesController < Devise::RegistrationsController
 
   def check_redeemed
     if @invite.redeemed_at?
-      flash[:notice] = "This invitation has already been redeemed"
+      flash[:warning] = "This invitation has already been redeemed"
       redirect_to new_user_session_path
     end
   end

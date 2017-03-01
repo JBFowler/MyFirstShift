@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe Invite, :type => :model do
   it { should validate_presence_of :email }
+  it { should validate_uniqueness_of(:email).scoped_to(:subdomain).with_message("has already been sent an invite") }
   it { should belong_to(:organization) }
   it { should belong_to(:unit) }
 
