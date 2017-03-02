@@ -16,9 +16,4 @@ class Invite < ActiveRecord::Base
   def assign_unique_token
     self.code = SecureRandom.hex(50)
   end
-
-  def unique_token?
-    self.class.count(:conditions => ["code = ?", code]) == 0
-  end
-  
 end

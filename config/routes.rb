@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       get '/', to: 'organizations#index'
       get '/find_subdomain', to: 'organizations#find_subdomain'
       get '/find', to: 'organizations#find_user'
-      post '/find', to: 'organizations#find_user', as: :find_user 
+      post '/send_notification', to: 'organizations#send_notification', as: :send_notification 
     end
   end
 
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
         get '/', to: 'sessions#new', as: :new_user_session
         post '/', to: 'sessions#create', as: :session
         delete '/sign_out', to: 'sessions#destroy', as: :destroy_user_session
-        get '/invite/:id', to: 'invites#show'
+        get '/invite/:id', to: 'invites#show', as: :user_invite
         post '/invite/:id/redeem', to: 'invites#redeem', as: :redeem_invite
       end
 

@@ -6,7 +6,7 @@
   <body>
     <h1>Please join your group, <%= @organization.name %></h1>
     <p>
-      Please you the following link to signup: 
+      Please click the following link to signup: <%= link_to "Join", user_invite_url(id: @invite.code, subdomain: @organization.subdomain) %>
     </p>
     <p>Thanks for joining and have a great day!</p>
   </body>

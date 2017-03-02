@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe InviteMailer, type: :mailer do
   let(:organization) { FactoryGirl.create(:organization) }
-  let(:invite) { FactoryGirl.create(:invite, organization: organization) }
+  let(:invite) { FactoryGirl.create(:invite, :with_code, organization: organization) }
+
+  before { ActionMailer::Base.default_url_options = { :host => "subdomain.myfirstshift.com" } }
 
   describe ".invite_member" do
     let(:mail) { InviteMailer.invite_member(invite) }
@@ -19,9 +21,9 @@ describe InviteMailer, type: :mailer do
       expect(mail.from).to eq(["feedback@myfirstshift.com"])
     end
 
-    # it "assigns @invite" do
-    #   expect(mail.body.encoded).to match(@invite)
-    # end
+    it "assigns @invite" do
+      expect(mail.body.encoded).to match(invite.code)
+    end
 
     it "assigns @organization" do
       expect(mail.body.encoded).to match(organization.name)

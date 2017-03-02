@@ -31,4 +31,31 @@ describe SignIn::OrganizationsController, :type => :controller do
       end
     end
   end
+
+  describe "GET #find_user" do
+    it "renders the find_user template and allows user to find invitations they have been sent" do
+      get :find_user
+      expect(response).to render_template(:find_user)
+    end
+  end
+
+  describe "POST #send_notification" do
+    context "when an invite or account exists for the email" do
+      it "finds all invites/accounts associated to the email and sends a invite/join notification via email" do
+        post :send_notification, email: "user@example.com"
+
+        expect(ActionMailer::Base.deliveries.count).to eq(1)
+      end
+    end
+
+    context "when an invite/account does not exist for the email" do
+      it "no email is sent to the entered email" do
+        post :send_notification, email: "noemail@example.com"
+
+        expect(ActionMailer::Base.deliveries.count).to eq(0)
+        expect(flash[:success]).to eq("Any accounts associated with the email noemail@example.com have been notified via email")
+        expect(response).to render_template(:find_user)
+      end
+    end
+  end
 end

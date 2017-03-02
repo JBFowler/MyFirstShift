@@ -13,5 +13,19 @@ class SignIn::OrganizationsController < ApplicationController
       redirect_to sign_in_path
     end
   end
-  
+
+  def find_user
+    
+  end
+
+  def send_notification
+    @users = User.where(email: params[:email])
+    @invites = Invite.where(email: params[:email])
+
+    if @users.any? || @invites.any?
+
+    else
+      redirect_to 
+    end
+  end
 end
