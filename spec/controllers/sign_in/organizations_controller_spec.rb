@@ -26,7 +26,7 @@ describe SignIn::OrganizationsController, :type => :controller do
       it "renders the find_subdomain template and displays flash message" do
         get :find_subdomain, params: { search_term: "badsubdomain" }
 
-        expect(flash[:error]).to eq("The subdomain could not be found.  Please enter a different subdomain.")
+        expect(flash[:warning]).to eq("The subdomain could not be found.  Please enter a different subdomain.")
         expect(response).to redirect_to(sign_in_path)
       end
     end
@@ -40,17 +40,23 @@ describe SignIn::OrganizationsController, :type => :controller do
   end
 
   describe "POST #send_notification" do
-    context "when an invite or account exists for the email" do
+    before { ActionMailer::Base.deliveries = [] }
+
+    context "when an invite exists for the email" do
+      let(:organization) { FactoryGirl.create(:organization) }
+      let(:invite) { FactoryGirl.create(:invite, organization: organization) }
       it "finds all invites/accounts associated to the email and sends a invite/join notification via email" do
-        post :send_notification, email: "user@example.com"
+        post :send_notification, params: { email: invite.email }
 
         expect(ActionMailer::Base.deliveries.count).to eq(1)
+        expect(flash[:success]).to eq("Any accounts associated with the email #{invite.email} have been notified via email")
+        expect(response).to render_template(:find_user)
       end
     end
 
     context "when an invite/account does not exist for the email" do
       it "no email is sent to the entered email" do
-        post :send_notification, email: "noemail@example.com"
+        post :send_notification, params: { email: "noemail@example.com" }
 
         expect(ActionMailer::Base.deliveries.count).to eq(0)
         expect(flash[:success]).to eq("Any accounts associated with the email noemail@example.com have been notified via email")

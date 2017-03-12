@@ -6,7 +6,7 @@
 
 <div>
   <%= form_for @organization, url: register_path do |f| %>
-    <%= render 'shared/errors', obj: @user %>
+    <%= render 'shared/errors', obj: @organization %>
 
     <%= f.fields_for :users do |users_form| %>
       <div>

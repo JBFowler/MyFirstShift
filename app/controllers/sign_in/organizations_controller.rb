@@ -9,7 +9,7 @@ class SignIn::OrganizationsController < ApplicationController
     if @organization
       redirect_to new_user_session_url(subdomain: @organization.subdomain)
     else
-      flash[:error] = "The subdomain could not be found.  Please enter a different subdomain."
+      flash[:warning] = "The subdomain could not be found.  Please enter a different subdomain."
       redirect_to sign_in_path
     end
   end
@@ -19,13 +19,15 @@ class SignIn::OrganizationsController < ApplicationController
   end
 
   def send_notification
-    @users = User.where(email: params[:email])
-    @invites = Invite.where(email: params[:email])
+    @email = params[:email]
+    @users = User.where(email: @email)
+    @invites = Invite.where(email: @email)
+    @accounts = @users + @invites
 
-    if @users.any? || @invites.any?
-
-    else
-      redirect_to 
+    if @accounts.any?
+      NotificationMailer.notify(@email, @users, @invites).deliver
     end
+    flash[:success] = "Any accounts associated with the email #{@email} have been notified via email"
+    render :find_user
   end
 end
