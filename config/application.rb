@@ -12,5 +12,8 @@ module Myfirstshift
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.autoload_paths << Rails.root.join('lib')
+    config.time_zone = 'Central Time (US & Canada)'
+    config.active_record.default_timezone = :local
+    config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
   end
 end

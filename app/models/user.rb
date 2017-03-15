@@ -11,9 +11,14 @@ class User < ActiveRecord::Base
   # validates_length_of       :password, within: password_length, allow_blank: true
 
   belongs_to :organization, inverse_of: :users
+  belongs_to :unit, optional: true
 
   def self.find_for_authentication(warden_conditions)
     where(:email => warden_conditions[:email], :subdomain => warden_conditions[:subdomain]).first
+  end
+
+  def owner?
+    role == "owner"
   end
 
   protected

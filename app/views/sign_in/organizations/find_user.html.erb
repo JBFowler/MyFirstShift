@@ -1,0 +1,9 @@
+<h2>Please enter your email</h2>
+
+<%= form_tag sign_in_send_notification_path, method: "post" do %>
+  <div>
+    <%= label_tag :email, "Email" %>
+    <%= email_field_tag :email %>
+  </div>
+  <%= submit_tag "Email Me" %>
+<% end %>

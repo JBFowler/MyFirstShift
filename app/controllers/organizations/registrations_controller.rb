@@ -8,7 +8,7 @@ class Organizations::RegistrationsController < Devise::RegistrationsController
   def create
     @organization = Organization.new(organization_params)
     # build_resource(organization_params[:users_attributes]["0"])
-    @organization.users.first.subdomain = @organization.subdomain
+    @organization.users.first.assign_attributes(subdomain: @organization.subdomain, role: "owner")
 
     @organization.save
     @user = @organization.users.first

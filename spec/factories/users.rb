@@ -5,5 +5,15 @@ FactoryGirl.define do
     email "johndoe@example.com"
     password "Password"
     password_confirmation "Password"
+    role "member"
+    organization
+
+    trait :owner do
+      role "owner"
+    end
+
+    trait :manager do
+      role "manager"
+    end
   end
 end

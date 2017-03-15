@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221030954) do
+ActiveRecord::Schema.define(version: 20170301033527) do
+
+  create_table "invites", force: :cascade do |t|
+    t.string   "code"
+    t.string   "email"
+    t.integer  "organization_id"
+    t.string   "subdomain"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "unit_id"
+    t.datetime "redeemed_at"
+    t.integer  "redeemed_by"
+    t.index ["code"], name: "index_invites_on_code", unique: true
+    t.index ["email"], name: "index_invites_on_email"
+  end
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +33,15 @@ ActiveRecord::Schema.define(version: 20170221030954) do
     t.string   "subdomain"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "units", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "size"
+    t.string   "location"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,6 +65,7 @@ ActiveRecord::Schema.define(version: 20170221030954) do
     t.boolean  "admin"
     t.integer  "organization_id"
     t.string   "subdomain"
+    t.integer  "unit_id"
     t.index ["email", "subdomain"], name: "index_users_on_email_and_subdomain", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
