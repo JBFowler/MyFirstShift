@@ -7,5 +7,5 @@ class NotificationMailer < ApplicationMailer
 
     mail(to: @email, subject: "Your Organizations")
   end
-  
+
 end

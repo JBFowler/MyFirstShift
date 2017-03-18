@@ -4,5 +4,5 @@ class Organizations::Owner::HomeController < ApplicationController
   def index
     @user = current_user
   end
-  
+
 end

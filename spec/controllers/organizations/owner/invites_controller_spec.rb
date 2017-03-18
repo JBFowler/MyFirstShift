@@ -14,7 +14,7 @@ describe Organizations::Owner::InvitesController, :type => :controller do
       get :new
 
       expect(assigns(:invite)).to be_instance_of(Invite)
-      expect(response).to render_template(:new) 
+      expect(response).to render_template(:new)
     end
   end
 

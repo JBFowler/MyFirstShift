@@ -16,7 +16,7 @@ describe Invite, :type => :model do
       allow(DateTime).to receive(:current).and_return(time)
 
       subject.redeem(user)
-      
+
       expect(subject.redeemed_at).to eq(time)
       expect(subject.redeemed_by).to eq(user.id)
     end
