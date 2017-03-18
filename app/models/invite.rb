@@ -4,7 +4,7 @@ class Invite < ActiveRecord::Base
 
   validates_presence_of :email
   validates :email, uniqueness: { scope: :subdomain, message: "has already been sent an invite" }
-  
+
   before_create :assign_unique_token
 
   def redeem(user)

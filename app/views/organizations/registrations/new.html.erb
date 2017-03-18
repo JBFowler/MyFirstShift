@@ -19,18 +19,18 @@
       </div>
       <div>
         <%= users_form.label :email %>
-        <%= users_form.email_field :email %>  
+        <%= users_form.email_field :email %>
       </div>
       <div>
         <%= users_form.label :username %>
-        <%= users_form.text_field :username %>  
+        <%= users_form.text_field :username %>
       </div>
       <div>
         <%= users_form.label :password %>
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
-        <%= users_form.password_field :password, autocomplete: "off" %>  
+        <%= users_form.password_field :password, autocomplete: "off" %>
       </div>
       <div class="field">
         <%= users_form.label :password_confirmation %><br />
@@ -47,11 +47,11 @@
     </div>
     <div>
       <%= f.label :sector %>
-      <%= f.text_field :sector %>  
+      <%= f.text_field :sector %>
     </div>
     <div>
       <%= f.label :subdomain %>
-      <%= f.text_field :subdomain %>  
+      <%= f.text_field :subdomain %>
     </div>
     <%= f.submit "Create Profile" %>
   <% end %>

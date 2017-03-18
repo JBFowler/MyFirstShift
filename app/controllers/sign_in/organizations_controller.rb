@@ -15,7 +15,7 @@ class SignIn::OrganizationsController < ApplicationController
   end
 
   def find_user
-    
+
   end
 
   def send_notification

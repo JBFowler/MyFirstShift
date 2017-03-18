@@ -6,5 +6,5 @@ class InviteMailer < ApplicationMailer
 
     mail(to: invite.email, subject: "Come join #{@organization.name}'s Onboarding Group")
   end
-  
+
 end
