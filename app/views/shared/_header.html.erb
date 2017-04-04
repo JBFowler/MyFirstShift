@@ -1,0 +1,19 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <p id="logo">MY<span style="color:#929F4C">FIRST</span>SHIFT</p>
+      </a>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#" class="about">ABOUT US </a></li>
+      <li>
+        <%= link_to sign_in_path, class: "btn btn-default", id: "login" do %>
+          Sign In
+        <% end %>
+      </li>
+      <li><a href="register.html" type="button" class="btn btn-default" id="register">REGISTER</a></li>
+    </ul>
+  </div>
+</nav>
