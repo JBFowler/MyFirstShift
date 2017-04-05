@@ -1,19 +1,23 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-        <p id="logo">MY<span style="color:#929F4C">FIRST</span>SHIFT</p>
-      </a>
+      <% if request.subdomain == "www" %>
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <p id="logo">MY<span style="color:#929F4C">FIRST</span>SHIFT</p>
+        <% end %>
+      <% end %>
     </div>
 
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#" class="about">ABOUT US </a></li>
-      <li>
-        <%= link_to sign_in_path, class: "btn btn-default", id: "login" do %>
-          Sign In
-        <% end %>
-      </li>
-      <li><a href="register.html" type="button" class="btn btn-default" id="register">REGISTER</a></li>
+      <% if request.subdomain == "www" %>
+        <li><a href="#" class="about">ABOUT US </a></li>
+        <li>
+          <%= link_to sign_in_path, class: "btn btn-default", id: "login" do %>
+            LOGIN
+          <% end %>
+        </li>
+        <li><a href="#" type="button" class="btn btn-default" id="register">REGISTER</a></li>
+      <% end %>
     </ul>
   </div>
 </nav>

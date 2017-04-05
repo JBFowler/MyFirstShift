@@ -1,9 +1,14 @@
-<h2>Please enter your email</h2>
+<div class="find-user">
+  <div class="well col-md-6 col-md-offset-3">
+    <h1 id="title" class="text-center">Join a Company</h1>
 
-<%= form_tag sign_in_send_notification_path, method: "post" do %>
-  <div>
-    <%= label_tag :email, "Email" %>
-    <%= email_field_tag :email %>
+    <p id="instructions" class="text-center">To find the companies you can join, please confirm your email address.</p>
+    <%= form_tag sign_in_send_notification_path, method: "post", class: "form-inline", id: "user_email_input" do %>
+      <div class="form-group">
+        <%= label_tag :email, '', class: "sr-only" %>
+        <%= email_field_tag :email, '', placeholder: 'name@example.com', class: "form-control" %>
+      </div>
+      <%= submit_tag "Confirm", class: "btn" %>
+    <% end %>
   </div>
-  <%= submit_tag "Email Me" %>
-<% end %>
+</div>

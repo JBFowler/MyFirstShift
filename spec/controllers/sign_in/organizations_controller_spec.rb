@@ -50,7 +50,7 @@ describe SignIn::OrganizationsController, :type => :controller do
 
         expect(ActionMailer::Base.deliveries.count).to eq(1)
         expect(flash[:success]).to eq("Any accounts associated with the email #{invite.email} have been notified via email")
-        expect(response).to render_template(:find_user)
+        expect(response).to redirect_to(sign_in_find_path)
       end
     end
 
@@ -60,7 +60,7 @@ describe SignIn::OrganizationsController, :type => :controller do
 
         expect(ActionMailer::Base.deliveries.count).to eq(0)
         expect(flash[:success]).to eq("Any accounts associated with the email noemail@example.com have been notified via email")
-        expect(response).to render_template(:find_user)
+        expect(response).to redirect_to(sign_in_find_path)
       end
     end
   end
