@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Myfirstshift</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +10,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render partial: 'shared/header' %>
+    <div class="container">
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    </div>
   </body>
 </html>

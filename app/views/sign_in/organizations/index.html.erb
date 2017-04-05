@@ -1,0 +1,16 @@
+<div class="find-subdomain">
+  <div class="well col-md-6 col-md-offset-3">
+    <h1 id="title" class="text-center">Search for a Subdomain</h1>
+
+    <p id="instructions" class="text-center">Enter your company's MyFirstShift URL.</p>
+    <%= form_tag sign_in_find_subdomain_path, method: "get", id: "organization_name_input" do %>
+      <div class="form-group form-inline">
+        <%= label_tag :search_term, '', class: "sr-only" %>
+        <%= text_field_tag :search_term, '', class: "form-control" %> .myfirstshift.com
+      </div>
+      <%= submit_tag "Search", class: "btn" %>
+    <% end %>
+
+    <p id="find_organization_link" class="text-center">Don't know your company URL? <%= link_to "Find your company", sign_in_find_path %></p>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+body.front {
+  font-family:"Futura";
+  font-color:gray;
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-image: image-url("employee.jpg");
+
+  div.alert {
+    margin-top: 25px;
+  }
+
+  .navbar.navbar-default{
+    background-color:white;
+    padding-top:8px;
+    margin-bottom:0;
+  }
+
+  #logo{
+    font-weight:500;
+    font-size:1.75em;
+    padding-left:10px;
+  }
+
+  .btn.btn-default, .about{
+    font-weight:400;
+    font-size:1.5em;
+  }
+
+  .about{
+    left:-100%;
+  }
+
+  .btn.btn-default{
+    width:125%;
+  }
+
+  #login{
+    background-color:white;
+    border:3px solid #929F4C;
+    color:grey;
+    border-radius:8px;
+    padding-top:8px;
+    padding-bottom:8px;
+    left:-80%;
+    float:right;
+  }
+
+  #register{
+    background-color:#929F4C;
+    color:white;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:4px;
+    padding-right:4px;
+    left:-60%;
+  }
+
+  /*      .background-img{
+    background-size:contain;
+    width:99vw;
+    height:95vh;
+  }*/
+  #top-line{
+    position:absolute;
+    top:45%;
+    left:50%;
+    margin-right:-50%;
+    transform:translate(-50%,-50%);
+    font-size:70px;
+    font-weight:500;
+    text-align:center;
+  }
+
+  #bottom-line{
+    position:absolute;
+    top:60%;
+    left:50%;
+    margin-right:-50%;
+    transform:translate(-50%,-50%);
+    font-size:40px;
+  }
+}

@@ -1,0 +1,30 @@
+<h2>Join <%= @invite.organization.name %></h2>
+
+<%= form_for @user, url: redeem_invite_path do |f| %>
+  <%= render 'shared/errors', obj: @user %>
+
+  <div>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+  <div>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  <div>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+  <div>
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+  <%= f.submit "Submit" %>
+<% end %>
