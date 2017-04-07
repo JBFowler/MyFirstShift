@@ -14,6 +14,6 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "front";
-@import "find_subdomain";
-@import "find_user";
+@import "front/front";
+@import "front/find_subdomain";
+@import "front/find_user";
