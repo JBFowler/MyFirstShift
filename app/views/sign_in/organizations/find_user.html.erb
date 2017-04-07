@@ -3,6 +3,7 @@
     <h1 id="title" class="text-center">Join a Company</h1>
 
     <p id="instructions" class="text-center">To find the companies you can join, please confirm your email address.</p>
+    <%= render 'layouts/messages' %>
     <%= form_tag sign_in_send_notification_path, method: "post", class: "form-inline", id: "user_email_input" do %>
       <div class="form-group">
         <%= label_tag :email, '', class: "sr-only" %>
