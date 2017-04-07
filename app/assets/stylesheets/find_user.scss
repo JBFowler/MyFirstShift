@@ -1,0 +1,34 @@
+.find-user {
+  .well {
+    margin-top: 180px;
+    background-color: #ffffff;
+  }
+
+  #title {
+    padding-bottom: 10px;
+  }
+
+  #user_email_input {
+    padding-left: 90px;
+    padding-right: 90px;
+    margin-bottom: 30px;
+
+    .btn {
+      background-color:#929F4C;
+      color:white;
+      padding-top:10px;
+      padding-bottom:10px;
+      width: 115px;
+    }
+
+    #email {
+      padding-top:20px;
+      padding-bottom:20px;
+      width: 230px;
+    }
+  }
+
+  #instructions {
+    margin-bottom: 15px;
+  }
+}

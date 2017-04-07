@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170301033527) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "invites", force: :cascade do |t|
     t.string   "code"
     t.string   "email"
@@ -22,8 +25,8 @@ ActiveRecord::Schema.define(version: 20170301033527) do
     t.integer  "unit_id"
     t.datetime "redeemed_at"
     t.integer  "redeemed_by"
-    t.index ["code"], name: "index_invites_on_code", unique: true
-    t.index ["email"], name: "index_invites_on_email"
+    t.index ["code"], name: "index_invites_on_code", unique: true, using: :btree
+    t.index ["email"], name: "index_invites_on_email", using: :btree
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -66,8 +69,8 @@ ActiveRecord::Schema.define(version: 20170301033527) do
     t.integer  "organization_id"
     t.string   "subdomain"
     t.integer  "unit_id"
-    t.index ["email", "subdomain"], name: "index_users_on_email_and_subdomain", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email", "subdomain"], name: "index_users_on_email_and_subdomain", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
 end

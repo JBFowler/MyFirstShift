@@ -1,0 +1,32 @@
+.find-subdomain {
+  .well {
+    margin-top: 180px;
+    background-color: #ffffff;
+  }
+
+  #title {
+    padding-bottom: 10px;
+  }
+
+  #organization_name_input {
+    padding-left: 90px;
+    padding-right: 90px;
+    margin-bottom: 30px;
+
+    .btn {
+      width: 100%;
+      background-color:#929F4C;
+      color:white;
+      padding-top:10px;
+      padding-bottom:10px;
+    }
+
+    #search_term {
+      width: 244px;
+    }
+  }
+
+  #instructions {
+    margin-bottom: 15px;
+  }
+}

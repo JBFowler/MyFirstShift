@@ -1,4 +1,5 @@
 class SignIn::OrganizationsController < ApplicationController
+  layout "front"
 
   def index
   end
@@ -28,6 +29,6 @@ class SignIn::OrganizationsController < ApplicationController
       NotificationMailer.notify(@email, @users, @invites).deliver
     end
     flash[:success] = "Any accounts associated with the email #{@email} have been notified via email"
-    render :find_user
+    redirect_to sign_in_find_path
   end
 end
