@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
 
     if organization
       @organization = organization
-    elsif request.subdomain != 'www'
-      redirect_to root_url(subdomain: 'www')
+    elsif request.subdomain != ''
+      redirect_to root_url(subdomain: '')
     end
   end
 
