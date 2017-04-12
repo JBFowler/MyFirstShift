@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   devise_for :users, skip: [:sessions, :registrations], :controllers => {:registrations => "registrations"}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  constraints(subdomain: "www") do
+  constraints(subdomain: "") do
     root to: 'front#index'
-    
+
     scope module: 'organizations' do
       devise_scope :user do
         get '/register', to: 'registrations#new'
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       get '/', to: 'organizations#index'
       get '/find_subdomain', to: 'organizations#find_subdomain'
       get '/find', to: 'organizations#find_user'
-      post '/send_notification', to: 'organizations#send_notification', as: :send_notification 
+      post '/send_notification', to: 'organizations#send_notification', as: :send_notification
     end
   end
 
@@ -44,7 +44,7 @@ Rails.application.routes.draw do
           get '/home', to: 'home#index'
         end
       end
-      
+
       get 'home', to: 'home#index'
 
       # https://joetestcompany.slack.com/invite/MTQxMTYyMDEzMTA4LTE0ODcwNDkwMjMtODY5NDI2Mjk0Yg
