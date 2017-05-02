@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe SignIn::OrganizationsController, :type => :controller do
   before do
-    @request.host = "www.myfirstshift.com"
+    @request.host = "myfirstshift.com"
   end
 
   describe "GET #index" do

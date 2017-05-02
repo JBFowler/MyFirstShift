@@ -1,0 +1,25 @@
+<p>Enter email of user you would like to make owner of this organization</p>
+
+<div>
+  <%= form_for [:admin, :organization, @invite] do |f| %>
+    <%= render 'shared/errors', obj: @invite %>
+
+    <div>
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true %>
+    </div>
+    <div>
+      <%= f.label :subdomain, "Subdomain:" %>
+      <%= @organization.subdomain %>
+    </div>
+    <div>
+      <%= f.label :expires_at %>
+      <%= f.date_select :expires_at, default: 30.days.from_now %>
+    </div>
+
+    <%= f.hidden_field :subdomain, value: @organization.subdomain %>
+    <%= f.hidden_field :role, value: "owner" %>
+
+    <%= f.submit "Send Invite" %>
+  <% end %>
+</div>
