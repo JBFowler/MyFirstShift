@@ -6,12 +6,8 @@ class ApplicationController < ActionController::Base
   private
 
   def get_organization
-    organization = Organization.find_by(subdomain: request.subdomain)
-
-    if organization
-      @organization = organization
-    elsif request.subdomain != ''
-      redirect_to root_url(subdomain: '')
+    if request.subdomain != '' && request.subdomain != 'supernova'
+      @organization = Organization.find_by(subdomain: request.subdomain)
     end
   end
 
@@ -19,7 +15,21 @@ class ApplicationController < ActionController::Base
     ActionMailer::Base.default_url_options = {:host => request.host_with_port}
   end
 
-  def after_sign_in_path_for(resource)
-    home_url
+  def after_sign_in_path_for(resource_or_scope)
+    case request.subdomain
+    when 'supernova'
+      admin_home_path
+    else
+      home_path
+    end
+  end
+
+  def after_sign_out_path_for(resource_or_scope)
+    case request.subdomain
+    when 'supernova'
+      new_admin_session_path
+    else
+      root_path
+    end
   end
 end

@@ -1,0 +1,14 @@
+<div class="row">
+  <%= link_to "New Organization", new_admin_organization_path %>
+</div>
+
+</br>
+
+<h2>Organizations</h2>
+<div class="row">
+  <% @organizations.each do |organization| %>
+    <div>
+      <%= link_to organization.name, admin_organization_path(organization) %>
+    </div>
+  <% end %>
+</div>

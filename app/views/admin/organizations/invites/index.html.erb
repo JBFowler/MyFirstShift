@@ -1,0 +1,16 @@
+<div>
+  <% @invites.each do |invite| %>
+    <ol>
+      <li>Email: <%= invite.email %></li>
+      <li>Subdomain: <%= invite.subdomain %></li>
+      <li>Expires At: <%= invite.expires_at %></li>
+      <% if invite.deleted_at %>
+        <li>Deleted at: <%= invite.deleted_at %></li>
+      <% else %>
+        <li><%= link_to "Delete Invite", admin_organization_invite_path(@organization, invite), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+      <% end %>
+    </ol>
+  <% end %>
+</div>
+
+<%= link_to "Home", admin_home_path %>

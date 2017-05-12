@@ -1,0 +1,23 @@
+<div>
+  <%= form_for [:admin, @organization] do |f| %>
+    <%= render 'shared/errors', obj: @organization %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <%= f.label :size %>
+      <%= f.number_field :size %>
+    </div>
+    <div>
+      <%= f.label :sector %>
+      <%= f.select :sector, options_for_select([["Technology"]]) %>
+    </div>
+    <div>
+      <%= f.label :subdomain %>
+      <%= f.text_field :subdomain %>
+    </div>
+    <%= f.submit @organization.new_record? ? "Create Profile" : "Update Profile", class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
