@@ -14,7 +14,7 @@ class Admin::Organizations::InvitesController < Admin::BaseController
     @invite.expires_at = @invite.expires_at.end_of_day
 
     if @invite.save
-      flash[:success] = "Thie invitation has been sent to the owner"
+      flash[:success] = "The invitation has been sent to the owner"
       InviteMailer.invite_owner(@invite).deliver
       redirect_to admin_organization_invites_path(@organization)
     else
