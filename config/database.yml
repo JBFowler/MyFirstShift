@@ -11,7 +11,7 @@ default: &default
 development:
   <<: *default
   database: onboarding_development
-  username: joefowler
+  username: joe84
   password:
   timeout: 5000
 
@@ -48,7 +48,7 @@ development:
 test:
   <<: *default
   database: onboarding_test
-  username: joefowler
+  username: joe84
   password:
   timeout: 5000
 
