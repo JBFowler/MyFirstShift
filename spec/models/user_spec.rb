@@ -14,4 +14,12 @@ describe User, :type => :model do
       expect(user.owner?).to eq(true)
     end
   end
+
+  describe "#full_name" do
+    let(:user) { FactoryGirl.create(:user) }
+
+    it "returns the full name of the user" do
+      expect(user.full_name).to eq("#{user.first_name} #{user.last_name}")
+    end
+  end
 end

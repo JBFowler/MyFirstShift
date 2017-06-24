@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  acts_as_paranoid
+
+  #NEED TO CHECK ABOUT VALIDATIONS!!!!!!
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,11 +14,18 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, if: :password_required?
   # validates_length_of       :password, within: password_length, allow_blank: true
 
-  belongs_to :organization, inverse_of: :users
+  belongs_to :organization#, inverse_of: :users
   belongs_to :unit, optional: true
+
+  scope :owners, -> { where role: 'owner' }
 
   def self.find_for_authentication(warden_conditions)
     where(:email => warden_conditions[:email], :subdomain => warden_conditions[:subdomain]).first
+  end
+
+  def full_name
+    return "#{first_name} #{last_name}" unless first_name.blank? && last_name.blank?
+    "Unknown"
   end
 
   def owner?

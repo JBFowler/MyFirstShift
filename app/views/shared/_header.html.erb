@@ -16,7 +16,13 @@
             LOGIN
           <% end %>
         </li>
-        <li><a href="#" type="button" class="btn btn-default" id="register">REGISTER</a></li>
+      <% end %>
+      <% if current_user %>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-default", id: "logout" do %>
+            LOGOUT
+          <% end %>
+        </li>
       <% end %>
     </ul>
   </div>

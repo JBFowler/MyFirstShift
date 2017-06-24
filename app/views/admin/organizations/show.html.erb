@@ -1,0 +1,11 @@
+<ul>
+  <li>Name: <%= @organization.name %></li>
+  <li>Size: <%= @organization.size %></li>
+  <li>Sector: <%= @organization.sector %></li>
+  <li>Subdomain: <%= @organization.subdomain %></li>
+</ul>
+
+<%= link_to "Edit", edit_admin_organization_path(@organization) %>
+<%= link_to "Invite Owner", new_admin_organization_invite_path(@organization) %>
+<%= link_to "All Invites", admin_organization_invites_path(@organization) %>
+<%= link_to "Home", admin_home_path %>

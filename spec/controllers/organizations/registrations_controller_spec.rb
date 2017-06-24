@@ -6,7 +6,7 @@ describe Organizations::RegistrationsController, :type => :controller do
 
   before do
     @request.env['devise.mapping'] = Devise.mappings[:user]
-    @request.host = "www.myfirstshift.com"
+    @request.host = "myfirstshift.com"
   end
 
   describe "GET #new" do

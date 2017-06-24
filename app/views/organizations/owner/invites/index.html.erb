@@ -1,0 +1,19 @@
+<div>
+  <% @invites.each do |invite| %>
+    <ol>
+      <% if invite.redeemed_at %>
+        <li><%= invite.redeemer %></li>
+        <li><%= invite.redeemed_at %></li>
+      <% else %>
+        <li>Unredeemed</li>
+      <% end %>
+      <li>Email: <%= invite.email %></li>
+      <li>Expires At: <%= invite.expires_at %></li>
+      <% if invite.deleted_at %>
+        <li>Deleted at: <%= invite.deleted_at %></li>
+      <% else %>
+        <li><%= link_to "Delete Invite", owner_invite_path(invite), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+      <% end %>
+    </ol>
+  <% end %>
+</div>

@@ -1,3 +1,4 @@
+require 'pry'
 require 'rails_helper'
 
 describe Organizations::InvitesController, :type => :controller do
@@ -10,15 +11,33 @@ describe Organizations::InvitesController, :type => :controller do
   end
 
   describe "#show" do
-    let(:user) { FactoryGirl.create(:user, :owner, organization: organization) }
-
     it "renders the show action for a member to create account and join organization" do
-      sign_in user
-
       get :show, params: { id: invite.code }
 
       expect(assigns(:user)).to be_instance_of(User)
       expect(response).to render_template(:show)
+    end
+
+    context "the invite is expired" do
+      let(:expired_invite) { FactoryGirl.build(:invite, :with_code, organization: organization, expires_at: 1.day.ago)}
+      it "renders the show action for a member to create account and join organization" do
+        expired_invite.save(validate: false)
+
+        get :show, params: { id: expired_invite.code }
+
+        expect(flash[:warning]).to eq("This invitation has already been redeemed or has expired")
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context "the invite has already been redeemed" do
+      let(:redeemed_invite) { FactoryGirl.build(:invite, :with_code, :redeemed, organization: organization)}
+      it "renders the show action for a member to create account and join organization" do
+        get :show, params: { id: redeemed_invite.code }
+
+        expect(flash[:warning]).to eq("This invitation has already been redeemed or has expired")
+        expect(response).to redirect_to(new_user_session_path)
+      end
     end
   end
 
@@ -30,7 +49,7 @@ describe Organizations::InvitesController, :type => :controller do
         post :redeem, params: { id: invite.code, user: valid_user_params }
 
         user = User.first
-        invite = Invite.first
+        invite.reload
 
         expect(User.all.count).to eq(1)
         expect(organization.users).to eq([user])
@@ -38,6 +57,7 @@ describe Organizations::InvitesController, :type => :controller do
         expect(user.email).to eq(invite.email)
         expect(invite.redeemed_at).to_not be_nil
         expect(invite.redeemed_by).to eq(user.id)
+        expect(flash[:success]).to eq("Your profile was successfully created")
         expect(response).to redirect_to(new_user_session_path)
       end
     end

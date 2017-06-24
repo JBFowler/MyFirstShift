@@ -9,7 +9,7 @@ class Organizations::InvitesController < Devise::RegistrationsController
   def redeem
     organization = @invite.organization
     @user = organization.users.build(user_params)
-    @user.assign_attributes(subdomain: organization.subdomain, email: @invite.email, role: "member")
+    @user.assign_attributes(subdomain: organization.subdomain, email: @invite.email, role: @invite.role)
 
     @user.save
     if @user.persisted?
@@ -36,9 +36,13 @@ class Organizations::InvitesController < Devise::RegistrationsController
   end
 
   def check_redeemed
-    if @invite.redeemed_at?
-      flash[:warning] = "This invitation has already been redeemed"
+    if @invite.nil? || @invite.redeemed_at?
+      flash[:warning] = "This invitation has already been redeemed or has expired"
       redirect_to new_user_session_path
     end
   end
+
+  # def set_minimum_password_length
+  #   @minimum_password_length = User.password_length.min
+  # end
 end

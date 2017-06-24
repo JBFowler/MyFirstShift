@@ -2,14 +2,14 @@ require 'rails_helper'
 
 describe Invite, :type => :model do
   it { should validate_presence_of :email }
-  it { should validate_uniqueness_of(:email).scoped_to(:subdomain).with_message("has already been sent an invite") }
+  it { should validate_uniqueness_of(:email).scoped_to(:subdomain).with_message("has already been sent an invite. Please go to list of invites to resend the invitation.") }
   it { should belong_to(:organization) }
   it { should belong_to(:unit) }
 
   subject { FactoryGirl.create(:invite, :with_code) }
 
   describe "#redeem" do
-    let(:user) { FactoryGirl.create(:user, email: subject.email) }
+    let(:user) { FactoryGirl.create(:user, email: subject.email, organization: subject.organization) }
 
     it "redeems the invite" do
       time = DateTime.current
@@ -22,4 +22,13 @@ describe Invite, :type => :model do
     end
   end
 
+  describe "#redeemer" do
+    let(:user) { FactoryGirl.create(:user, email: subject.email, organization: subject.organization) }
+
+    it "returns the full name of the user who redeemed the invite" do
+      subject.redeem(user)
+
+      expect(subject.redeemer).to eq("#{user.first_name} #{user.last_name}")
+    end
+  end
 end

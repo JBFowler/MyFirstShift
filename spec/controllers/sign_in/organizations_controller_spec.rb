@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe SignIn::OrganizationsController, :type => :controller do
   before do
-    @request.host = "www.myfirstshift.com"
+    @request.host = "myfirstshift.com"
   end
 
   describe "GET #index" do
@@ -60,6 +60,21 @@ describe SignIn::OrganizationsController, :type => :controller do
 
         expect(ActionMailer::Base.deliveries.count).to eq(0)
         expect(flash[:success]).to eq("Any accounts associated with the email noemail@example.com have been notified via email")
+        expect(response).to redirect_to(sign_in_find_path)
+      end
+    end
+
+    context "when an invite exists but is expired" do
+      let(:invite) { FactoryGirl.build(:invite, organization: organization, expires_at: 1.day.ago) }
+      let(:organization) { FactoryGirl.create(:organization) }
+
+      it "finds all invites/accounts associated to the email and sends a invite/join notification via email" do
+        invite.save(validate: false)
+
+        post :send_notification, params: { email: invite.email }
+
+        expect(ActionMailer::Base.deliveries.count).to eq(0)
+        expect(flash[:success]).to eq("Any accounts associated with the email #{invite.email} have been notified via email")
         expect(response).to redirect_to(sign_in_find_path)
       end
     end
