@@ -19,7 +19,7 @@
       <% end %>
       <% if current_user %>
         <li>
-          <%= link_to destroy_user_session_path, class: "btn btn-default", id: "logout" do %>
+          <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-default", id: "logout" do %>
             LOGOUT
           <% end %>
         </li>

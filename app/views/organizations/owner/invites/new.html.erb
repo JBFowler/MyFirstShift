@@ -1,13 +1,18 @@
 <p>Enter email of user you would like to invite</p>
 
 <div>
-  <%= form_for @invite, url: owner_invites_path do |f| %>
+  <%= form_for [:owner, @invite] do |f| %>
     <%= render 'shared/errors', obj: @invite %>
 
     <div>
       <%= f.label :email %>
       <%= f.email_field :email, autofocus: true %>
     </div>
+    <div>
+      <%= f.label :expires_at %>
+      <%= f.date_select :expires_at, default: 30.days.from_now %>
+    </div>
+
     <%= f.submit "Send Invite" %>
   <% end %>
 </div>

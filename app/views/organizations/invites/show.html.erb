@@ -2,6 +2,7 @@
 
 <%= form_for @user, url: redeem_invite_path do |f| %>
   <%= render 'shared/errors', obj: @user %>
+  <%= devise_error_messages! %>
 
   <div>
     <%= f.label :first_name %>

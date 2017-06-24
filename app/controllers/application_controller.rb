@@ -3,6 +3,11 @@ class ApplicationController < ActionController::Base
   before_action :get_organization
   before_action :get_mailer_host
 
+  def require_owner
+    flash[:danger] = "You can't do that."
+    redirect_to home_path unless user_signed_in? && current_user.owner?
+  end
+
   private
 
   def get_organization

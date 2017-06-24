@@ -32,6 +32,7 @@ describe Admin::Organizations::InvitesController, :type => :controller do
         expect(Invite.first.role).to eq("owner")
         expect(Invite.first.subdomain).to eq(organization.subdomain)
         expect(ActionMailer::Base.deliveries.count).to eq(1)
+        expect(flash[:success]).to eq("The invitation has been sent to the owner")
         expect(response).to redirect_to(admin_organization_invites_path(organization))
       end
     end
@@ -39,6 +40,16 @@ describe Admin::Organizations::InvitesController, :type => :controller do
     context "when invalid params are present" do
       it "renders the new template with errors" do
         post :create, params: { organization_id: organization.id, invite: { email: "", subdomain: organization.subdomain, expires_at: 30.days.from_now, role: "owner"}}
+
+        expect(Invite.all.count).to eq(0)
+        expect(response).to render_template(:new)
+      end
+    end
+
+    context "when the user already exists within the organization" do
+      it "renders the new template with errors" do
+        user = FactoryGirl.create(:user, :owner, organization: organization, email: "owner@testcompany.com")
+        post :create, params: { organization_id: organization.id, invite: { email: "owner@testcompany.com", subdomain: organization.subdomain, expires_at: 30.days.from_now, role: "owner"}}
 
         expect(Invite.all.count).to eq(0)
         expect(response).to render_template(:new)

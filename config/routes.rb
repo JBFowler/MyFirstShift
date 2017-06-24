@@ -12,13 +12,6 @@ Rails.application.routes.draw do
   constraints(subdomain: "") do
     root to: 'front#index'
 
-    scope module: 'organizations' do
-      devise_scope :user do
-        get '/register', to: 'registrations#new'
-        post'/register', to: 'registrations#create'
-      end
-    end
-
     namespace :sign_in do
       get '/', to: 'organizations#index'
       get '/find_subdomain', to: 'organizations#find_subdomain'
@@ -39,7 +32,7 @@ Rails.application.routes.draw do
 
       resources :organizations do
         scope module: 'organizations' do
-          resources :invites, except: [:edit, :update]
+          resources :invites, except: [:show, :edit, :update]
         end
       end
     end
@@ -55,12 +48,10 @@ Rails.application.routes.draw do
         post '/invite/:id/redeem', to: 'invites#redeem', as: :redeem_invite
       end
 
-      # resources :invites, only: [:index, :new, :create, :destroy]
-
       namespace :owner do
+        root to: 'home#index'
         get '/home', to: 'home#index'
-        get '/invite_members', to: 'invites#new'
-        resources :invites, only: [:create]
+        resources :invites, except: [:edit, :update]
       end
 
       # resources :units do
@@ -70,9 +61,6 @@ Rails.application.routes.draw do
       # end
 
       get '/home', to: 'home#index'
-
-      # https://joetestcompany.slack.com/invite/MTQxMTYyMDEzMTA4LTE0ODcwNDkwMjMtODY5NDI2Mjk0Yg
-      # resources :users, only: [:show]
     end
   end
 end
