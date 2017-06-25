@@ -18,6 +18,10 @@
         </li>
       <% end %>
       <% if current_user %>
+        <li><%= link_to "Home", home_path %></li>
+        <% if current_user.owner? %>
+          <li><%= link_to "Organization Center", owner_home_path %></li>
+        <% end %>
         <li>
           <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-default", id: "logout" do %>
             LOGOUT

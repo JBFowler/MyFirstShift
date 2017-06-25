@@ -1,4 +1,3 @@
-require 'pry'
 require 'rails_helper'
 
 describe Organizations::InvitesController, :type => :controller do

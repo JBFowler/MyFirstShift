@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, request_keys: [:subdomain]
 
   validates_presence_of(:first_name, :last_name, :email, :password, :password_confirmation)
+  # validates_presence_of(:employee_type, :phone), if: :active?
   # validates_format_of     :email, with: email_regexp, allow_blank: true, if: :email_changed?
   validates_presence_of     :password, if: :password_required?
   validates_confirmation_of :password, if: :password_required?
@@ -30,6 +31,10 @@ class User < ActiveRecord::Base
 
   def owner?
     role == "owner"
+  end
+
+  def progress_complete?
+    progress == "complete"
   end
 
   protected

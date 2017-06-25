@@ -8,6 +8,8 @@ describe User, :type => :model do
   it { should validate_presence_of(:password_confirmation) }
   it { should belong_to(:organization) }
 
+  subject { FactoryGirl.create(:user) }
+
   describe "#owner?" do
     let(:user) { FactoryGirl.create(:user, :owner) }
     it "returns true if users role is equal to owner" do
@@ -16,10 +18,24 @@ describe User, :type => :model do
   end
 
   describe "#full_name" do
-    let(:user) { FactoryGirl.create(:user) }
-
     it "returns the full name of the user" do
-      expect(user.full_name).to eq("#{user.first_name} #{user.last_name}")
+      expect(subject.full_name).to eq("#{subject.first_name} #{subject.last_name}")
+    end
+  end
+
+  describe "#progress_complete?" do
+    context "when the user hasn't finished onboarding process" do
+      it "returns false for the user" do
+        expect(subject.progress_complete?).to eq(false)
+      end
+    end
+
+    context "when the user has finished onboarding process" do
+      subject { FactoryGirl.create(:user, :completed) }
+
+      it "returns true for the user" do
+        expect(subject.progress_complete?).to eq(true)
+      end
     end
   end
 end
