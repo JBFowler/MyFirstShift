@@ -49,10 +49,9 @@ Rails.application.routes.draw do
       end
 
       namespace :onboarding do
-        get '/meet_the_management', to: 'onboarding#meet_the_management'
-        get '/employee_info', to: 'onboarding#employee_info'
-        post '/add_employee_info', to: 'onboarding#add_employee_info'
-        # get '/user_info', to: 'users#'
+        get '/meet_the_management', to: 'management#index'
+        get '/employee_info', to: 'users#edit'
+        patch '/employee_info', to: 'users#update'
       end
 
       namespace :owner do
@@ -68,7 +67,7 @@ Rails.application.routes.draw do
       end
 
       get '/home', to: 'home#index'
-      get '/welcome', to: 'home#welcome'
+      get '/welcome', to: 'welcome#index'
     end
   end
 end

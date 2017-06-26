@@ -8,8 +8,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, request_keys: [:subdomain]
 
-  validates_presence_of(:first_name, :last_name, :email, :password, :password_confirmation)
-  # validates_presence_of(:employee_type, :phone), if: :active?
+  validates_presence_of :first_name, :last_name, :email
+  validates_presence_of :employee_type, if: :active_user?
+  validates_presence_of :phone, if: :active_user?
   # validates_format_of     :email, with: email_regexp, allow_blank: true, if: :email_changed?
   validates_presence_of     :password, if: :password_required?
   validates_confirmation_of :password, if: :password_required?
@@ -38,6 +39,10 @@ class User < ActiveRecord::Base
   end
 
   protected
+
+  def active_user?
+    persisted? && active?
+  end
 
   def password_required?
     !persisted? || !password.nil? || !password_confirmation.nil?

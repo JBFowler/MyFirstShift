@@ -7,6 +7,7 @@ FactoryGirl.define do
     password_confirmation "Password1"
     role "member"
     progress nil
+    active true
     organization
 
     trait :completed do

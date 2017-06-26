@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe Organizations::Owner::HomeController, :type => :controller do
+describe Organizations::Onboarding::ManagementController, :type => :controller do
   let(:organization) { FactoryGirl.create(:organization) }
-  let(:user) { FactoryGirl.create(:user, :owner, organization: organization) }
+  let(:user) { FactoryGirl.create(:user, organization: organization) }
 
   before do
     @request.host = "#{organization.subdomain}.myfirstshift.com"
@@ -10,13 +10,11 @@ describe Organizations::Owner::HomeController, :type => :controller do
   end
 
   describe "#index" do
-    it "shows admin home page" do
+    it "shows the management of the organization you are working for" do
       get :index
 
       expect(assigns(:user)).to eq(user)
-      expect(assigns(:organization)).to eq(organization)
       expect(response).to render_template(:index)
     end
   end
-
 end
