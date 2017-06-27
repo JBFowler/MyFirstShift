@@ -49,9 +49,10 @@ Rails.application.routes.draw do
       end
 
       namespace :onboarding do
-        get '/meet_the_management', to: 'management#index'
         get '/employee_info', to: 'users#edit'
         patch '/employee_info', to: 'users#update'
+        get '/meet_the_management', to: 'management#index'
+        get '/paperwork', to: 'paperwork#index'
       end
 
       namespace :owner do

@@ -9,9 +9,8 @@
 organization = FactoryGirl.create(:organization, name: "Steel City Pops", size: 100, sector: "Services", subdomain: "steelcitypops")
 organization_2 = FactoryGirl.create(:organization, name: "My First Shift", subdomain: "myfirstshift")
 
-FactoryGirl.create(:user, first_name: "John", last_name: "Lennon", email: "owner@steelcitypops.com", username: "admin", role: "owner", active: "true", password: "Password1", password_confirmation: "Password1", organization_id: 1, subdomain: organization.subdomain)
-FactoryGirl.create(:user, first_name: "John", last_name: "Lennon", email: "owner@myfirstshift.com", username: "admin", role: "owner", active: "true", password: "Password1", password_confirmation: "Password1", organization_id: organization_2.id, subdomain: organization_2.subdomain)
+FactoryGirl.create(:user, first_name: "John", last_name: "Lennon", email: "owner@steelcitypops.com", username: "admin", role: "owner", password: "Password1", password_confirmation: "Password1", organization_id: 1, subdomain: organization.subdomain)
+FactoryGirl.create(:user, first_name: "John", last_name: "Lennon", email: "owner@myfirstshift.com", username: "admin", role: "owner", password: "Password1", password_confirmation: "Password1", organization_id: organization_2.id, subdomain: organization_2.subdomain)
 
 FactoryGirl.create(:admin, email: "admin@myfirstshift.com", password: "Password1", password_confirmation: "Password1", admin: true)
 FactoryGirl.create(:admin, email: "badadmin@myfirstshift.com", password: "Password1", password_confirmation: "Password1", admin: false)
-

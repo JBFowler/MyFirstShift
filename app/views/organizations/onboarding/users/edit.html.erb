@@ -1,0 +1,17 @@
+<h4>Set up user account</h4>
+
+<%= form_for @user, url: onboarding_employee_info_path do |f| %>
+  <%= render 'shared/errors', obj: @user %>
+
+  <div>
+    <%= f.label :employee_type %>
+    <%= f.select :employee_type, ["salary", "hourly"] %>
+  </div>
+
+  <div>
+    <%= f.label :phone %>
+    <%= f.telephone_field :phone %>
+  </div>
+
+  <%= f.submit "Next Step" %>
+<% end %>

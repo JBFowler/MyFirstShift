@@ -26,7 +26,7 @@ describe Organizations::Onboarding::UsersController, :type => :controller do
         user.reload
         expect(user.employee_type).to eq("salary")
         expect(user.phone).to eq("123-456-7890")
-        expect(response).to redirect_to(home_path)#onboarding_paperwork_overview_path)
+        expect(response).to redirect_to(onboarding_meet_the_management_path)
       end
     end
 
@@ -34,6 +34,9 @@ describe Organizations::Onboarding::UsersController, :type => :controller do
       it "returns the user to the employee info page" do
         patch :update, params: { user: { phone: "" }}
 
+        user.reload
+        expect(user.employee_type).to eq(nil)
+        expect(user.phone).to eq(nil)
         expect(response).to render_template(:edit)
       end
     end

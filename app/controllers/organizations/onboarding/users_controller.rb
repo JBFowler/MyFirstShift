@@ -8,7 +8,7 @@ class Organizations::Onboarding::UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to home_path#onboarding_paperwork_overview_path
+      redirect_to onboarding_meet_the_management_path
     else
       render :edit
     end
