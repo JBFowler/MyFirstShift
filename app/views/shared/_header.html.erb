@@ -1,33 +1,20 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <% if request.subdomain == "" %>
-        <%= link_to root_path, class: "navbar-brand" do %>
-          <p id="logo">MY<span style="color:#929F4C">FIRST</span>SHIFT</p>
-        <% end %>
+<ul>
+  <% if current_user %>
+    <li><%= link_to "Home", home_path %></li>
+    <% if current_user.owner? %>
+      <li><%= link_to "Organization Center", owner_home_path %></li>
+    <% end %>
+    <li>
+      <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-default", id: "logout" do %>
+        LOGOUT
       <% end %>
-    </div>
-
-    <ul class="nav navbar-nav navbar-right">
-      <% if request.subdomain == "" %>
-        <li><a href="#" class="about">ABOUT US </a></li>
-        <li>
-          <%= link_to sign_in_path, class: "btn btn-default", id: "login" do %>
-            LOGIN
-          <% end %>
-        </li>
-      <% end %>
-      <% if current_user %>
-        <li><%= link_to "Home", home_path %></li>
-        <% if current_user.owner? %>
-          <li><%= link_to "Organization Center", owner_home_path %></li>
-        <% end %>
-        <li>
-          <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-default", id: "logout" do %>
-            LOGOUT
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</nav>
+    </li>
+    <li><%= link_to "Welcome", welcome_path %></li>
+    <li><%= link_to "Introduction", onboarding_meet_the_management_path %></li>
+    <li><%= link_to "Paperword", onboarding_paperwork_path %></li>
+    <li><%= link_to "Policies", onboarding_policies_path %></li>
+    <li><%= link_to "Applications", onboarding_apps_path %></li>
+    <li><%= link_to "Your First Day", onboarding_first_day_path %></li>
+    <li><%= link_to "Complete!", home_path %></li>
+  <% end %>
+</ul>
