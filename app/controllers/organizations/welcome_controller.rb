@@ -1,9 +1,12 @@
 class Organizations::WelcomeController < ApplicationController
   before_action :authenticate_user!
 
+  layout 'organizations/onboarding'
+
   def index
     @user = current_user
-    return_home if @user.progress_complete?
+    flash[:success] = "Welcome to #{@organization.name}!  We are excited to have you as a part of our company!"
+    # return_home if @user.progress_complete?
   end
 
   private

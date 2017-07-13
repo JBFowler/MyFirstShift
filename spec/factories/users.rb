@@ -10,6 +10,8 @@ FactoryGirl.define do
     organization
 
     trait :completed do
+      employee_type "salary"
+      phone "999-999-9999"
       progress "complete"
     end
 

@@ -1,6 +1,17 @@
 class Organizations::Onboarding::UsersController < ApplicationController
   before_action :authenticate_user!
 
+  layout 'organizations/onboarding'
+
+  def complete
+    @user = current_user
+    if @user.complete!
+      redirect_to home_path
+    else
+      redirect_to welcome_path
+    end
+  end
+
   def edit
     @user = current_user
   end
@@ -8,7 +19,7 @@ class Organizations::Onboarding::UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to onboarding_meet_the_management_path
+      redirect_to onboarding_paperwork_path
     else
       render :edit
     end

@@ -1,14 +1,23 @@
-<h5>Welcome to <%= @organization.name %>!  We are excited to have you as a part of our company!</h5>
-
-<h2>What to Expect</h2>
-<div>
-  <h6>On this site you will...</h6>
-  <ol>
-    <li>Finish setting up your user account</li>
-    <li>Fill out your paperwork</li>
-    <li>Learn some policies</li>
-    <li>Get excited for your first day!</li>
-  </ol>
+<div class="row" id="welcome-header">
+  <div class="col-md-12 text-center">
+    <h2 class="text-uppercase">What to Expect</h2>
+  </div>
 </div>
 
-<%= link_to "Next Step", onboarding_employee_info_path %>
+<div class="row" id="welcome-list">
+  <div class="well col-md-6 col-md-offset-3">
+    <h6 class="text-center" id="list-header">On this site you will...</h6>
+    <ol>
+      <li>Finish setting up your user account</li>
+      <li>Fill out your paperwork</li>
+      <li>Learn some policies</li>
+      <li>Get excited for your first day!</li>
+    </ol>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 text-center text-uppercase">
+    <%= link_to "Let's get Started!", onboarding_meet_the_management_path, class: "btn btn-default", id: "next-btn" %>
+  </div>
+<div>

@@ -17,6 +17,14 @@ describe User, :type => :model do
     end
   end
 
+  describe "#complete!" do
+    it "sets the users progress to complete" do
+      subject.complete!
+
+      expect(subject.progress_complete?).to eq(true)
+    end
+  end
+
   describe "#full_name" do
     it "returns the full name of the user" do
       expect(subject.full_name).to eq("#{subject.first_name} #{subject.last_name}")

@@ -1,20 +1,42 @@
-<ul>
-  <% if current_user %>
-    <li><%= link_to "Home", home_path %></li>
-    <% if current_user.owner? %>
-      <li><%= link_to "Organization Center", owner_home_path %></li>
-    <% end %>
-    <li>
-      <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-default", id: "logout" do %>
-        LOGOUT
-      <% end %>
-    </li>
-    <li><%= link_to "Welcome", welcome_path %></li>
-    <li><%= link_to "Introduction", onboarding_meet_the_management_path %></li>
-    <li><%= link_to "Paperword", onboarding_paperwork_path %></li>
-    <li><%= link_to "Policies", onboarding_policies_path %></li>
-    <li><%= link_to "Applications", onboarding_apps_path %></li>
-    <li><%= link_to "Your First Day", onboarding_first_day_path %></li>
-    <li><%= link_to "Complete!", home_path %></li>
-  <% end %>
-</ul>
+<header>
+  <div class="container">
+    <nav class="navbar navbar-default" id="top-nav">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to home_path, class: "navbar-brand" do %>
+            <%= image_tag("PastedGraphic-1.png", width: 42, height: 42, alt: "Circle Pop") %>
+          <% end %>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right" id="top-nav-links">
+            <% if current_user %>
+              <li><%= link_to "Home", home_path %></li>
+              <% if current_user.owner? %>
+                <li><%= link_to "Organization Center", owner_home_path %></li>
+              <% end %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> <%= current_user.full_name %> <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+                  </li>
+                </ul>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,37 @@
+body {
+  background-color: #EFEFEF;
+  // font-family: "Open Sans", "Arial", "sans-serif";
+  font-size: 16px;
+  color: #333333;
+
+  #content-container {
+    // background: #EFEFEF;
+    min-height: 500px;
+  }
+
+  #msg-header {
+    background: #dedede;
+    min-height: 1px;
+  }
+
+  #msg-header .alert {
+    padding: 20px;
+    margin-bottom: 0px;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    text-align: center;
+    color: #b4124a;
+    font-size: 18px;
+  }
+
+  #msg-header .alert .close {
+    position: relative;
+    top: -10px;
+    right: -21px;
+    line-height: 20px;
+  }
+}

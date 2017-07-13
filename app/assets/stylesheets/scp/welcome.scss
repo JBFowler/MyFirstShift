@@ -1,0 +1,39 @@
+#welcome-header {
+  color:#929F4C;
+  margin-top: 50px;
+
+  h2 {
+    font-size: 40px;
+  }
+}
+
+#welcome-list {
+  ol {
+    padding-left: 160px;
+
+    li {
+      font-weight: bold;
+    }
+  }
+
+  #list-header {
+    color: gray;
+    font-size: 22px;
+  }
+}
+
+#next-btn {
+  margin-top: 20px;
+  background: #929F4C;
+  color: white;
+  font-weight: bold;
+  // border-radius:10px;
+  // width:12%;
+  // position:absolute;
+  // top:92%;
+
+  &:hover {
+    background: white;
+    color: #929F4C;
+  }
+}

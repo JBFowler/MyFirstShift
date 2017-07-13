@@ -25,6 +25,11 @@ class User < ActiveRecord::Base
     where(:email => warden_conditions[:email], :subdomain => warden_conditions[:subdomain]).first
   end
 
+  def complete!
+    self.progress = "complete"
+    self.save #consider update_column(:progress, 'complete')
+  end
+
   def full_name
     return "#{first_name} #{last_name}" unless first_name.blank? && last_name.blank?
     "Unknown"
