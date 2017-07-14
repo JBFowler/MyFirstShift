@@ -5,8 +5,8 @@ class Organizations::WelcomeController < ApplicationController
 
   def index
     @user = current_user
-    flash[:success] = "Welcome to #{@organization.name}!  We are excited to have you as a part of our company!"
-    # return_home if @user.progress_complete?
+    flash.now[:success] = "Welcome to #{@organization.name}!  We are excited to have you as a part of our company!"
+    return_home if @user.progress_complete?
   end
 
   private

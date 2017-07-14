@@ -7,7 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
   </head>
 
   <body>
@@ -25,9 +25,6 @@
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
 
-    <footer>
-      <div class="container">
-      </div>
-    </footer>
+    <%= render 'shared/footer' %>
   </body>
 </html>
