@@ -1,6 +1,16 @@
 <% content_for :content do %>
-  <div class="container">
-    <%= yield %>
+  <div id="content">
+    <div class="container">
+      <div class="row">
+        <%= render partial: "/shared/top_menu", :locals => { :model => @user } %>
+
+        <div class="col-md-12">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
 <%= render template: 'layouts/application' %>
+
+

@@ -1,6 +1,6 @@
 #welcome-header {
   color:#929F4C;
-  margin-top: 50px;
+  margin-top: 25px;
 
   h2 {
     font-size: 38px;
@@ -10,10 +10,17 @@
 #welcome-list {
   ol {
     padding-left: 28%;
+    counter-reset: o-counter 0;
+    list-style-type: none;
 
     li {
       font-weight: bold;
-      margin-bottom: 10px;
+      line-height: 40px;
+    }
+
+    li:before {
+      content: counter(o-counter) ') ';
+      counter-increment: o-counter;
     }
   }
 

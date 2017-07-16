@@ -3,6 +3,12 @@ body {
   font-family: 'Muli', sans-serif;
   font-size: 16px;
   color: #333333;
+  min-width: 1000px;
+
+  #content {
+    padding-top: 25px;
+    padding-bottom: 50px;
+  }
 
   #content-container {
     background: #EFEFEF;
@@ -25,7 +31,7 @@ body {
     border-radius: 4px;
     text-align: center;
     color: #606060;
-    font-size: 18px;
+    // font-size: 18px;
   }
 
   #msg-header .alert .close {

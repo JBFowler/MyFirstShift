@@ -13,13 +13,7 @@
   <body>
     <%= render 'shared/header' %>
 
-    <div id="msg-header">
-      <div class="container">
-        <div class="row">
-          <%= render 'layouts/messages' %>
-        </div>
-      </div>
-    </div>
+    <%= render 'layouts/messages' %>
 
     <div id="content-container">
       <%= content_for?(:content) ? yield(:content) : yield %>

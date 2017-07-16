@@ -1,0 +1,53 @@
+.menu {
+  .side-bar {
+    background: #323838;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    vertical-align: middle;
+
+    ul {
+      list-style-type: none;
+      margin: 0px;
+      padding: 0px;
+
+      li {
+        a {
+          color: #fff;
+          display: inline-block;
+          padding: 10px;
+          width: 100%;
+
+          &:active {
+            background-color: #FDFDA2;
+            color: #1b1b1b;
+            outline: none;
+            text-decoration: none;
+          }
+
+          &:focus {
+            background-color: #FDFDA2;
+            color: #1b1b1b;
+            outline: none;
+            text-decoration: none;
+          }
+
+          &:hover {
+            background-color: #FDFDA2;
+            color: #1b1b1b;
+            text-decoration: none;
+          }
+        }
+      }
+
+      li.active {
+        background-color: #FDFDA2;
+
+        a {
+          color: #1b1b1b;
+        }
+      }
+    }
+  }
+}

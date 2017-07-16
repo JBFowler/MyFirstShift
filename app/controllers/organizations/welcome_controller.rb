@@ -1,7 +1,7 @@
 class Organizations::WelcomeController < ApplicationController
   before_action :authenticate_user!
 
-  layout 'organizations/onboarding'
+  layout 'organizations/home'
 
   def index
     @user = current_user
