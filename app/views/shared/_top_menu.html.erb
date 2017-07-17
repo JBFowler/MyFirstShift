@@ -1,11 +1,13 @@
-<div class="col-md-12 top-menu">
-   <div class="btn-group btn-breadcrumb">
-      <span class="btn btn-default active">Introduction</span>
-      <span class="btn btn-default">Employee Info</span>
-      <span class="btn btn-default">Paperwork</span>
-      <span class="btn btn-default">Policies</span>
-      <span class="btn btn-default">Applications</span>
-      <span class="btn btn-default">Your First Day</span>
-      <span class="btn btn-default">Complete!</span>
+<div class="row">
+  <div class="col-md-12 top-menu">
+     <div class="btn-group btn-breadcrumb">
+        <span class="btn btn-default <%= current_tab?('management') %>">Introduction</span>
+        <span class="btn btn-default <%= current_tab?('users', params[:action]) %>">Employee Info</span>
+        <span class="btn btn-default <%= current_tab?('paperwork') %>">Paperwork</span>
+        <span class="btn btn-default <%= current_tab?('policies') %>">Policies</span>
+        <span class="btn btn-default <%= current_tab?('apps') %>">Applications</span>
+        <span class="btn btn-default <%= current_tab?('first_day') %>">Your First Day</span>
+        <span class="btn btn-default <%= current_tab?('users', 'complete') %>">Complete!</span>
+    </div>
   </div>
 </div>

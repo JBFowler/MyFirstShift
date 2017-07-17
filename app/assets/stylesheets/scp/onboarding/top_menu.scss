@@ -1,4 +1,11 @@
 .top-menu {
+  .active {
+    background-color: #929F4C;
+    box-shadow: none;
+    color: #fff;
+    font-weight: bold;
+  }
+
   .btn-breadcrumb {
     width: 100%;
   }
@@ -36,9 +43,10 @@
 
   /** The Spacing **/
   .btn-breadcrumb .btn {
+    pointer-events: none;
     font-weight: bold;
     padding: 6px 12px 6px 24px;
-    width: 14.3783%;
+    width: 14.36%;
   }
 
   .btn-breadcrumb .btn:first-child {
@@ -74,14 +82,4 @@
   .btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
     border-left: 10px solid #adadad;
   }
-
-  .active {
-    background-color: #929F4C;
-    color: #fff;
-    font-weight: bold;
-  }
-
-  // .active + a {
-  //   border-left: 0px solid;
-  // }
 }
