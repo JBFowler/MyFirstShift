@@ -3,7 +3,7 @@ body {
   font-family: 'Muli', sans-serif;
   font-size: 16px;
   color: #333333;
-  min-width: 992px;
+  // min-width: 992px;
 
   #content {
     padding-top: 25px;
@@ -64,6 +64,10 @@ body {
     h5 {
       margin-top: 0;
     }
+  }
+
+  .container {
+    width: 1140px !important;
   }
 
   .float-none {

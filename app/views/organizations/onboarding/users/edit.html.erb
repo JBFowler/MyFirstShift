@@ -1,6 +1,6 @@
 <div id="employee-info">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-xs-12">
       <div class="well onboarding">
         <div class="row">
           <h2>Employee Info</h2>
@@ -12,27 +12,27 @@
 
         <div class="row">
           <%= form_for @user, url: onboarding_employee_info_path do |f| %>
-            <div class="col-md-4 center-block form-group float-none">
+            <div class="col-xs-4 center-block form-group float-none">
               <%= f.label :employee_type %>
               <%= f.select :employee_type, ["salary", "hourly"], {}, {class: "form-control"} %>
             </div>
 
-            <div class="col-md-4 center-block form-group float-none">
+            <div class="col-xs-4 center-block form-group float-none">
               <%= f.label :phone %>
               <%= f.telephone_field :phone, class: "form-control", placeholder: "999-999-9999" %>
             </div>
 
-            <div class="col-md-4 center-block form-group float-none">
+            <div class="col-xs-4 center-block form-group float-none">
               <%= label_tag :email %>
               <%= email_field_tag "", @user.email, class: "form-control", readonly: true %>
             </div>
 
-            <div class="col-md-4 center-block form-group float-none">
+            <div class="col-xs-4 center-block form-group float-none">
               <%= label_tag :organization %>
               <%= text_field_tag "", @user.organization.name, class: "form-control", readonly: true %>
             </div>
 
-            <div class="col-md-12 text-center">
+            <div class="col-xs-12 text-center">
               <%= link_to "Previous Step", onboarding_meet_the_management_path, class: "btn btn-default", id: "next-btn" %>
               <%= f.submit "Next Step", class: "btn btn-default", id: "next-btn" %>
             </div>
