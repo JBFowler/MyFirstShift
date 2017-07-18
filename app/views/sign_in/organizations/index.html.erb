@@ -3,11 +3,12 @@
     <h1 id="title" class="text-center">Search for a Subdomain</h1>
 
     <p id="instructions" class="text-center">Enter your organization's MyFirstShift URL.</p>
-    <%= render 'layouts/messages' %>
     <%= form_tag sign_in_find_subdomain_path, method: "get", id: "organization_name_input" do %>
       <div class="form-group form-inline">
-        <%= label_tag :search_term, '', class: "sr-only" %>
-        <%= text_field_tag :search_term, '', class: "form-control" %> .myfirstshift.com
+        <p>
+          <%= label_tag :search_term, '', class: "sr-only" %>
+          <%= text_field_tag :search_term, '', class: "form-control", id: "search-box" %> <span id="domain">.myfirstshift.com</span>
+        </p>
       </div>
       <%= submit_tag "Search", class: "btn" %>
     <% end %>

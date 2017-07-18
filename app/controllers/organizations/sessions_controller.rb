@@ -1,4 +1,6 @@
 class Organizations::SessionsController < Devise::SessionsController
+  layout 'organizations/home'
+
 # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

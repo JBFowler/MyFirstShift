@@ -1,22 +1,7 @@
 #meet-the-management {
-  #management-intros {
-    padding-top: 30px;
-  }
-
-  #org-building-picture {
+  #organization-building-img {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    height: 400px;
-
-    img {
-      flex-shrink: 0;
-      width: 100%;
-      min-width: 100%;
-      min-height: 100%;
-      border: 1px solid #ccc;
-      border-radius: 0px;
-    }
   }
 }

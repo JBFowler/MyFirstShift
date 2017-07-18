@@ -1,4 +1,3 @@
-require 'pry'
 module TopMenuHelper
   def current_tab?(controller, action="index")
     case

@@ -3,9 +3,18 @@ class ApplicationController < ActionController::Base
   before_action :get_organization
   before_action :get_mailer_host
 
+  helper_method :return_home?
+
   def require_owner
     unless user_signed_in? && current_user.owner?
       flash[:danger] = "You can't do that."
+      redirect_to home_path
+    end
+  end
+
+  def return_home?
+    if current_user.progress_complete?
+      flash[:warning] = "You have already completed your onboarding process"
       redirect_to home_path
     end
   end

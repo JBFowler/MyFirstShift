@@ -1,3 +1,57 @@
-<h2>Apps</h2>
+<div id="apps">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="well onboarding">
+        <div class="row">
+          <h2>Apps</h2>
+        </div>
 
-<%= link_to "Next Step", onboarding_first_day_path %>
+        <hr class="green-ruler">
+
+        <div class="row onboarding-info-section">
+          <div class="col-xs-4 col-xs-offset-2">
+            <div class="row text-center">
+              <%= image_tag("Slack Logo.png", width: 50, height: 50, alt: "Circle Pop") %>
+            </div>
+            <div class="row text-center app-wrapers" style="padding: 0 50px 0 50px;">
+              <h2>Slack</h2>
+              <p>Slack is a communication software for teams.</p>
+              <p>Your primary means of communicating with your team.</p>
+              <p>You can sign up for your team account <%= link_to "here", "http://www.slack.com", target: "_blank" %>.</p>
+              <p>You can access Slack online on a computer or a phone.  They also offer a great app.</p>
+            </div>
+          </div>
+          <div class="col-xs-4 col-xs-offset-0">
+            <div class="row text-center">
+              <%= image_tag("WhenIWork Logo.png", width: 50, height: 50, alt: "Circle Pop") %>
+            </div>
+            <div class="row text-center app-wrapers" style="padding: 0 50px 0 50px;">
+              <h2>WhenIWork</h2>
+              <p>WhenIWork is a scheduling software for teams.</p>
+              <p>
+                This will be where you can...</br>
+                - Set your availablity</br>
+                - Request days off</br>
+                - Swap shifts with your co-workers
+              </p>
+              <p> You can access WIW online on a computer or a phone.  They also offer a great app.</p>
+              <p>You will receive an invite from your Unit Lead so that you can join the WIW team.</p>
+              <p>
+                Once you receive the link, you should</br>
+                1) Set up your account</br>
+                2) Set your availability
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <%= link_to "Previous Step", onboarding_policies_path, class: "btn btn-default", id: "next-btn" %>
+            <%= link_to "Next Step", onboarding_first_day_path, class: "btn btn-default", id: "next-btn" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
