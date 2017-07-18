@@ -9,7 +9,7 @@ describe Organizations::Owner::HomeController, :type => :controller do
     sign_in user
   end
 
-  describe "index" do
+  describe "#index" do
     it "shows admin home page" do
       get :index
 

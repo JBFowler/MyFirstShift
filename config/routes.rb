@@ -48,19 +48,35 @@ Rails.application.routes.draw do
         post '/invite/:id/redeem', to: 'invites#redeem', as: :redeem_invite
       end
 
+      namespace :onboarding do
+        get '/apps', to: 'apps#index'
+        get '/complete', to: 'users#complete'
+        get '/employee_info', to: 'users#edit'
+        patch '/employee_info', to: 'users#update'
+        get '/first_day', to: 'first_day#index'
+        get '/meet_the_management', to: 'management#index'
+        get '/policies', to: 'policies#index'
+        get '/paperwork', to: 'paperwork#index'
+        get '/questions', to: 'questions#index'
+        namespace :paperwork do
+          # resource :forms, only: [:show]
+        end
+      end
+
       namespace :owner do
         root to: 'home#index'
         get '/home', to: 'home#index'
         resources :invites, except: [:edit, :update]
       end
 
-      # resources :units do
-      #   namespace :manager do
-      #     get '/home', to: 'home#index'
-      #   end
-      # end
+      resources :units do
+        namespace :manager do
+          get '/home', to: 'home#index'
+        end
+      end
 
       get '/home', to: 'home#index'
+      get '/welcome', to: 'welcome#index'
     end
   end
 end

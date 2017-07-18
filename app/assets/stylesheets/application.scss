@@ -14,5 +14,8 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "front/*";
 @import "admin/*";
+@import "font-awesome";
+@import "front/*";
+@import "scp/**/*";
+@import "site";

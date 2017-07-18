@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, request_keys: [:subdomain]
 
-  validates_presence_of(:first_name, :last_name, :email, :password, :password_confirmation)
+  validates_presence_of :first_name, :last_name, :email
+  validates_presence_of :employee_type, if: :persisted?
+  validates_presence_of :phone, if: :persisted?
   # validates_format_of     :email, with: email_regexp, allow_blank: true, if: :email_changed?
   validates_presence_of     :password, if: :password_required?
   validates_confirmation_of :password, if: :password_required?
@@ -23,6 +25,11 @@ class User < ActiveRecord::Base
     where(:email => warden_conditions[:email], :subdomain => warden_conditions[:subdomain]).first
   end
 
+  def complete!
+    self.progress = "complete"
+    self.save #consider update_column(:progress, 'complete')
+  end
+
   def full_name
     return "#{first_name} #{last_name}" unless first_name.blank? && last_name.blank?
     "Unknown"
@@ -30,6 +37,10 @@ class User < ActiveRecord::Base
 
   def owner?
     role == "owner"
+  end
+
+  def progress_complete?
+    progress == "complete"
   end
 
   protected
