@@ -6,14 +6,21 @@ FactoryGirl.define do
     password "Password1"
     password_confirmation "Password1"
     role "member"
+    progress nil
     organization
 
-    trait :owner do
-      role "owner"
+    trait :completed do
+      employee_type "salary"
+      phone "999-999-9999"
+      progress "complete"
     end
 
     trait :manager do
       role "manager"
+    end
+
+    trait :owner do
+      role "owner"
     end
   end
 end

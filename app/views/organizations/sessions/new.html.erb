@@ -1,28 +1,39 @@
-<h2>Log in</h2>
+<div id="login-page">
+  <div class="row">
+    <div class="col-xs-8 center-block float-none">
+      <div class="well">
+        <div class="row">
+          <h2>Login</h2>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: user_session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+        <hr class="green-ruler">
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+        <div class="row">
+          <%= form_for(resource, as: resource_name, url: user_session_path(resource_name)) do |f| %>
+            <div class="col-xs-5 center-block form-group float-none">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, class: "form-control", autofocus: true %>
+            </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+            <div class="col-xs-5 center-block form-group float-none">
+              <%= f.label :password %><br />
+              <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+            </div>
+
+            <% if devise_mapping.rememberable? -%>
+              <div class="col-xs-5 center-block form-group float-none">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end %>
+
+            <div class="col-xs-12 text-center">
+              <%= f.submit "Log in", class: "btn btn-default", id: "next-btn", style: "margin-bottom: 20px;" %>
+            </div>
+          <% end %>
+          <br/>
+        </div>
+      </div>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<br/>
-
-<%= link_to "Front Page", root_url(subdomain: "www") %>
+</div>

@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-xs-12 top-menu">
+     <div class="btn-group btn-breadcrumb">
+        <span class="btn btn-default <%= current_tab?('management') %>">Introduction</span>
+        <span class="btn btn-default <%= current_tab?('users', 'edit') %>">Employee Info</span>
+        <span class="btn btn-default <%= current_tab?('paperwork') %> <%= current_tab?('questions') %>">Paperwork</span>
+        <span class="btn btn-default <%= current_tab?('policies') %>">Policies</span>
+        <span class="btn btn-default <%= current_tab?('apps') %>">Applications</span>
+        <span class="btn btn-default <%= current_tab?('first_day') %>">Your First Day</span>
+        <span class="btn btn-default <%= current_tab?('users', 'complete') %>">Complete!</span>
+    </div>
+  </div>
+</div>

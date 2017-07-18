@@ -1,0 +1,51 @@
+header {
+  background: #323838;
+
+  .container-fluid {
+    padding: 0px;
+  }
+
+  .navbar-brand {
+    margin-top: -11px;
+  }
+
+  #top-nav {
+    background: #323838;
+    border: none;
+    margin: 5px 0 5px 0;
+    position: relative;
+  }
+
+  #top-nav-links {
+    a {
+      color: rgba(255,255,255,0.75);
+      font-size: 15px;
+      font-weight: bold;
+
+      &:hover {
+        color: #929F4C;
+      }
+    }
+
+    > .open {
+      a {
+        background-color: transparent;
+
+        &:hover, &:focus {
+          background-color: transparent;
+        }
+      }
+    }
+
+    .dropdown-menu {
+      a {
+        color: #333333;
+
+        &:hover {
+          color: white;
+          background-color: #929F4C;
+        }
+      }
+    }
+  }
+}

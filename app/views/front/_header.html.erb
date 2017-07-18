@@ -1,0 +1,22 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <% if request.subdomain == "" %>
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <p id="logo">MY<span style="color:#929F4C">FIRST</span>SHIFT</p>
+        <% end %>
+      <% end %>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <% if request.subdomain == "" %>
+        <li><a href="#" class="about">ABOUT US </a></li>
+        <li>
+          <%= link_to sign_in_path, class: "btn btn-default", id: "login" do %>
+            LOGIN
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

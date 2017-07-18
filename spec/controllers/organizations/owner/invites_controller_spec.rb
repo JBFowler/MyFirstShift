@@ -7,6 +7,7 @@ describe Organizations::Owner::InvitesController, :type => :controller do
   before do
     @request.host = "#{organization.subdomain}.myfirstshift.com"
     sign_in user
+    ActionMailer::Base.deliveries = []
   end
 
   describe "#index" do
