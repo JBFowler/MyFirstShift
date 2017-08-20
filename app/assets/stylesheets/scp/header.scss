@@ -1,9 +1,13 @@
 #top-nav {
   background: #323838;
 
-  .container {
-    padding: 0 15px 0 15px;
+  .container-fluid {
+    padding: 0;
   }
+
+  // .container {
+  //   padding: 0 15px 0 15px;
+  // }
 
   .navbar-toggler {
     border: 1px solid grey;

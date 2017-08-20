@@ -6,13 +6,12 @@ body {
   // min-width: 992px;
 
   #content {
-    padding-top: 25px;
-    padding-bottom: 50px;
+    margin-top: 25px;
+    margin-bottom: 25px;
   }
 
   #content-container {
-    background: #EFEFEF;
-    min-height: 500px;
+    min-height: 400px;
   }
 
   #msg-header {
@@ -73,29 +72,24 @@ body {
   .green-ruler {
     border-color: #929F4C;
     width: 40%;
-    margin: 0 auto;
-    margin-bottom: 20px;
+    // margin: 0 auto;
+    // margin-bottom: 20px;
   }
 
-  .well {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 0px;
-    box-shadow: 0px 0px 5px rgba(0,0,0,0.15);
+  .card {
+    h2.card-title {
+      color: #929F4C;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 30px;
+      // font-family: 'Nunito', sans-serif;
+      font-family: 'Josefin Sans', sans-serif;
+    }
 
     &.onboarding {
       border-top: none;
       box-shadow: none;
       padding-bottom: 64px;
     }
-  }
-
-  h2 {
-    color: #929F4C;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 30px;
-    // font-family: 'Nunito', sans-serif;
-    font-family: 'Josefin Sans', sans-serif;
   }
 }

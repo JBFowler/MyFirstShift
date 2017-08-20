@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg" id="top-nav">
-  <div class="container">
+  <div class="container-fluid">
     <%= link_to (user_signed_in? ? home_path : root_url(subdomain: "")), class: "navbar-brand" do %>
       <%= image_tag("PastedGraphic-1.png", width: 42, height: 42, alt: "Circle Pop") %>
     <% end %>
@@ -11,7 +11,7 @@
     <% end %>
 
     <div class="collapse navbar-collapse" id="navbarUserContent">
-      <ul class="navbar-nav" id="top-nav-links">
+      <ul class="navbar-nav ml-lg-auto" id="top-nav-links">
         <% if current_user %>
           <li class="nav-item"><%= link_to "Home", home_path, class: "nav-link" %></li>
           <% if current_user.owner? %>
