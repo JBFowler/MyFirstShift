@@ -1,29 +1,12 @@
-footer {
-  // background: #fff;
+#site-footer {
+  margin-top: 40px;
+  margin-bottom: 40px;
 
-  .row {
-    margin: 0px;
+  #footer-border-line {
+    margin-top: 20px;
   }
 
-  #site-footer {
-    margin-top: 40px;
-    border-top: 1px solid #dbd9d9;
-    padding: 40px 0 40px 0;
-
-    i {
-      color: #858585;
-    }
-
-    img {
-      position: absolute;
-      margin-left: auto;
-      margin-right: auto;
-      left: 0;
-      right: 0;
-    }
-
-    span {
-      color: #858585;
-    }
+  i, span {
+    color: #858585;
   }
 }

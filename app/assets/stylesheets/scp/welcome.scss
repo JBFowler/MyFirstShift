@@ -1,15 +1,14 @@
-#welcome-header {
-  margin-top: 25px;
-}
+#welcome-page {
+  #welcome-list {
+    @include media-breakpoint-up(md) {
+      padding-left: 27%;
+    }
 
-#welcome-list {
-  ol {
-    padding-left: 17%;
     counter-reset: o-counter 0;
     list-style-type: none;
 
     li {
-      font-weight: bold;
+      // font-weight: bold;
       line-height: 40px;
     }
 
@@ -17,14 +16,5 @@
       content: counter(o-counter) ') ';
       counter-increment: o-counter;
     }
-  }
-
-  .well {
-    padding-bottom: 40px;
-  }
-
-  #list-header {
-    color: gray;
-    font-size: 22px;
   }
 }

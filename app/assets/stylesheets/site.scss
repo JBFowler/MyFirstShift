@@ -5,13 +5,21 @@ body {
   color: #333333;
   // min-width: 992px;
 
+  .container {
+    @include media-breakpoint-down(lg) {
+      max-width: 100%;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+
   #content {
     margin-top: 25px;
     margin-bottom: 25px;
   }
 
   #content-container {
-    min-height: 400px;
+    // min-height: 400px;
   }
 
   #msg-header {
@@ -71,7 +79,14 @@ body {
 
   .green-ruler {
     border-color: #929F4C;
-    width: 40%;
+
+    @include media-breakpoint-up(lg) {
+      width: 40%;
+    }
+
+    @include media-breakpoint-only(md) {
+      width: 60%;
+    }
     // margin: 0 auto;
     // margin-bottom: 20px;
   }
@@ -91,5 +106,13 @@ body {
       box-shadow: none;
       padding-bottom: 64px;
     }
+  }
+
+  .text-muted {
+    color: #808080 !important;
+  }
+
+  h5 {
+    font-size: 22px;
   }
 }
