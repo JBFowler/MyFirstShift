@@ -1,14 +1,10 @@
 #welcome-page {
   #welcome-list {
-    @include media-breakpoint-up(md) {
-      padding-left: 27%;
-    }
-
+    padding-left: 27%;
     counter-reset: o-counter 0;
     list-style-type: none;
 
     li {
-      // font-weight: bold;
       line-height: 40px;
     }
 
