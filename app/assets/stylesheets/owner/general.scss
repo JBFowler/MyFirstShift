@@ -1,0 +1,31 @@
+#owner-content {
+  .nav-pills {
+    .nav-item {
+      a {
+        color: #333333;
+        border-radius: 20px;
+        background-color: #FFFFFF;
+        // margin-right: 8px;
+      }
+
+      a.active {
+        box-shadow: 0 1px 4px 0 rgba(0,0,0,.14);
+      }
+
+      a:hover:not(.active) {
+        background-color: #EFEFEF;
+        transition: all 0.2s cubic-bezier(0,0,0.2,1);
+      }
+
+      &:not(:last-child) {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  // .btn-primary {
+  //   background-color: #929F4C;
+  //   color: #FFFFFF;
+  //   border: 1px solid #929F4C;
+  // }
+}

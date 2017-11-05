@@ -36,6 +36,7 @@ gem 'devise'
 gem 'pg'
 gem 'paranoia', '~> 2.2'
 gem 'font-awesome-rails'
+gem 'chart-js-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

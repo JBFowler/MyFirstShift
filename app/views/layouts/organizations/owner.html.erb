@@ -1,0 +1,35 @@
+<% content_for :content do %>
+  <div id="content">
+    <div id="owner-content" class="container">
+      <div class="row justify-content-center">
+        <div style="position: absolute; margin-left: 270px; margin-top: 8px;" class="col-12">
+          <h5 class="page-title" style="font-weight: bold; color: #666666;">Owner Portal</h5>
+        </div>
+
+        <ul style="z-index: 1001;" class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Members</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Reports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Rookies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Tasks</a>
+          </li>
+        </ul>
+      </div>
+
+      <br/>
+
+      <%= yield %>
+    </div>
+  </div>
+<% end %>
+
+<%= render template: 'layouts/application' %>
