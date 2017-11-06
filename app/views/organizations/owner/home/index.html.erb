@@ -1,16 +1,91 @@
 <div id="owner-dashboard-page">
-  <br />
   <div class="row">
-    <div class="col">
-      <div class="card">
+    <div class="col-5">
+      <div class="card mb-3">
         <h5 class="card-header">Active Team Members</h5>
         <div class="card-body">
-          <canvas id="activeTeamMembersChart" height="200"></canvas>
+          <h5 class="card-title">50</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Active team members</h6>
+          <p class="card-text">This is a brief description about what active team members are</p>
+          <a href="#" class="btn btn-info">Team Members</a>
         </div>
+      </div>
+      <div class="card mb-3">
+        <h5 class="card-header">Prospects</h5>
+        <div class="card-body">
+          <h5 class="card-title">10</h5>
+          <h6 class="card-subtitle mb-2 text-muted">New Prospects</h6>
+          <p class="card-text">This is a brief description about what prospects are</p>
+          <a href="#" class="btn btn-info">See Prospects</a>
+        </div>
+      </div>
+      <div class="card">
+        <h5 class="card-header">Scheduler</h5>
+        <div class="card-body">
+          <h5 class="card-title">5</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Team members ready to schedule</h6>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><%= Faker::Name.first_name %> <%= Faker::Name.last_name %> <a href="#" class=" pull-right btn btn-light">Schedule</a></li>
+          <li class="list-group-item"><%= Faker::Name.first_name %> <%= Faker::Name.last_name %> <a href="#" class=" pull-right btn btn-light">Schedule</a></li>
+          <li class="list-group-item"><%= Faker::Name.first_name %> <%= Faker::Name.last_name %> <a href="#" class=" pull-right btn btn-light">Schedule</a></li>
+          <li class="list-group-item"><%= Faker::Name.first_name %> <%= Faker::Name.last_name %> <a href="#" class=" pull-right btn btn-light">Schedule</a></li>
+          <li class="list-group-item"><%= Faker::Name.first_name %> <%= Faker::Name.last_name %> <a href="#" class=" pull-right btn btn-light">Schedule</a></li>
+        </ul>
       </div>
     </div>
     <div class="col">
-      <!-- <canvas id="myChart2" height="250"></canvas> -->
+      <div class="card mb-3">
+        <h5 class="card-header">New Team Members</h5>
+        <div class="card-body">
+          <ul class="pull-right nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link" href="#">This Month</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Past 6 Months</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Past Year</a>
+            </li>
+          </ul>
+          <canvas class="mb-2" id="activeTeamMembersChart" height="200"></canvas>
+          <hr>
+          <p class="card-text"><small><%= link_to "Invite New Member", new_owner_invite_path, style: "color: #17a2b8;" %></small></p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h5 class="card-header">Hourly Pay Breakdown</h5>
+        <div class="card-body">
+          <canvas class="mb-2" id="hourlyPayBreakdownChart" height="150"></canvas>
+          <hr>
+          <div class="row">
+            <div style="padding: 0;" class="col">
+              <div style="border-top: none; border-bottom: none; border-left: none;  border-radius: 0;" class="card">
+                <div style="padding-top: 0; padding-left: 15px;" class="card-body">
+                  <h6 class="card-title mb-0">Hourly Pay</h6>
+                  <small class="card-subtitle text-muted">Wage ($/hr)<span class="pull-right">Percent (%)</span></small>
+                  <ul class="list-group list-group-flush">
+                    <li style="padding-left: 0; padding-right: 0; padding-bottom: 4px; padding-top: 4px; border-top: none;" class="list-group-item"><small>$10</small> <small class="pull-right">56</small></li>
+                    <li style="padding-left: 0; padding-right: 0; padding-bottom: 4px; padding-top: 4px; border-top-style: dotted;" class="list-group-item"><small>$8</small> <small class="pull-right">44</small></li>
+                    <li style="padding-left: 0; padding-right: 0; padding-top: 4px; border-top-color: rgba(0, 0, 0, 0.125);" class="list-group-item"><strong style="font-size: 14px;">Total</strong> <strong style="font-size: 14px;" class="pull-right">100</strong></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div style="border: none;" class="card">
+                <div style="padding-top: 0; padding-left: 5px;" class="card-body">
+                  <h6 style="font-weight: bold;" class="card-title mb-0">Most Paid</h6>
+                  <h6 style="font-weight: bold;" class="card-title mb-0 pt-1">15</h6>
+                  <small class="card-subtitle text-muted">at $10/hr</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

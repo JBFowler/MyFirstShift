@@ -1,12 +1,12 @@
 <% content_for :content do %>
   <div id="content">
     <div id="owner-content" class="container">
-      <div class="row justify-content-center">
-        <div style="position: absolute; margin-left: 270px; margin-top: 8px;" class="col-12">
+      <div class="row justify-content-center mb-4">
+        <div class="col-sm">
           <h5 class="page-title" style="font-weight: bold; color: #666666;">Owner Portal</h5>
         </div>
 
-        <ul style="z-index: 1001;" class="nav nav-pills">
+        <ul id="owner-nav" style="z-index: 1001;" class="nav nav-pills">
           <li class="nav-item">
             <a class="nav-link active" href="#">Dashboard</a>
           </li>
@@ -24,8 +24,6 @@
           </li>
         </ul>
       </div>
-
-      <br/>
 
       <%= yield %>
     </div>

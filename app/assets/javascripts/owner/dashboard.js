@@ -1,7 +1,8 @@
 $(function() {
-  var ctx = $("#activeTeamMembersChart");
+  var activeTeamMembersChartDiv = $("#activeTeamMembersChart");
+  var hourlyPayBreakdownChartDiv = $("#hourlyPayBreakdownChart");
 
-  var activeTeamMembersChart = new Chart(ctx, {
+  var activeTeamMembersChart = new Chart(activeTeamMembersChartDiv, {
     type: 'bar',
     data: {
       labels: ["June", "July", "August", "September", "October", "November"],
@@ -14,7 +15,7 @@ $(function() {
           'rgba(54, 162, 235, 0.2)',
           'rgba(54, 162, 235, 0.2)',
           'rgba(54, 162, 235, 0.2)',
-          'rgba(54, 162, 235, 0.2)'
+          'rgba(50, 132, 50, 0.2)'
         ],
         borderColor: [
           'rgba(54, 162, 235, 1)',
@@ -22,7 +23,7 @@ $(function() {
           'rgba(54, 162, 235, 1)',
           'rgba(54, 162, 235, 1)',
           'rgba(54, 162, 235, 1)',
-          'rgba(54, 162, 235, 1)'
+          'rgba(50, 132, 50, 1)'
         ],
         borderWidth: 1
       }]
@@ -49,6 +50,55 @@ $(function() {
             display: false
           }
         }]
+      }
+    }
+  });
+
+
+  var myPieChart = new Chart(hourlyPayBreakdownChartDiv,{
+    type: 'pie',
+    data: {
+      labels: ["$10/hr", "$8/hr"],
+      datasets: [{
+        label: '',
+        data: [56, 44],
+        backgroundColor: [
+          'rgba(50, 132, 50, 0.2)',
+          'rgba(54, 162, 235, 0.2)'
+        ],
+        borderColor: [
+          'rgba(50, 132, 50, 1)',
+          'rgba(54, 162, 235, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      layout: {
+        padding: {
+          left: 120
+        }
+      },
+      legend: {
+        labels: {
+          boxWidth: 50,
+          fontSize: 16,
+          fontFamily: "'Muli', 'sans-serif'"
+        },
+        position: 'right'
+      },
+      tooltips: {
+        callbacks: {
+          label: function(tooltipItem, data) {
+            var dataset = data.datasets[tooltipItem.datasetIndex];
+            var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
+              return previousValue + currentValue;
+            });
+            var currentValue = dataset.data[tooltipItem.index];
+            var precentage = Math.floor(((currentValue/total) * 100)+0.5);
+            return precentage + "%";
+          }
+        }
       }
     }
   });
