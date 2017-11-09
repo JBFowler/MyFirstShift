@@ -8,7 +8,7 @@ class Organization < ActiveRecord::Base
 
   has_many :invites, dependent: :destroy
   has_many :units, dependent: :destroy
-  has_many :users, dependent: :destroy#, inverse_of: :organization
+  has_many :members, class_name: 'User', dependent: :destroy#, inverse_of: :organization
 
   def self.search_by_subdomain(search_term)
     return nil if search_term.blank?

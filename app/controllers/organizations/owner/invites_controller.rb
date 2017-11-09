@@ -2,8 +2,12 @@ class Organizations::Owner::InvitesController < ApplicationController
   before_action :authenticate_user!
   before_action :require_owner
 
+  layout 'organizations/owner'
+
   def index
+    @owner = current_user
     @invites = @organization.invites.unscoped
+    @invite = Invite.new
   end
 
   def new

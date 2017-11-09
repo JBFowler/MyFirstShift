@@ -1,12 +1,13 @@
-class Organizations::Owner::HomeController < ApplicationController
+class Organizations::Owner::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :require_owner
 
   layout 'organizations/owner'
 
   def index
-    # redirect_to welcome_pathx
     @owner = current_user
+    @members = @organization.members
+    @invite = Invite.new
   end
 
 end

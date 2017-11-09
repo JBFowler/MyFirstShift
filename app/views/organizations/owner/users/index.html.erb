@@ -1,0 +1,226 @@
+<div id="owner-members-page">
+  <div class="row">
+    <div class="col">
+      <div style="border-bottom-right-radius: 0; border-bottom-left-radius: 0; border-bottom: none;" class="card">
+        <div class="card-header">
+          <%= render partial: 'organizations/owner/shared/members_nav' %>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <form class="form-inline">
+                <div class="form-group mx-sm-3">
+                  <label class="mr-sm-2" for="inlineFormCustomSelectPref">Sort By:</label>
+                  <select class="custom-select" id="inlineFormCustomSelectPref">
+                    <option selected>Date</option>
+                    <option value="1">Full Name</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search members" aria-label="Search for...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                  </span>
+                </div>
+              </form>
+            </div>
+            <div class="col">
+              <button type="button" class="pull-right btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-envelope mr-sm-2" aria-hidden="true"></i> Invite New Member</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top-right-radius: 0; border-top-left-radius: 0;" class="card">
+        <div class="card-body mx-sm-3">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th style="border-top: none;" scope="col">First Name</th>
+                <th style="border-top: none;" scope="col">Last Name</th>
+                <th style="border-top: none;" scope="col">Email</th>
+                <th style="border-top: none;" scope="col">Employee Type</th>
+                <th style="border-top: none;" scope="col">Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td><%= link_to "Details", "" %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render partial: 'organizations/owner/shared/invite_member_modal' %>

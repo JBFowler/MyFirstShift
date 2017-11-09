@@ -1,0 +1,232 @@
+<div id="owner-members-page">
+  <div class="row">
+    <div class="col">
+      <div style="border-bottom-right-radius: 0; border-bottom-left-radius: 0; border-bottom: none;" class="card">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <%= link_to "Member Report", '', class: "nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Unit Report", '', class: "nav-link" %>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <form class="form-inline">
+                <div class="form-group mx-sm-3">
+                  <label class="mr-sm-2" for="inlineFormCustomSelectPref">Filter By:</label>
+                  <select class="custom-select" id="inlineFormCustomSelectPref">
+                    <option selected>Employee Type: Salary</option>
+                    <option value="1">Status: Active</option>
+                  </select>
+                </div>
+                <div class="form-group mx-sm-3">
+                  <label class="mr-sm-2" for="inlineFormCustomSelectPref">Sort By:</label>
+                  <select class="custom-select" id="inlineFormCustomSelectPref">
+                    <option selected>Name</option>
+                    <option value="1">Date of Hire: Desc</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+            <div class="col">
+              <button class="pull-right btn btn-info"><i class="fa fa-table mr-sm-2" aria-hidden="true"></i> Export to Excel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="border-top-right-radius: 0; border-top-left-radius: 0;" class="card">
+        <div class="card-body mx-sm-3">
+          <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th style="border-top: none;" scope="col">First Name</th>
+                <th style="border-top: none;" scope="col">Last Name</th>
+                <th style="border-top: none;" scope="col">Email</th>
+                <th style="border-top: none;" scope="col">Employee Type</th>
+                <th style="border-top: none;" scope="col">Status</th>
+                <th style="border-top: none;" scope="col">Date of Hire</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/07/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/07/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/06/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/06/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/06/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/05/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/04/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/04/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/04/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/03/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/01/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/01/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/07/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/07/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/07/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/07/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/07/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/07/2016</td>
+              </tr>
+              <tr>
+                <% first_name = Faker::Name.first_name %>
+                <td><%= first_name %></td>
+                <td><%= Faker::Name.last_name %></td>
+                <td><%= Faker::Internet.safe_email(first_name) %></td>
+                <td>Salary</td>
+                <td>Active</td>
+                <td>11/07/2016</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

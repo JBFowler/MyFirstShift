@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Organizations::Owner::HomeController, :type => :controller do
+describe Organizations::Owner::UsersController, :type => :controller do
   let(:organization) { FactoryGirl.create(:organization) }
   let(:user) { FactoryGirl.create(:user, :owner, organization: organization) }
 
@@ -10,13 +10,13 @@ describe Organizations::Owner::HomeController, :type => :controller do
   end
 
   describe "#index" do
-    it "shows admin home page" do
+    it "shows users page" do
       get :index
 
       expect(assigns(:owner)).to eq(user)
       expect(assigns(:organization)).to eq(organization)
+      expect(assigns(:members)).to eq(organization.members)
       expect(response).to render_template(:index)
     end
   end
-
 end

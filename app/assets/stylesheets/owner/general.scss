@@ -39,18 +39,19 @@
     .nav-pills {
       .nav-item {
         a {
-          color: #17a2b8;
+          color: #868e96;
           background-color: #FFFFFF;
           border: 1px solid #FFFFFF;
+          border-radius: 25px;
 
           &.active {
-            border: 1px solid #17a2b8;
+            border: 1px solid #868e96;
           }
 
           &:hover {
             color: #FFFFFF;
-            background-color: #17a2b8;
-            border: 1px solid #17a2b8;
+            background-color: #868e96;
+            border: 1px solid #868e96;
             transition: all 0.2s cubic-bezier(0,0,0.2,1);
           }
         }

@@ -66,8 +66,13 @@ Rails.application.routes.draw do
       namespace :owner do
         root to: 'home#index'
         get '/home', to: 'home#index'
-        get '/members', to: 'members#index'
+        get '/members', to: 'users#index'
+        get '/members/:id', to: 'users#show', as: :member
+
         resources :invites, except: [:edit, :update]
+        resources :users
+        resources :tasks, only: [:index]
+        resources :reports, only: [:index]
       end
 
       resources :units do
