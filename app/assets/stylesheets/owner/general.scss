@@ -38,7 +38,7 @@
 
     .nav-pills {
       .nav-item {
-        a {
+        button {
           color: #868e96;
           background-color: #FFFFFF;
           border: 1px solid #FFFFFF;
@@ -46,6 +46,7 @@
 
           &.active {
             border: 1px solid #868e96;
+
           }
 
           &:hover {
@@ -53,6 +54,11 @@
             background-color: #868e96;
             border: 1px solid #868e96;
             transition: all 0.2s cubic-bezier(0,0,0.2,1);
+            cursor: pointer;
+          }
+
+          &:focus {
+            outline: none;
           }
         }
 

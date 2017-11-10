@@ -1,61 +1,201 @@
 $(function() {
-  var activeTeamMembersChartDiv = $("#activeTeamMembersChart");
+  var newTeamMembersChartDiv = $("#newTeamMembersChart");
   var hourlyPayBreakdownChartDiv = $("#hourlyPayBreakdownChart");
+  var currentMonthNav = $("#current-month-nav");
+  var pastSixMonthsNav = $("#past-six-months-nav");
+  var pastTwelveMonthsNav = $("#past-twelve-months-nav");
+  var myChart;
 
-  var activeTeamMembersChart = new Chart(activeTeamMembersChartDiv, {
-    type: 'bar',
-    data: {
-      labels: ["June", "July", "August", "September", "October", "November"],
-      datasets: [{
-        label: 'Active Team Members',
-        data: [3, 5, 6, 9, 9, 10],
-        backgroundColor: [
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(50, 132, 50, 0.2)'
-        ],
-        borderColor: [
-          'rgba(54, 162, 235, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(50, 132, 50, 1)'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      legend: {
-        labels: {
-          boxWidth: 0,
-          fontSize: 0,
-          fontFamily: "'Muli', 'sans-serif'"
-        }
-      },
-      scales: {
-        yAxes: [{
-          gridLines: {
-            display: false
-          },
-          ticks: {
-            beginAtZero:true
-          }
-        }],
-        xAxes: [{
-          gridLines: {
-            display: false
-          }
+  function drawMonthChart() {
+    var ctx = newTeamMembersChartDiv;
+    myChart = new Chart(newTeamMembersChartDiv, {
+      type: 'bar',
+      data: {
+        labels: ["November"],
+        datasets: [{
+          label: 'Active Team Members',
+          data: newTeamMembersChartDiv.data('one-month'),
+          backgroundColor: [
+            'rgba(50, 132, 50, 0.2)'
+          ],
+          borderColor: [
+            'rgba(50, 132, 50, 1)'
+          ],
+          borderWidth: 1
         }]
+      },
+      options: {
+        legend: {
+          labels: {
+            boxWidth: 0,
+            fontSize: 0,
+            fontFamily: "'Muli', 'sans-serif'"
+          }
+        },
+        scales: {
+          yAxes: [{
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              beginAtZero:true
+            }
+          }],
+          xAxes: [{
+            gridLines: {
+              display: false
+            }
+          }]
+        }
       }
-    }
+    });
+  }
+
+  function drawSixMonthChart() {
+    var ctx = newTeamMembersChartDiv;
+    myChart = new Chart(newTeamMembersChartDiv, {
+      type: 'bar',
+      data: {
+        labels: ["June", "July", "August", "September", "October", "November"],
+        datasets: [{
+          label: 'Active Team Members',
+          data: newTeamMembersChartDiv.data('six-months'),
+          backgroundColor: [
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(50, 132, 50, 0.2)'
+          ],
+          borderColor: [
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(50, 132, 50, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        legend: {
+          labels: {
+            boxWidth: 0,
+            fontSize: 0,
+            fontFamily: "'Muli', 'sans-serif'"
+          }
+        },
+        scales: {
+          yAxes: [{
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              beginAtZero:true
+            }
+          }],
+          xAxes: [{
+            gridLines: {
+              display: false
+            }
+          }]
+        }
+      }
+    });
+  }
+
+  function drawTwelveMonthChart() {
+    var ctx = newTeamMembersChartDiv;
+    myChart = new Chart(newTeamMembersChartDiv, {
+      type: 'bar',
+      data: {
+        labels: ["June", "July", "August", "September", "October", "November", "June", "July", "August", "September", "October", "November"],
+        datasets: [{
+          label: 'Active Team Members',
+          data: newTeamMembersChartDiv.data('twelve-months'),
+          backgroundColor: [
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(50, 132, 50, 0.2)'
+          ],
+          borderColor: [
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(50, 132, 50, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        legend: {
+          labels: {
+            boxWidth: 0,
+            fontSize: 0,
+            fontFamily: "'Muli', 'sans-serif'"
+          }
+        },
+        scales: {
+          yAxes: [{
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              beginAtZero:true
+            }
+          }],
+          xAxes: [{
+            gridLines: {
+              display: false
+            }
+          }]
+        }
+      }
+    });
+  }
+
+  drawMonthChart();
+
+  currentMonthNav.on('click', function() {
+    myChart.destroy();
+    drawMonthChart();
   });
 
+  pastSixMonthsNav.on('click', function() {
+    myChart.destroy();
+    drawSixMonthChart();
+  });
 
-  var myPieChart = new Chart(hourlyPayBreakdownChartDiv,{
+  pastTwelveMonthsNav.on('click', function() {
+    myChart.destroy();
+    drawTwelveMonthChart();
+  });
+
+  $('.nav-pills').on('click', 'button', function() {
+    $('.nav-pills button.active').removeClass('active');
+    $(this).addClass('active');
+  });
+
+  var myPieChart = new Chart(hourlyPayBreakdownChartDiv, {
     type: 'pie',
     data: {
       labels: ["$10/hr", "$8/hr"],

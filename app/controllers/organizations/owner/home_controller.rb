@@ -5,8 +5,21 @@ class Organizations::Owner::HomeController < ApplicationController
   layout 'organizations/owner'
 
   def index
-    # redirect_to welcome_pathx
-    @owner = current_user
+    locals ({
+      owner: current_user,
+      active_users: @organization.members.active,
+      ready_to_schedule: @organization.members.ready_to_schedule,
+      past_twelve_months: get_months
+    })
   end
 
+  private
+
+  def get_months
+    arr = []
+    12.times do |n|
+      arr << @organization.members.where('extract(month from created_at) = ?', n.months.ago.month).count
+    end
+    return arr.reverse
+  end
 end
