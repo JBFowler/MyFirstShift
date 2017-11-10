@@ -1,18 +1,18 @@
 # onboarding
 
-* Ruby version
+#### Ruby version
 
 ```shell
 rvm install ruby-2.4.0
 ```
 
-* Builds
+#### Builds
 
-#### Dev
+##### Dev
 
-#### Qa - (Staging ENV needs to be setup)
+##### Qa - (Staging ENV needs to be setup)
 
-#### Master
+##### Master
 
 Setup
 
