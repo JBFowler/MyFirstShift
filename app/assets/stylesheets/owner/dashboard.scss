@@ -1,0 +1,63 @@
+#owner-dashboard-page {
+  #new-team-members-card {
+    #invite-new-member-link {
+      a {
+        color: #17a2b8;
+
+        &:hover {
+          cursor: pointer;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  #hourly-pay-breakdown-stats {
+    #percentage-totals-div {
+      padding: 0;
+
+      .card {
+        border-top: none;
+        border-bottom: none;
+        border-left: none;
+        border-radius: 0;
+
+        .card-body {
+          padding-top: 0;
+          padding-left: 15px;
+
+          .list-group-item:first-child {
+            border-top-style: dotted;
+          }
+
+          .list-group-item:last-child {
+            border-top-color: rgba(0, 0, 0, 0.125);
+          }
+
+          .list-group-item {
+            padding: 4px 0 4px 0;
+
+            &:not(:first-child):not(:last-child) {
+              border-top: none;
+            }
+          }
+        }
+      }
+    }
+
+    #most-hourly-wage-div {
+      .card {
+        border: none;
+
+        .card-body {
+          padding-top: 0;
+          padding-left: 5px;
+
+          .card-title {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}

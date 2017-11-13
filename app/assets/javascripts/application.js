@@ -18,3 +18,4 @@
 //= require bootstrap-sprockets
 //= require Chart.min
 //= require_tree ./owner
+//= require site

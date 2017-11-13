@@ -65,17 +65,11 @@
         &:not(:last-child) {
           margin-right: 8px;
         }
-
-        // a.active {
-        //   border: 1px solid #17a2b8;
-        // }
       }
     }
   }
 
-  // .btn-primary {
-  //   background-color: 'rgba(54, 162, 235, 0.2)';
-  //   color: #FFFFFF;
-  //   border: 1px solid #929F4C;
-  // }
+  strong {
+    font-size: 14px;
+  }
 }

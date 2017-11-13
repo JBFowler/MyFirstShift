@@ -1,3 +1,4 @@
+require 'pry'
 class Organization < ActiveRecord::Base
   acts_as_paranoid
 
@@ -17,5 +18,18 @@ class Organization < ActiveRecord::Base
 
   def owners
     users.where(role: "owner")
+  end
+
+  def past_years_new_members
+    new_members = []
+    12.times do |n|
+      new_members << cached_new_members_by_month(n.months.ago.month).count
+    end
+    return new_members.reverse
+  end
+
+  #Need to setup redis for caching
+  def cached_new_members_by_month(month)
+    Rails.cache.fetch([self.class.name, month, :new_member], expires_in: 240.hours) { members.new_members_this_month(month).to_a }
   end
 end

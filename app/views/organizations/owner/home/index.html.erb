@@ -10,7 +10,9 @@
     <div class="col-md-7">
       <%= render partial: 'new_team_members', locals: { twelve_months: past_twelve_months } %>
 
-      <%= render partial: 'hourly_pay_breakdown' %>
+      <%= render partial: 'hourly_pay_breakdown', locals: { eight_per_hour: eight_per_hour_members, ten_per_hour: ten_per_hour_members} %>
     </div>
   </div>
 </div>
+
+<%= render partial: 'organizations/owner/shared/invite_member_modal', locals: { invite: invite } %>
