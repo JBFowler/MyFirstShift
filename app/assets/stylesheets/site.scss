@@ -40,13 +40,13 @@ body {
     }
   }
 
-  .alert {
-    float: none;
+  // .alert {
+  //   float: none;
 
-    h5 {
-      margin-top: 0;
-    }
-  }
+  //   h5 {
+  //     margin-top: 0;
+  //   }
+  // }
 
   .float-none {
     float: none;
@@ -103,5 +103,34 @@ body {
     }
     // background-color: #EFEFEF;
     // border-color: #d7d7d7;
+  }
+
+  .form-label {
+    font-weight: bold;
+  }
+
+  .btn-primary {
+    background-color: #0695df;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0574ad;
+    }
+  }
+
+  .default-green-text {
+    color: #17a2b8;
+  }
+
+  .default-green-backround {
+    background-color: #17a2b8;
+  }
+
+  a {
+    color: #0695df;
+
+    &:hover {
+      color: #0574ad;
+    }
   }
 }

@@ -8,9 +8,9 @@ module TopMenuHelper
     end
   end
 
-  def current_owner_tab?(controller, action="index")
+  def current_owner_tab?(controller)
     case
-    when controller?("organizations/owner/#{controller}") && action?(action)
+    when controller?("organizations/owner/#{controller}")
       "active"
     else
       ""

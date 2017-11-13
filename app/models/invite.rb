@@ -14,6 +14,8 @@ class Invite < ActiveRecord::Base
   default_scope { where("expires_at > ?", DateTime.current) }
 
   scope :owners, -> { where role: 'owner' }
+  scope :redeemed, -> { where.not redeemed_at: nil }
+  scope :unredeemed, -> { where redeemed_at: nil }
 
   def expires_at_cannot_be_in_the_past
     if expires_at.present? && expires_at < DateTime.current

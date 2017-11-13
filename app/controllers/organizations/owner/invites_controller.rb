@@ -5,38 +5,46 @@ class Organizations::Owner::InvitesController < ApplicationController
   layout 'organizations/owner'
 
   def index
-    @owner = current_user
-    @invites = @organization.invites.unscoped
-    @invite = Invite.new
+    invites = @organization.invites.unscoped
+
+    locals ({
+      owner: current_user,
+      invites: invites
+    })
   end
 
   def new
-    @invite = Invite.new
+    invite = Invite.new
+
+    locals ({
+      owner: current_user,
+      invite: invite
+    })
   end
 
   def create
-    @invite = @organization.invites.build(invite_params)
-    @invite.assign_attributes(subdomain: @organization.subdomain, expires_at: @invite.expires_at.try(:end_of_day), role: "member")
+    invite = @organization.invites.build(invite_params)
+    invite.assign_attributes(subdomain: @organization.subdomain, expires_at: 30.days.from_now.end_of_day, role: "member")
 
-    if @invite.save
-      flash[:success] = "The user has been invited"
-      InviteMailer.invite_member(@invite).deliver
-      redirect_to owner_invites_path
+    if invite.save
+      flash[:success] = "Invitation Sent!"
+      InviteMailer.invite_member(invite).deliver
+      redirect_to new_owner_invite_path
     else
-      render :new
+      render :new, locals: { owner: current_user, invite: invite }
     end
   end
 
   def destroy
-    @invite = Invite.find(params[:id])
+    invite = Invite.find(params[:id])
 
-    @invite.destroy
+    invite.destroy
     redirect_to owner_invites_path
   end
 
   private
 
   def invite_params
-    params.require(:invite).permit(:email, :expires_at)
+    params.require(:invite).permit(:email)
   end
 end

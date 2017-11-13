@@ -1,4 +1,3 @@
-require 'pry'
 class Organization < ActiveRecord::Base
   acts_as_paranoid
 

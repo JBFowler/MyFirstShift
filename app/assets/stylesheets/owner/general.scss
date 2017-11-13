@@ -69,6 +69,17 @@
     }
   }
 
+  .text-link {
+    a {
+      color: #17a2b8;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: none;
+      }
+    }
+  }
+
   strong {
     font-size: 14px;
   }

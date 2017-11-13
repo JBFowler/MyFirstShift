@@ -14,7 +14,6 @@
     </ul>
     <canvas class="mb-2" id="newTeamMembersChart" data-one-month="<%= [twelve_months.last] %>" data-six-months="<%= twelve_months.last(6) %>" data-twelve-months="<%= twelve_months %>" height="200"></canvas>
     <hr>
-    <p id="invite-new-member-link" class="card-text"><small><%= link_to "Invite New Member", new_owner_invite_path %></small></p>
-    <!-- <p id="invite-new-member-link" class="card-text"><small data-toggle="modal" data-target="#inviteNewMemberModal">Invite New Member</small></p> -->
+    <p class="card-text text-link"><small><%= link_to "Invite New Member", new_owner_invite_path %></small></p>
   </div>
 </div>
