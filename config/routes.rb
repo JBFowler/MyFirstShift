@@ -69,7 +69,7 @@ Rails.application.routes.draw do
         get '/members', to: 'users#index'
         get '/members/:id', to: 'users#show', as: :member
 
-        resources :invites, except: [:edit, :update]
+        resources :invites, except: [:edit]
         resources :users
         resources :tasks, only: [:index]
         resources :reports, only: [:index]

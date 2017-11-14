@@ -1,139 +1,23 @@
 <div id="owner-invites-page">
   <div class="row">
     <div class="col">
-      <div class="card">
+      <div class="tabular-card card">
         <div class="card-header">
           <%= render partial: 'organizations/owner/shared/members_nav' %>
         </div>
         <div class="card-body">
-          <div class="row">
-            <div class="col-8">
-              <form class="form-inline">
-                <div class="form-group mx-sm-3">
-                  <label class="mr-sm-2" for="inlineFormCustomSelectPref">Sort By:</label>
-                  <select class="custom-select" id="inlineFormCustomSelectPref">
-                    <option selected>Date</option>
-                    <option value="1">Full Name</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search members" aria-label="Search for...">
-                  <span class="input-group-btn">
-                    <button class="btn btn-secondary" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
-                  </span>
-                </div>
-              </form>
-            </div>
-            <div class="col">
-              <%= link_to new_owner_invite_path, class: "pull-right btn btn-info" do %>
-                <i class="fa fa-envelope mr-sm-2" aria-hidden="true"></i> Invite New Member
-              <% end %>
-            </div>
-          </div>
+          <%= render partial: 'invites_filter_bar' %>
         </div>
       </div>
-      <div style="border-top-right-radius: 0; border-top-left-radius: 0;" class="card">
+      <div class="tab-joiner-card card">
         <div class="card-body mx-sm-3">
-          <ul class="nav nav-pills mb-4">
-            <li class="nav-item">
-              <button class="nav-link active">Pending Invitations (5)</button>
-            </li>
-            <li class="nav-item">
-              <button class="nav-link">Accepted Invitations(17)</button>
-            </li>
-          </ul>
-          <ul class="list-group list-group-flush mb-5">
-            <% invites.unredeemed.each do |invite| %>
-              <li style="border-top: none;" class="list-group-item">
-                <div class="row">
-                  <div class="col">
-                    <strong><%= invite.email %></strong><small class="pull-right text-muted">Invited <%= invite.created_at.strftime("%b #{invite.created_at.day.ordinalize}") %></small>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <%= Faker::Internet.user_name(first_name) %> <span class="bullet">•</span> <span class="text-muted"><%= Faker::Internet.safe_email(first_name) %></span>
-                    <small class="pull-right text-muted">Invited by <span><%= link_to owner.full_name, "" %></span></small>
-                  </div>
-                </div>
-              </li>
-            <% end %>
-            <li class="list-group-item">
-              <div class="row">
-                <div class="col">
-                  <% first_name = Faker::Name.first_name %>
-                  <strong><%= first_name %> <%= Faker::Name.last_name %></strong><small class="pull-right text-muted">Joined Mar 28th</small>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <%= Faker::Internet.user_name(first_name) %> <span class="bullet">•</span> <span class="text-muted"><%= Faker::Internet.safe_email(first_name) %></span>
-                  <small class="pull-right text-muted">Invited by <%= link_to owner.full_name, "" %></small>
-                </div>
-              </div>
-            </li>
-            <li class="list-group-item">
-              <div class="row">
-                <div class="col">
-                  <% first_name = Faker::Name.first_name %>
-                  <strong><%= first_name %> <%= Faker::Name.last_name %></strong><small class="pull-right text-muted">Joined Mar 28th</small>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <%= Faker::Internet.user_name(first_name) %> <span class="bullet">•</span> <span class="text-muted"><%= Faker::Internet.safe_email(first_name) %></span>
-                  <small class="pull-right text-muted">Invited by <%= link_to owner.full_name, "" %></small>
-                </div>
-              </div>
-            </li>
-            <li class="list-group-item">
-              <div class="row">
-                <div class="col">
-                  <% first_name = Faker::Name.first_name %>
-                  <strong><%= first_name %> <%= Faker::Name.last_name %></strong><small class="pull-right text-muted">Joined Mar 28th</small>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <%= Faker::Internet.user_name(first_name) %> <span class="bullet">•</span> <span class="text-muted"><%= Faker::Internet.safe_email(first_name) %></span>
-                  <small class="pull-right text-muted">Invited by <%= link_to owner.full_name, "" %></small>
-                </div>
-              </div>
-            </li>
-            <li class="list-group-item">
-              <div class="row">
-                <div class="col">
-                  <% first_name = Faker::Name.first_name %>
-                  <strong><%= first_name %> <%= Faker::Name.last_name %></strong><small class="pull-right text-muted">Joined Mar 28th</small>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <%= Faker::Internet.user_name(first_name) %> <span class="bullet">•</span> <span class="text-muted"><%= Faker::Internet.safe_email(first_name) %></span>
-                  <small class="pull-right text-muted">Invited by <%= link_to owner.full_name, "" %></small>
-                </div>
-              </div>
-            </li>
-          </ul>
+          <%= render partial: 'invites_nav', locals: { pending_invites: pending_invites, accepted_invites: accepted_invites } %>
+
+          <%= render partial: 'pending_invites', locals: { pending_invites: pending_invites } %>
+
+          <%= render partial: 'accepted_invites', locals: { accepted_invites: accepted_invites } %>
         </div>
       </div>
     </div>
   </div>
 </div>
-<% invites.each do |invite| %>
-  <ol>
-    <% if invite.redeemed_at %>
-      <li><%= invite.redeemer %></li>
-      <li><%= invite.redeemed_at %></li>
-    <% else %>
-      <li>Unredeemed</li>
-    <% end %>
-    <li>Email: <%= invite.email %></li>
-    <li>Expires At: <%= invite.expires_at %></li>
-    <% if invite.deleted_at %>
-      <li>Deleted at: <%= invite.deleted_at %></li>
-    <% else %>
-      <li><%= link_to "Delete Invite", owner_invite_path(invite), method: :delete, data: { confirm: 'Are you sure?' } %></li>
-    <% end %>
-  </ol>
-<% end %>

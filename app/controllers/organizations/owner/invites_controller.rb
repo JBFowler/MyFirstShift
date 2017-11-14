@@ -7,9 +7,21 @@ class Organizations::Owner::InvitesController < ApplicationController
   def index
     invites = @organization.invites.unscoped
 
+    if params[:search]
+      invites = invites.where("invites.email like :email", {email: "%#{params[:search]}%"} )
+    end
+
+    if params[:sort]
+      invites = invites.order(params[:sort])
+    end
+
+    pending_invites = invites.unredeemed
+    accepted_invites = invites.redeemed
+
     locals ({
       owner: current_user,
-      invites: invites
+      pending_invites: pending_invites,
+      accepted_invites: accepted_invites
     })
   end
 
@@ -24,7 +36,7 @@ class Organizations::Owner::InvitesController < ApplicationController
 
   def create
     invite = @organization.invites.build(invite_params)
-    invite.assign_attributes(subdomain: @organization.subdomain, expires_at: 30.days.from_now.end_of_day, role: "member")
+    invite.assign_attributes(subdomain: @organization.subdomain, expires_at: 30.days.from_now.end_of_day, role: "member", created_by: current_user)
 
     if invite.save
       flash[:success] = "Invitation Sent!"
@@ -32,6 +44,19 @@ class Organizations::Owner::InvitesController < ApplicationController
       redirect_to new_owner_invite_path
     else
       render :new, locals: { owner: current_user, invite: invite }
+    end
+  end
+
+  def update
+    invite = Invite.unscoped.find(params[:id])
+
+    if invite.update(expires_at: 30.days.from_now.end_of_day)
+      flash[:success] = "Invitation Sent!"
+      InviteMailer.invite_member(invite).deliver
+      redirect_to owner_invites_path
+    else
+      flash[:danger] = "There was an error resending the invite"
+      redirect_to owner_invites_path
     end
   end
 

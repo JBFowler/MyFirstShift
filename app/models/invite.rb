@@ -3,6 +3,8 @@ class Invite < ActiveRecord::Base
 
   belongs_to :organization
   belongs_to :unit, optional: true
+  belongs_to :created_by, foreign_key: 'created_by_user_id', class_name: 'User'
+  belongs_to :redeemed_by, foreign_key: 'redeemed_by_user_id', class_name: 'User', optional: true
 
   validates_presence_of :email, :expires_at
   validate :user_already_exists, on: :create
@@ -15,7 +17,7 @@ class Invite < ActiveRecord::Base
 
   scope :owners, -> { where role: 'owner' }
   scope :redeemed, -> { where.not redeemed_at: nil }
-  scope :unredeemed, -> { where redeemed_at: nil }
+  scope :unredeemed, -> { where redeemed_at: nil, deleted_at: nil }
 
   def expires_at_cannot_be_in_the_past
     if expires_at.present? && expires_at < DateTime.current
@@ -23,8 +25,12 @@ class Invite < ActiveRecord::Base
     end
   end
 
+  def expired?
+    expires_at < DateTime.current
+  end
+
   def redeem(user)
-    self.update_attributes(redeemed_at: DateTime.current, redeemed_by: user.id)
+    self.update_attributes(redeemed_at: DateTime.current, redeemed_by: user)
   end
 
   def redeemer

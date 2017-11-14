@@ -1,4 +1,6 @@
 #owner-content {
+  min-height: 500px;
+
   #owner-nav {
     .nav-item {
       a {
@@ -82,5 +84,25 @@
 
   strong {
     font-size: 14px;
+  }
+
+  .tabular-card {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom: none;
+  }
+
+  .tab-joiner-card {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+
+  .search-field {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .search-btn {
+    cursor: pointer;
   }
 }

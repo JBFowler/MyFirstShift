@@ -15,7 +15,6 @@ describe Organizations::Owner::InvitesController, :type => :controller do
     it "renders the index template and retrieves all invites for organization" do
       get :index
 
-      expect(assigns(:invites)).to eq(invites)
       expect(response).to render_template(:index)
     end
   end
@@ -24,7 +23,6 @@ describe Organizations::Owner::InvitesController, :type => :controller do
     it "renders the new template" do
       get :new
 
-      expect(assigns(:invite)).to be_instance_of(Invite)
       expect(response).to render_template(:new)
     end
   end
@@ -39,9 +37,10 @@ describe Organizations::Owner::InvitesController, :type => :controller do
         expect(invite.organization).to eq(organization)
         expect(invite.subdomain).to eq(organization.subdomain)
         expect(invite.code).not_to eq(nil)
-        expect(flash[:success]).to eq("The user has been invited")
+        expect(invite.created_by).to eq(user)
+        expect(flash[:success]).to eq("Invitation Sent!")
         expect(ActionMailer::Base.deliveries.count).to eq(1)
-        expect(response).to redirect_to(owner_invites_path)
+        expect(response).to redirect_to(new_owner_invite_path)
       end
     end
 
@@ -54,8 +53,19 @@ describe Organizations::Owner::InvitesController, :type => :controller do
     end
   end
 
+  describe "#update" do
+    let(:invite) { FactoryGirl.create(:invite, organization: organization, expires_at: 10.days.from_now, created_by: user) }
+
+    it "resends the invite and updates the expires_at date" do
+      put :update, params: { id: invite.id }
+
+      invite.reload
+      invite.expires_at.should be > 29.days.from_now
+    end
+  end
+
   describe "#destroy" do
-    let(:invite) { FactoryGirl.create(:invite, organization: organization) }
+    let(:invite) { FactoryGirl.create(:invite, organization: organization, created_by: user) }
     it "soft deletes an invite" do
       delete :destroy, params: { id: invite.id }
 
