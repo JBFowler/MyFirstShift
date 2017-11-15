@@ -12,7 +12,7 @@ class Organizations::Owner::InvitesController < ApplicationController
     end
 
     if params[:sort]
-      invites = invites.order(params[:sort])
+      invites = invites.order(params[:sort]) unless params[:sort].blank?
     end
 
     pending_invites = invites.unredeemed

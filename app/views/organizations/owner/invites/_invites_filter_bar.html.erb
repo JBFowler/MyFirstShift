@@ -2,7 +2,7 @@
   <div class="col-8">
     <%= form_tag owner_invites_path, method: :get, class: "form-inline" do |f| %>
       <div class="form-group mx-sm-3">
-        <label class="mr-sm-2" for="inlineFormCustomSelectPref">Sort By:</label>
+        <label class="mr-sm-2">Sort By:</label>
         <%= select_tag :sort, "<option value='created_at' #{ (params[:sort] == 'created_at') ? 'selected' : '' }>Invite Date</option><option value='email' #{ (params[:sort] == 'email') ? 'selected' : '' }>Email</option>".html_safe, class: "custom-select" %>
       </div>
       <div class="form-group">
@@ -12,6 +12,9 @@
             <i class="fa fa-search" aria-hidden="true"></i>
           <% end %>
         </span>
+        <% unless params[:search].blank? && params[:sort].blank? %>
+          <small class="ml-3"><i class="fa fa-times-circle danger-text pr-1" aria-hidden="true"></i><%= link_to "Clear Search/Sort", owner_invites_path, class: "danger-text" %></small>
+        <% end %>
       </div>
     <% end %>
   </div>

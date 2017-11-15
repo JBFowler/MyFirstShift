@@ -6,7 +6,7 @@
           <%= invite.expired? ? "<span class='pr-3'>(expired)</span>".html_safe : "" %>
           <%= link_to "Resend", owner_invite_path(invite), method: :put, class: "pr-3" %>
           <%= link_to "Delete", owner_invite_path(invite), method: :delete, class: "danger-text" %>
-          <small class="pull-right text-muted">Invited <%= invite.created_at.strftime("%b #{invite.created_at.day.ordinalize}") %></small>
+          <small class="pull-right text-muted">Invited <%= invite.created_at.strftime("%b #{invite.created_at.day.ordinalize} %Y") %></small>
         </div>
       </div>
       <div class="row">
