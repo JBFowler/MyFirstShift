@@ -9,7 +9,7 @@ class Organizations::Owner::UsersController < ApplicationController
     members = @organization.members.with_deleted
 
     if params[:search]
-      members = Services::User::FindUserService.search(members, params[:search]) unless params[:search].blank?
+      members = ::Services::User::FindUserService.search(members, params[:search]) unless params[:search].blank?
     end
 
     if params[:sort]
