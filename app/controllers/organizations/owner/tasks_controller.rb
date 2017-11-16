@@ -5,7 +5,11 @@ class Organizations::Owner::TasksController < ApplicationController
   layout 'organizations/owner'
 
   def index
-    @owner = current_user
-  end
+    members = @organization.members.ready_to_schedule
 
+    locals ({
+      owner: current_user,
+      members: members
+    })
+  end
 end

@@ -6,7 +6,7 @@
           <h5 class="page-title" style="font-weight: bold; color: #666666;">Owner Portal</h5>
         </div>
 
-        <ul id="owner-nav" class="nav nav-pills">
+        <ul id="owner-nav" class="nav nav-pills mr-3">
           <li class="nav-item">
             <%= link_to "Dashboard", owner_root_path, class: "nav-link #{current_owner_tab?('home')}" %>
           </li>
@@ -20,7 +20,7 @@
             <a class="nav-link" href="#">Rookies</a>
           </li>
           <li class="nav-item">
-            <%= link_to "Tasks <span style='color: #ffffff; background-color: grey; border-radius: 25px; padding: 2px; margin-left: 3px;'>15</span>".html_safe, owner_tasks_path, class: "nav-link #{current_owner_tab?('tasks')}" %>
+            <%= link_to "Tasks", owner_tasks_path, class: "nav-link #{current_owner_tab?('tasks')}" %>
           </li>
         </ul>
       </div>

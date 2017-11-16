@@ -5,21 +5,15 @@
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
-              <%= link_to "Ready to Schedule (9)", '', class: "nav-link active" %>
+              <%= link_to "Ready to Schedule (#{members.count})", '', class: "nav-link active" %>
             </li>
           </ul>
         </div>
         <div class="card-body">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><%= Faker::Name.first_name %> <%= Faker::Name.last_name %> <a href="#" class=" pull-right btn btn-light">Schedule</a></li>
-            <li class="list-group-item"><%= Faker::Name.first_name %> <%= Faker::Name.last_name %> <a href="#" class=" pull-right btn btn-light">Schedule</a></li>
-            <li class="list-group-item"><%= Faker::Name.first_name %> <%= Faker::Name.last_name %> <a href="#" class=" pull-right btn btn-light">Schedule</a></li>
-            <li class="list-group-item"><%= Faker::Name.first_name %> <%= Faker::Name.last_name %> <a href="#" class=" pull-right btn btn-light">Schedule</a></li>
-            <li class="list-group-item"><%= Faker::Name.first_name %> <%= Faker::Name.last_name %> <a href="#" class=" pull-right btn btn-light">Schedule</a></li>
-            <li class="list-group-item"><%= Faker::Name.first_name %> <%= Faker::Name.last_name %> <a href="#" class=" pull-right btn btn-light">Schedule</a></li>
-            <li class="list-group-item"><%= Faker::Name.first_name %> <%= Faker::Name.last_name %> <a href="#" class=" pull-right btn btn-light">Schedule</a></li>
-            <li class="list-group-item"><%= Faker::Name.first_name %> <%= Faker::Name.last_name %> <a href="#" class=" pull-right btn btn-light">Schedule</a></li>
-            <li class="list-group-item"><%= Faker::Name.first_name %> <%= Faker::Name.last_name %> <a href="#" class=" pull-right btn btn-light">Schedule</a></li>
+            <% members.each do |member| %>
+              <li class="list-group-item"><%= member.full_name %> <a href="#" class=" pull-right btn btn-light">Schedule</a></li>
+            <% end %>
           </ul>
         </div>
       </div>
@@ -29,7 +23,7 @@
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
-              <%= link_to "Waiting Verification (6)", '', class: "nav-link active" %>
+              <%= link_to "Waiting Verification (1)", '', class: "nav-link active" %>
             </li>
           </ul>
         </div>
@@ -46,62 +40,7 @@
             </thead>
             <tbody>
               <tr>
-                <td><%= Faker::Name.first_name %> <%= Faker::Name.last_name %></td>
-                <td></td>
-                <td></td>
-                <td class="text-center">
-                  <input class="form-check-input" type="checkbox" value="checked" disabled checked>
-                </td>
-                <td class="text-center">
-                  <input class="form-check-input" type="checkbox" value="" disabled>
-                </td>
-              </tr>
-              <tr>
-                <td><%= Faker::Name.first_name %> <%= Faker::Name.last_name %></td>
-                <td></td>
-                <td></td>
-                <td class="text-center">
-                  <input class="form-check-input" type="checkbox" value="checked" disabled checked>
-                </td>
-                <td class="text-center">
-                  <input class="form-check-input" type="checkbox" value="" disabled>
-                </td>
-              </tr>
-              <tr>
-                <td><%= Faker::Name.first_name %> <%= Faker::Name.last_name %></td>
-                <td></td>
-                <td></td>
-                <td class="text-center">
-                  <input class="form-check-input" type="checkbox" value="checked" disabled checked>
-                </td>
-                <td class="text-center">
-                  <input class="form-check-input" type="checkbox" value="" disabled>
-                </td>
-              </tr>
-              <tr>
-                <td><%= Faker::Name.first_name %> <%= Faker::Name.last_name %></td>
-                <td></td>
-                <td></td>
-                <td class="text-center">
-                  <input class="form-check-input" type="checkbox" value="checked" disabled checked>
-                </td>
-                <td class="text-center">
-                  <input class="form-check-input" type="checkbox" value="" disabled>
-                </td>
-              </tr>
-              <tr>
-                <td><%= Faker::Name.first_name %> <%= Faker::Name.last_name %></td>
-                <td></td>
-                <td></td>
-                <td class="text-center">
-                  <input class="form-check-input" type="checkbox" value="checked" disabled checked>
-                </td>
-                <td class="text-center">
-                  <input class="form-check-input" type="checkbox" value="" disabled>
-                </td>
-              </tr>
-              <tr>
-                <td><%= Faker::Name.first_name %> <%= Faker::Name.last_name %></td>
+                <td>Dummy Text</td>
                 <td></td>
                 <td></td>
                 <td class="text-center">

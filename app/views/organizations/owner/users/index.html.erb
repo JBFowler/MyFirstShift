@@ -3,7 +3,7 @@
     <div class="col">
       <div class="tabular-card card">
         <div class="card-header">
-          <%= render partial: 'organizations/owner/shared/members_nav' %>
+          <%= render partial: 'organizations/owner/shared/members_nav', locals: { member_count: members.count } %>
         </div>
         <div class="card-body">
           <%= render partial: 'members_filter_bar' %>

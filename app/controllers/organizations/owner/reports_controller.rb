@@ -5,7 +5,11 @@ class Organizations::Owner::ReportsController < ApplicationController
   layout 'organizations/owner'
 
   def index
-    @owner = current_user
-  end
+    members = @organization.members.with_deleted
 
+    locals ({
+      owner: current_user,
+      members: members
+    })
+  end
 end

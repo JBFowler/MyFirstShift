@@ -1,6 +1,8 @@
 <ul class="nav nav-tabs card-header-tabs">
   <li class="nav-item">
-    <%= link_to "Members (20)", owner_members_path, class: "nav-link #{current_owner_tab?('users')}" %>
+    <%= link_to owner_members_path, class: "nav-link #{current_owner_tab?('users')}" do %>
+      <% member_count.nil? ? "Members" : "Members (#{member_count})" %>
+    <% end %>
   </li>
   <li class="nav-item">
     <%= link_to "Invitations", owner_invites_path, class: "nav-link #{current_owner_tab?('invites')}" %>
