@@ -13,8 +13,6 @@ describe Organizations::Owner::HomeController, :type => :controller do
     it "shows admin home page" do
       get :index
 
-      expect(assigns(:owner)).to eq(user)
-      expect(assigns(:organization)).to eq(organization)
       expect(response).to render_template(:index)
     end
   end

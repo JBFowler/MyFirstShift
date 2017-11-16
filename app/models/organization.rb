@@ -16,7 +16,7 @@ class Organization < ActiveRecord::Base
   end
 
   def owners
-    users.where(role: "owner")
+    members.where(role: "owner")
   end
 
   def past_years_new_members

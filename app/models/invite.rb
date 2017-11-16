@@ -3,7 +3,7 @@ class Invite < ActiveRecord::Base
 
   belongs_to :organization
   belongs_to :unit, optional: true
-  belongs_to :created_by, foreign_key: 'created_by_user_id', class_name: 'User'
+  belongs_to :created_by, foreign_key: 'created_by_user_id', class_name: 'User', optional: true
   belongs_to :redeemed_by, foreign_key: 'redeemed_by_user_id', class_name: 'User', optional: true
 
   validates_presence_of :email, :expires_at
