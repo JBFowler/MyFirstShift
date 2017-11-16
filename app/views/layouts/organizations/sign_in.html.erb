@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Myfirstshift</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Nunito" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  </head>
+
+  <body>
+    <%= render 'shared/header' %>
+
+    <div id="content-container">
+      <div class="container mt-5">
+        <%= yield %>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-4">
+          <hr id="footer-border-line">
+          <div class="row">
+            <div class="col text-center">
+              <span class="text-muted px-2">Terms</span>
+              <span class="text-muted px-2">Privacy</span>
+              <span class="text-muted px-2">Security</span>
+              <span class="text-muted px-2">Contact</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
