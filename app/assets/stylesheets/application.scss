@@ -12,10 +12,12 @@
  *
  */
 
-@import "bootstrap-sprockets";
 @import "bootstrap";
 @import "admin/*";
 @import "font-awesome";
 @import "front/*";
 @import "scp/**/*";
 @import "site";
+@import "owner/*";
+@import "colors";
+@import "borders";

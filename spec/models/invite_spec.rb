@@ -6,7 +6,8 @@ describe Invite, :type => :model do
   it { should belong_to(:organization) }
   it { should belong_to(:unit) }
 
-  subject { FactoryGirl.create(:invite, :with_code) }
+  let(:invite_creator) { FactoryGirl.create(:user) }
+  subject { FactoryGirl.create(:invite, :with_code, created_by: invite_creator) }
 
   describe "#redeem" do
     let(:user) { FactoryGirl.create(:user, email: subject.email, organization: subject.organization) }
@@ -18,7 +19,7 @@ describe Invite, :type => :model do
       subject.redeem(user)
 
       expect(subject.redeemed_at).to eq(time)
-      expect(subject.redeemed_by).to eq(user.id)
+      expect(subject.redeemed_by).to eq(user)
     end
   end
 

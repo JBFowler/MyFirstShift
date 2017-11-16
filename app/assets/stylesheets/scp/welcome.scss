@@ -1,15 +1,10 @@
-#welcome-header {
-  margin-top: 25px;
-}
-
-#welcome-list {
-  ol {
-    padding-left: 17%;
+#welcome-page {
+  #welcome-list {
+    padding-left: 27%;
     counter-reset: o-counter 0;
     list-style-type: none;
 
     li {
-      font-weight: bold;
       line-height: 40px;
     }
 
@@ -17,14 +12,5 @@
       content: counter(o-counter) ') ';
       counter-increment: o-counter;
     }
-  }
-
-  .well {
-    padding-bottom: 40px;
-  }
-
-  #list-header {
-    color: gray;
-    font-size: 22px;
   }
 }

@@ -48,4 +48,8 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
+
+  def locals(values)
+    render locals: values
+  end
 end

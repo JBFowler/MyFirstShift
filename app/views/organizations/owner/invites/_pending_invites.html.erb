@@ -1,0 +1,20 @@
+<ul id="pending-invites-list" class="list-group list-group-flush mb-5">
+  <% pending_invites.each do |invite| %>
+    <li class="list-group-item <%= invite.expired? ? 'danger-bg' : '' %>">
+      <div class="row">
+        <div class="col">
+          <%= invite.expired? ? "<span class='pr-3'>(expired)</span>".html_safe : "" %>
+          <%= link_to "Resend", owner_invite_path(invite), method: :put, class: "pr-3" %>
+          <%= link_to "Delete", owner_invite_path(invite), method: :delete, class: "danger-text" %>
+          <small class="pull-right text-muted">Invited <%= invite.created_at.strftime("%b #{invite.created_at.day.ordinalize} %Y") %></small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <span><%= invite.email %></span>
+          <small class="pull-right text-muted">Invited by <%= link_to invite.created_by.full_name, owner_member_path(invite.created_by) %></small>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

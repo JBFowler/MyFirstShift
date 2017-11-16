@@ -8,12 +8,12 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Nunito" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
 
   <body>
     <%= render 'shared/header' %>
-
-    <%= render 'layouts/messages' %>
+    <%= render 'shared/flash_messages' %>
 
     <div id="content-container">
       <%= content_for?(:content) ? yield(:content) : yield %>
