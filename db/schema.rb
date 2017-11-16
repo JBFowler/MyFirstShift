@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115052615) do
+ActiveRecord::Schema.define(version: 20171116040322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20171115052615) do
     t.string   "phone"
     t.string   "employee_type"
     t.boolean  "scheduled",              default: false
-    t.float    "wage"
+    t.integer  "wage"
     t.index ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
     t.index ["email", "subdomain"], name: "index_users_on_email_and_subdomain", unique: true, using: :btree
     t.index ["progress"], name: "index_users_on_progress", using: :btree

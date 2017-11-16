@@ -37,6 +37,7 @@ gem 'pg'
 gem 'paranoia', '~> 2.2'
 gem 'font-awesome-rails'
 gem 'chart-js-rails'
+gem 'sendgrid-ruby'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

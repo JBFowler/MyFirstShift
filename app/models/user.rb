@@ -46,6 +46,10 @@ class User < ActiveRecord::Base
     role == "owner"
   end
 
+  def unit_leader?
+    role == "unit_leader"
+  end
+
   def progress_complete?
     progress == "complete"
   end

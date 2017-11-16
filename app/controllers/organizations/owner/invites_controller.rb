@@ -5,7 +5,7 @@ class Organizations::Owner::InvitesController < ApplicationController
   layout 'organizations/owner'
 
   def index
-    invites = @organization.invites.unscoped
+    invites = @organization.invites.with_deleted
 
     if params[:search]
       invites = invites.where("invites.email like :email", {email: "%#{params[:search]}%"} )
@@ -48,7 +48,7 @@ class Organizations::Owner::InvitesController < ApplicationController
   end
 
   def update
-    invite = Invite.unscoped.find(params[:id])
+    invite = Invite.with_deleted.find(params[:id])
 
     if invite.update(expires_at: 30.days.from_now.end_of_day)
       flash[:success] = "Invitation Sent!"

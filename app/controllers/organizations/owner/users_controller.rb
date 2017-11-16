@@ -6,7 +6,7 @@ class Organizations::Owner::UsersController < ApplicationController
 
   def index
     owner = current_user
-    members = @organization.members.unscoped
+    members = @organization.members.with_deleted
 
     if params[:search]
       members = Services::User::FindUserService.search(members, params[:search]) unless params[:search].blank?
@@ -23,7 +23,7 @@ class Organizations::Owner::UsersController < ApplicationController
   end
 
   def show
-    user = User.unscoped.find(params[:id])
+    user = @organization.members.with_deleted.find(params[:id])
 
     locals ({
       owner: current_user,
@@ -32,7 +32,7 @@ class Organizations::Owner::UsersController < ApplicationController
   end
 
   def edit
-    user = User.find(params[:id])
+    user = @organization.members.with_deleted.find(params[:id])
 
     locals ({
       owner: current_user,
@@ -41,7 +41,7 @@ class Organizations::Owner::UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
+    user = @organization.members.with_deleted.find(params[:id])
 
     if user.update(user_params)
       flash[:success] = "User has been updated!"
@@ -52,7 +52,7 @@ class Organizations::Owner::UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
+    user = @organization.members.find(params[:id])
 
     if user.destroy
       redirect_to owner_member_path(user)
@@ -65,6 +65,6 @@ class Organizations::Owner::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :employee_type, :wage, :username, :phone)
+    params.require(:user).permit(:first_name, :last_name, :email, :employee_type, :wage, :username, :phone, :role)
   end
 end

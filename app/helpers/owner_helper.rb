@@ -4,23 +4,23 @@ module OwnerHelper
     return 0 unless total > 0
 
     case hourly_pay
-    when 8.00
-      (eight_members / total) * 100
-    when 10.00
-      (ten_members / total) * 100
+    when 8
+      ((eight_members.to_f / total.to_f) * 100).to_i
+    when 10
+      ((ten_members.to_f / total.to_f) * 100).to_i
     end
   end
 
   def total_hourly_pay_percentage(eight_members, ten_members)
-    hourly_pay_percentage(8.00, eight_members, ten_members) + hourly_pay_percentage(10.00, eight_members, ten_members)
+    hourly_pay_percentage(8, eight_members, ten_members) + hourly_pay_percentage(10, eight_members, ten_members)
   end
 
   def wage_presenter(user)
     case user.employee_type
     when "salary"
-      return "#${user.wage}/yr"
+      return "#{number_to_currency(user.wage)}/yr"
     when "hourly"
-      return "#${user.wage}/hr"
+      return "#{number_to_currency(user.wage)}/hr"
     end
   end
 end
