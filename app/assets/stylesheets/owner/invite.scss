@@ -1,0 +1,15 @@
+#owner-invites-page{
+  .list-group {
+    li:first-child {
+      border-top: none;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+  }
+
+  #accepted-invites-list {
+    display: none;
+  }
+}

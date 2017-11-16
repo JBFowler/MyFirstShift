@@ -8,7 +8,7 @@ class Organization < ActiveRecord::Base
 
   has_many :invites, dependent: :destroy
   has_many :units, dependent: :destroy
-  has_many :users, dependent: :destroy#, inverse_of: :organization
+  has_many :members, class_name: 'User', dependent: :destroy#, inverse_of: :organization
 
   def self.search_by_subdomain(search_term)
     return nil if search_term.blank?
@@ -16,6 +16,19 @@ class Organization < ActiveRecord::Base
   end
 
   def owners
-    users.where(role: "owner")
+    members.where(role: "owner")
+  end
+
+  def past_years_new_members
+    new_members = []
+    12.times do |n|
+      new_members << cached_new_members_by_month(n.months.ago.month).count
+    end
+    return new_members.reverse
+  end
+
+  #Need to setup redis for caching
+  def cached_new_members_by_month(month)
+    Rails.cache.fetch([self.class.name, month, :new_member], expires_in: 240.hours) { members.new_members_this_month(month).to_a }
   end
 end

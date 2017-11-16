@@ -1,0 +1,36 @@
+<div class="card">
+  <h5 class="card-header">Hourly Pay Breakdown</h5>
+  <div class="card-body">
+    <canvas class="mb-2" id="hourlyPayBreakdownChart" data-eight-hourly="<%= eight_per_hour %>" data-ten-hourly="<%= ten_per_hour %>" height="150"></canvas>
+    <hr>
+    <div id="hourly-pay-breakdown-stats" class="row">
+      <div id="percentage-totals-div" class="col">
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-title mb-0">Hourly Pay</h6>
+            <small class="card-subtitle text-muted">Wage ($/hr)<span class="pull-right">Percent (%)</span></small>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><small>$8</small> <small class="pull-right"><%= hourly_pay_percentage(8, eight_per_hour, ten_per_hour) %></small></li>
+              <li class="list-group-item"><small>$10</small> <small class="pull-right"><%= hourly_pay_percentage(10, eight_per_hour, ten_per_hour) %></small></li>
+              <li class="list-group-item"><strong>Total</strong> <strong class="pull-right"><%= total_hourly_pay_percentage(eight_per_hour, ten_per_hour) %></strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="most-hourly-wage-div" class="col">
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-title mb-0">Most Paid Hourly Wage</h6>
+            <% if eight_per_hour > ten_per_hour %>
+              <h6 class="card-title mb-0 pt-1"><%= eight_per_hour %></h6>
+              <small class="card-subtitle text-muted">at $8/hr</small>
+            <% else %>
+              <h6 class="card-title mb-0 pt-1"><%= ten_per_hour %></h6>
+              <small class="card-subtitle text-muted">at $10/hr</small>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

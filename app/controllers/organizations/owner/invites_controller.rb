@@ -2,37 +2,74 @@ class Organizations::Owner::InvitesController < ApplicationController
   before_action :authenticate_user!
   before_action :require_owner
 
+  layout 'organizations/owner'
+
   def index
-    @invites = @organization.invites.unscoped
+    invites = @organization.invites.with_deleted
+
+    if params[:search]
+      invites = invites.where("invites.email like :email", {email: "%#{params[:search]}%"} )
+    end
+
+    if params[:sort]
+      invites = invites.order(params[:sort]) unless params[:sort].blank?
+    end
+
+    pending_invites = invites.unredeemed
+    accepted_invites = invites.redeemed
+
+    locals ({
+      owner: current_user,
+      pending_invites: pending_invites,
+      accepted_invites: accepted_invites
+    })
   end
 
   def new
-    @invite = Invite.new
+    invite = Invite.new
+
+    locals ({
+      owner: current_user,
+      invite: invite
+    })
   end
 
   def create
-    @invite = @organization.invites.build(invite_params)
-    @invite.assign_attributes(subdomain: @organization.subdomain, expires_at: @invite.expires_at.try(:end_of_day), role: "member")
+    invite = @organization.invites.build(invite_params)
+    invite.assign_attributes(subdomain: @organization.subdomain, expires_at: 30.days.from_now.end_of_day, role: "member", created_by: current_user)
 
-    if @invite.save
-      flash[:success] = "The user has been invited"
-      InviteMailer.invite_member(@invite).deliver
+    if invite.save
+      flash[:success] = "Invitation Sent!"
+      InviteMailer.invite_member(invite).deliver
+      redirect_to new_owner_invite_path
+    else
+      render :new, locals: { owner: current_user, invite: invite }
+    end
+  end
+
+  def update
+    invite = Invite.with_deleted.find(params[:id])
+
+    if invite.update(expires_at: 30.days.from_now.end_of_day)
+      flash[:success] = "Invitation Sent!"
+      InviteMailer.invite_member(invite).deliver
       redirect_to owner_invites_path
     else
-      render :new
+      flash[:danger] = "There was an error resending the invite"
+      redirect_to owner_invites_path
     end
   end
 
   def destroy
-    @invite = Invite.find(params[:id])
+    invite = Invite.find(params[:id])
 
-    @invite.destroy
+    invite.destroy
     redirect_to owner_invites_path
   end
 
   private
 
   def invite_params
-    params.require(:invite).permit(:email, :expires_at)
+    params.require(:invite).permit(:email)
   end
 end

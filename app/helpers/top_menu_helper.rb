@@ -7,4 +7,13 @@ module TopMenuHelper
       ""
     end
   end
+
+  def current_owner_tab?(controller)
+    case
+    when controller?("organizations/owner/#{controller}")
+      "active"
+    else
+      ""
+    end
+  end
 end

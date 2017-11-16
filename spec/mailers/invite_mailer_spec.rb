@@ -2,9 +2,10 @@ require 'rails_helper'
 
 describe InviteMailer, type: :mailer do
   let(:organization) { FactoryGirl.create(:organization) }
+  let(:user) { FactoryGirl.create(:user) }
 
   describe ".invite_member" do
-    let(:invite) { FactoryGirl.create(:invite, :with_code, organization: organization) }
+    let(:invite) { FactoryGirl.create(:invite, :with_code, organization: organization, created_by: user) }
     let(:mail) { InviteMailer.invite_member(invite) }
 
     before { ActionMailer::Base.default_url_options = { :host => "subdomain.myfirstshift.com" } }
@@ -31,7 +32,7 @@ describe InviteMailer, type: :mailer do
   end
 
   describe ".invite_owner" do
-    let(:invite) { FactoryGirl.create(:invite, :with_code, :owner, organization: organization) }
+    let(:invite) { FactoryGirl.create(:invite, :with_code, :owner, organization: organization, created_by: user) }
     let(:mail) { InviteMailer.invite_owner(invite) }
 
     before { ActionMailer::Base.default_url_options = { :host => "supernova.myfirstshift.com" } }

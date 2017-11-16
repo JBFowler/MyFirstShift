@@ -8,7 +8,7 @@ class Organizations::InvitesController < Devise::RegistrationsController
 
   def redeem
     organization = @invite.organization
-    @user = organization.users.build(user_params)
+    @user = organization.members.build(user_params)
     @user.assign_attributes(subdomain: organization.subdomain, email: @invite.email, role: @invite.role)
 
     @user.save

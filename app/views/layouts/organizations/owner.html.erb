@@ -1,0 +1,33 @@
+<% content_for :content do %>
+  <div id="content">
+    <div id="owner-content" class="container">
+      <div class="row justify-content-center mb-4">
+        <div class="col-sm">
+          <h5 class="page-title" style="font-weight: bold; color: #666666;">Owner Portal</h5>
+        </div>
+
+        <ul id="owner-nav" class="nav nav-pills mr-3">
+          <li class="nav-item">
+            <%= link_to "Dashboard", owner_root_path, class: "nav-link #{current_owner_tab?('home')}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Members", owner_members_path, class: "nav-link #{current_owner_tab?('users')} #{current_owner_tab?('invites')}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Reports", owner_reports_path, class: "nav-link #{current_owner_tab?('reports')}" %>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Rookies</a>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Tasks", owner_tasks_path, class: "nav-link #{current_owner_tab?('tasks')}" %>
+          </li>
+        </ul>
+      </div>
+
+      <%= yield %>
+    </div>
+  </div>
+<% end %>
+
+<%= render template: 'layouts/application' %>

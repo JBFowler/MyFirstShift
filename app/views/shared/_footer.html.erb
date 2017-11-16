@@ -1,23 +1,25 @@
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12" id="site-footer">
-        <ul class="pull-right list-inline">
-          <li><i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i></li>
-          <li><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></li>
-          <li><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></li>
-        </ul>
-        <%= link_to home_path do %>
-          <%= image_tag("PastedGraphic-1.png", width: 30, height: 30, alt: "Circle Pop") %>
-        <% end %>
-        <ul class="list-inline">
-          <li><span>&copy; 2017 MyFirstShift, Inc.</span></li>
-          <li><%= link_to "Terms", "" %></li>
-          <li><%= link_to "Privacy", "" %></li>
-          <li><%= link_to "Help", "" %></li>
-          <li><%= link_to "About", "" %></li>
-        </ul>
-      </div>
-    <div>
-  </div>
-</footer>
+<div id="site-footer" class="container">
+  <div class="row">
+    <div class="col-12">
+      <hr id="footer-border-line">
+      <div class="row">
+        <div class="col-sm">
+          <ul class="list-inline">
+            <li><span>&copy; 2017 MyFirstShift, Inc.</span></li>
+          </ul>
+        </div>
+        <div class="col-sm">
+          <%= link_to home_path do %>
+            <%= image_tag("PastedGraphic-1.png", width: 30, height: 30, alt: "Circle Pop", class: "mx-auto d-block") %>
+          <% end %>
+        </div>
+        <div class="col-sm">
+          <ul class="list-inline float-md-right">
+            <li class="list-inline-item"><i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i></li>
+            <li class="list-inline-item"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></li>
+            <li class="list-inline-item"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></li>
+          </ul>
+        </div>
+    </div>
+  <div>
+</div>

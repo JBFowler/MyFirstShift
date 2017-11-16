@@ -51,11 +51,11 @@ describe Organizations::InvitesController, :type => :controller do
         invite.reload
 
         expect(User.all.count).to eq(1)
-        expect(organization.users).to eq([user])
+        expect(organization.members).to eq([user])
         expect(user.role).to eq("member")
         expect(user.email).to eq(invite.email)
         expect(invite.redeemed_at).to_not be_nil
-        expect(invite.redeemed_by).to eq(user.id)
+        expect(invite.redeemed_by).to eq(user)
         expect(flash[:success]).to eq("Your profile was successfully created")
         expect(response).to redirect_to(new_user_session_path)
       end
