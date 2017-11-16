@@ -13,7 +13,7 @@ class Invite < ActiveRecord::Base
 
   before_create :assign_unique_token
 
-  default_scope { where("expires_at > ?", DateTime.current) }
+  default_scope { where("expires_at > ? AND created_by_user_id IS NOT NULL", DateTime.current) }
 
   scope :owners, -> { where role: 'owner' }
   scope :redeemed, -> { where.not redeemed_at: nil }
