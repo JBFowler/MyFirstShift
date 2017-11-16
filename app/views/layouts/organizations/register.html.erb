@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Myfirstshift</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Nunito" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  </head>
+
+  <body>
+    <%= render 'shared/header' %>
+
+    <div id="content-container">
+      <div class="container mt-5">
+        <%= yield %>
+      </div>
+    </div>
+
+    <div id="site-footer" class="container mt-5">
+      <div class="row">
+        <div class="col-12">
+          <hr id="footer-border-line">
+          <div class="row">
+            <div class="col-sm">
+              <ul class="list-inline">
+                <li><span>&copy; 2017 MyFirstShift, Inc.</span></li>
+              </ul>
+            </div>
+            <div class="col-sm">
+              <ul class="list-inline float-md-right">
+                <li class="list-inline-item"><i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i></li>
+                <li class="list-inline-item"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></li>
+                <li class="list-inline-item"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></li>
+              </ul>
+            </div>
+        </div>
+      <div>
+    </div>
+  </body>
+</html>

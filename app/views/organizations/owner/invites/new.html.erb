@@ -5,10 +5,9 @@
     </div>
   </div>
 
-  <%= render 'shared/errors', obj: invite %>
-
   <div class="row justify-content-md-center">
     <div class="col-6">
+      <%= render 'shared/errors', obj: invite %>
       <%= form_for [:owner, invite] do |f| %>
         <div class="form-group">
           <%= f.label :email, "Email Address", class: "form-label" %>

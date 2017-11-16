@@ -1,5 +1,5 @@
 class Organizations::SessionsController < Devise::SessionsController
-  layout 'organizations/home'
+  layout 'organizations/sign_in'
 
 # before_action :configure_sign_in_params, only: [:create]
 

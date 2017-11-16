@@ -5,7 +5,7 @@ class Organizations::Owner::InvitesController < ApplicationController
   layout 'organizations/owner'
 
   def index
-    invites = @organization.invites.with_deleted
+    invites = @organization.invites.exclude_owners
 
     if params[:search]
       invites = invites.where("invites.email like :email", {email: "%#{params[:search]}%"} )
@@ -35,7 +35,7 @@ class Organizations::Owner::InvitesController < ApplicationController
   end
 
   def create
-    invite = @organization.invites.build(invite_params)
+    invite = @organization.invites.exclude_owners.build(invite_params)
     invite.assign_attributes(subdomain: @organization.subdomain, expires_at: 30.days.from_now.end_of_day, role: "member", created_by: current_user)
 
     if invite.save
@@ -48,7 +48,7 @@ class Organizations::Owner::InvitesController < ApplicationController
   end
 
   def update
-    invite = Invite.with_deleted.find(params[:id])
+    invite = Invite.exclude_owners.find(params[:id])
 
     if invite.update(expires_at: 30.days.from_now.end_of_day)
       flash[:success] = "Invitation Sent!"

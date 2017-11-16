@@ -2,6 +2,8 @@ class Organizations::InvitesController < Devise::RegistrationsController
   before_action :set_invite
   before_action :check_redeemed
 
+  layout 'organizations/register'
+
   def show
     @user = User.new
   end
