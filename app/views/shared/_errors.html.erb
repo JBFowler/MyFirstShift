@@ -1,12 +1,9 @@
 <% if obj.errors.any? %>
-  <div class='row justify-content-md-center'>
-    <div class='alert alert-danger col-6'>
-      <h5>Please fix the following errors: </h5>
-      <ul>
-        <% obj.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+  <div class="mb-4">
+    <% obj.errors.full_messages.each do |msg| %>
+      <div class='alert alert-warning alert-dismissible fade show py-1 mb-2'>
+        <%= msg %> <i class="fa fa-times pull-right pt-1" data-dismiss="alert" aria-hidden="true"></i>
+      </div>
+    <% end %>
   </div>
 <% end %>
