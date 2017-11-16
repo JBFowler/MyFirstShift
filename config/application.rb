@@ -15,5 +15,11 @@ module Myfirstshift
     config.time_zone = 'Central Time (US & Canada)'
     config.active_record.default_timezone = :local
     config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
+    config.eager_load_paths << Rails.root.join('lib')
+
+    # if you want to still auto load in dev environment
+    # load_path_strategy = Rails.env.production? ? :eager_load_paths : :autoload_paths
+    # config.public_send(load_path_strategy) << Rails.root.join('lib')
   end
 end
+
