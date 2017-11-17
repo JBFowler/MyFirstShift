@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116040322) do
+ActiveRecord::Schema.define(version: 20171117042207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,12 +72,14 @@ ActiveRecord::Schema.define(version: 20171116040322) do
   create_table "units", force: :cascade do |t|
     t.string   "name"
     t.integer  "size"
-    t.string   "location"
+    t.string   "city"
     t.integer  "organization_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.datetime "deleted_at"
-    t.string   "onboarding_steps", default: [],              array: true
+    t.string   "onboarding_steps",   default: [],              array: true
+    t.string   "state"
+    t.integer  "created_by_user_id"
     t.index ["deleted_at"], name: "index_units_on_deleted_at", using: :btree
   end
 

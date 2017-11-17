@@ -5,7 +5,6 @@ class Organizations::Owner::UsersController < ApplicationController
   layout 'organizations/owner'
 
   def index
-    owner = current_user
     members = @organization.members.with_deleted
 
     if params[:search]
@@ -32,7 +31,7 @@ class Organizations::Owner::UsersController < ApplicationController
   end
 
   def edit
-    user = @organization.members.with_deleted.find(params[:id])
+    user = @organization.members.find(params[:id])
 
     locals ({
       owner: current_user,
@@ -41,13 +40,13 @@ class Organizations::Owner::UsersController < ApplicationController
   end
 
   def update
-    user = @organization.members.with_deleted.find(params[:id])
+    user = @organization.members.find(params[:id])
 
     if user.update(user_params)
-      flash[:success] = "User has been updated!"
+      flash[:success] = "#{user.full_name} has been updated!"
       redirect_to owner_member_path(user)
     else
-      render :edit, locals: { user: user }
+      render :edit, locals: { owner: current_user, user: user }
     end
   end
 

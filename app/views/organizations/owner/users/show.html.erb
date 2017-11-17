@@ -1,6 +1,7 @@
 <div id="owner-user-page">
   <div class="row justify-content-md-center">
     <div class="col-8 my-5">
+      <%= render partial: 'shared/flash_messages' %>
       <div class="card <%= user.deleted_at.nil? ? '' : 'danger-bg' %>">
         <div class="card-body">
           <div class="row">

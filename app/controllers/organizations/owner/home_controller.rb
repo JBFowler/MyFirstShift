@@ -6,11 +6,9 @@ class Organizations::Owner::HomeController < ApplicationController
 
   def index
     members = @organization.members
-    invite = Invite.new
 
     locals ({
       owner: current_user,
-      invite: invite,
       active_users: members.active,
       ready_to_schedule: members.ready_to_schedule,
       past_twelve_months: @organization.past_years_new_members,
