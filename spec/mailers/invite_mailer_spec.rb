@@ -4,8 +4,6 @@ describe InviteMailer, type: :mailer do
   let(:organization) { FactoryGirl.create(:organization) }
   let(:user) { FactoryGirl.create(:user) }
 
-  before { sign_in user }
-
   describe ".invite_member" do
     let(:invite) { FactoryGirl.create(:invite, :with_code, organization: organization, created_by: user) }
     let(:mail) { InviteMailer.invite_member(invite) }
