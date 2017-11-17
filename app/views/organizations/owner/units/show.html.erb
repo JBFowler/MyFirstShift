@@ -1,0 +1,54 @@
+<div id="owner-unit-page">
+  <div class="row justify-content-md-center">
+    <div class="col-8 my-5">
+      <%= render partial: 'shared/flash_messages' %>
+
+      <div class="card <%= unit.deleted_at.nil? ? '' : 'danger-bg' %>">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h4 class="card-title mb-1"><%= unit.name %></h4>
+              <small class="text-muted">Created on <%= unit.created_at.strftime("%b #{unit.created_at.day.ordinalize} %Y") %> by <%= link_to unit.created_by.full_name, owner_member_path(unit.created_by) %></small>
+            </div>
+            <% if unit.deleted_at.nil? %>
+              <div class="col">
+                <%= link_to "Edit", edit_owner_unit_path(unit), class: "btn btn-primary pull-right px-4" %>
+                <%= link_to "Unit Portal", '', class: "btn btn-info pull-right px-4 mr-3" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col pr-0">
+            <div class="card border-right-0 border-left-0 border-bottom-0 btr-radius-none btl-radius-none bbr-radius-none">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span class="text-muted">Member Count:</span> <span class="default-green-text"><%= unit.members.count %></span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col pl-0">
+            <div class="card border-right-0 border-bottom-0 btr-radius-none btl-radius-none bbl-radius-none">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span class="text-muted">Location:</span> <span class="default-green-text"><%= unit.city %>, <%= unit.state %></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <% if unit.deleted_at.nil? %>
+            <%= link_to "Delete", owner_unit_path(unit), method: :delete, class: "danger-text" %>
+          <% else %>
+            Deleted on <%= unit.deleted_at.strftime("%b #{unit.deleted_at.day.ordinalize} %Y") %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col mt-3">
+          <u class="text-link"><%= link_to "Back to Units Page", owner_units_path %></u></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

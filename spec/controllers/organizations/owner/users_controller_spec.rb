@@ -43,7 +43,7 @@ describe Organizations::Owner::UsersController, :type => :controller do
         expect(user.wage).to eq(3.00)
         expect(user.email).to eq('example@example.com1')
         expect(user.employee_type).to eq('salary')
-        expect(flash[:success]).to eq('User has been updated!')
+        expect(flash[:success]).to eq("#{user.full_name} has been updated!")
         expect(response).to redirect_to(owner_member_path(user))
       end
     end

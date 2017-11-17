@@ -13,7 +13,6 @@
 
   <body>
     <%= render 'shared/header' %>
-    <%= render 'shared/flash_messages' %>
 
     <div id="content-container">
       <%= content_for?(:content) ? yield(:content) : yield %>

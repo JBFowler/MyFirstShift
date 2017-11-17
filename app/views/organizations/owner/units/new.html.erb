@@ -1,0 +1,48 @@
+<div id="new-unit-invite-page">
+  <div class="row justify-content-md-center">
+    <div class="col-6 my-5">
+      <h4 class="text-center"><i class="fa fa-users mr-sm-2 default-blue-text" aria-hidden="true"></i> New <span class="font-weight-bold">Unit</span></h4>
+    </div>
+  </div>
+
+  <div class="row justify-content-md-center">
+    <div class="col-6">
+      <%= render 'shared/errors', obj: unit %>
+      <%= form_for [:owner, unit] do |f| %>
+        <div class="form-group">
+          <%= f.label :name, class: "form-label" %>
+          <%= f.text_field :name, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <%= f.label :city, class: "form-label" %>
+              <%= f.text_field :city, class: "form-control" %>
+            </div>
+            <div class="col">
+              <%= f.label :state, class: "form-label" %>
+              <%= f.text_field :state, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label mb-1 mt-3">Adding Unit Members</label>
+          <p class="text-muted">In order to invite members to a <span class="font-weight-bold">unit</span>, it must be done within the <span class="font-weight-bold">unit portal</span></p>
+        </div>
+
+        <br/>
+
+        <div class="row">
+          <div class="col mt-2">
+            <u class="text-link"><%= link_to "See existing Units", owner_units_path %></u>
+          </div>
+          <div class="col">
+            <%= f.submit "Create Unit", class: "btn btn-info pull-right px-4" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

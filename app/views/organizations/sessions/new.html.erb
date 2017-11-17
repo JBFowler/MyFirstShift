@@ -8,7 +8,13 @@
   <div class="row justify-content-md-center">
     <div class="col-4">
       <%= form_for(resource, as: resource_name, url: user_session_path(resource_name)) do |f| %>
-        <%= render 'shared/errors', obj: resource %>
+        <% unless flash[:notice].blank? %>
+          <p class="alert alert-success"><%= flash[:notice] %></p>
+        <% end %>
+        <% unless flash[:alert].blank? %>
+          <p class="alert alert-warning"><%= flash[:alert] %></p>
+        <% end %>
+
         <div class="form-group">
           <%= f.label :email, class: "form-label" %>
           <%= f.email_field :email, class: "form-control", autofocus: true, placeholder: "Enter Email" %>

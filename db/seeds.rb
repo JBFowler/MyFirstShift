@@ -14,3 +14,8 @@ FactoryGirl.create(:user, first_name: "John", last_name: "Lennon", email: "owner
 
 FactoryGirl.create(:admin, email: "admin@myfirstshift.com", password: "Password1", password_confirmation: "Password1", admin: true)
 FactoryGirl.create(:admin, email: "badadmin@myfirstshift.com", password: "Password1", password_confirmation: "Password1", admin: false)
+
+12.times.each do |n|
+  FactoryGirl.create_list(:user, n, :completed, organization: organization_2, created_at: n.months.ago)
+end
+

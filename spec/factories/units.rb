@@ -2,7 +2,8 @@ FactoryGirl.define do
   factory :unit do
     name "Test Unit"
     size 30
-    location "Houston"
+    city "Houston"
+    state "TX"
     organization
   end
 end
