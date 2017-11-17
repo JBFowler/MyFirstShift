@@ -14,13 +14,13 @@
             <%= link_to "Members", owner_members_path, class: "nav-link #{current_owner_tab?('users')} #{current_owner_tab?('invites')}" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Reports", owner_reports_path, class: "nav-link #{current_owner_tab?('reports')}" %>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Rookies</a>
+            <%= link_to "Units", owner_units_path, class: "nav-link #{current_owner_tab?('units')}" %>
           </li>
           <li class="nav-item">
             <%= link_to "Tasks", owner_tasks_path, class: "nav-link #{current_owner_tab?('tasks')}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Reports", owner_reports_path, class: "nav-link #{current_owner_tab?('reports')}" %>
           </li>
         </ul>
       </div>

@@ -7,6 +7,7 @@
 
   <div class="row justify-content-md-center">
     <div class="col-6">
+      <%= render partial: 'shared/flash_messages' %>
       <%= render 'shared/errors', obj: invite %>
       <%= form_for [:owner, invite] do |f| %>
         <div class="form-group">
@@ -23,7 +24,7 @@
 
         <div class="row">
           <div class="col mt-2">
-            <u class="text-link"><%= link_to "See pending and accepted invites", owner_invites_path %></u></p>
+            <u class="text-link"><%= link_to "See pending and accepted invites", owner_invites_path %></u>
           </div>
           <div class="col">
             <%= f.submit "Send Invite", class: "btn btn-info pull-right px-4" %>

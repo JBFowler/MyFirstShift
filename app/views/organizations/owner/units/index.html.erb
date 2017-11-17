@@ -1,0 +1,46 @@
+<div id="owner-units-page">
+  <div class="row">
+    <div class="col">
+      <div class="tabular-card card">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <%= link_to owner_units_path, class: "nav-link active" do %>
+                <% "Units (#{units.count})" %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <%= render partial: 'units_filter_bar' %>
+        </div>
+      </div>
+      <div class="tab-joiner-card card">
+        <div class="card-body mx-sm-3">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col border-top-0">Name</th>
+                <th scope="col border-top-0">Member Count</th>
+                <th scope="col border-top-0">City</th>
+                <th scope="col border-top-0">State</th>
+                <th scope="col border-top-0"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% units.each do |unit| %>
+                <tr class="<%= unit.deleted_at.nil? ? '' : 'text-danger' %>">
+                  <td><%= unit.name %></td>
+                  <td><%= unit.members.count %></td>
+                  <td><%= unit.city %></td>
+                  <td><%= unit.state %></td>
+                  <td><%= link_to "Details", owner_unit_path(unit) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
