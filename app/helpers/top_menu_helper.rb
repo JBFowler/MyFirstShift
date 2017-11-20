@@ -16,4 +16,13 @@ module TopMenuHelper
       ""
     end
   end
+
+  def current_unit_leader_tab?(controller)
+    case
+    when controller?("organizations/units/leader/#{controller}")
+      "active"
+    else
+      ""
+    end
+  end
 end

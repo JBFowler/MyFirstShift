@@ -13,7 +13,7 @@
             <% if unit.deleted_at.nil? %>
               <div class="col">
                 <%= link_to "Edit", edit_owner_unit_path(unit), class: "btn btn-primary pull-right px-4" %>
-                <%= link_to "Unit Portal", '', class: "btn btn-info pull-right px-4 mr-3" %>
+                <%= link_to "Unit Portal", unit_leader_home_path(unit), class: "btn btn-info pull-right px-4 mr-3" %>
               </div>
             <% end %>
           </div>

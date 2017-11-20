@@ -22,7 +22,7 @@ class Organizations::Owner::UnitsController < ApplicationController
   end
 
   def show
-    unit = @organization.units.with_deleted.find(params[:id])
+    unit = @organization.units.friendly.with_deleted.find(params[:id])
 
     locals ({
       owner: current_user,

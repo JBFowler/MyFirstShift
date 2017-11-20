@@ -20,7 +20,7 @@
             <%= link_to "Tasks", owner_tasks_path, class: "nav-link #{current_owner_tab?('tasks')}" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Reports", owner_reports_path, class: "nav-link #{current_owner_tab?('reports')}" %>
+            <%= link_to "Reports", owner_reports_members_path, class: "nav-link #{current_owner_tab?('reports/users')} #{current_owner_tab?('reports/units')}" %>
           </li>
         </ul>
       </div>

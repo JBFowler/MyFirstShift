@@ -1,0 +1,21 @@
+<ul id="accepted-invites-list" class="list-group list-group-flush mb-5">
+  <% accepted_invites.each do |invite| %>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col">
+          <span class="font-weight-bold"><%= invite.redeemed_by.nil? ? 'Member Deleted' :  "#{link_to invite.redeemed_by.full_name, unit_leader_member_path(@unit, invite.redeemed_by)}".html_safe %></span></strong><small class="pull-right text-muted">Joined <%= invite.redeemed_at.strftime("%b #{invite.redeemed_at.day.ordinalize} %Y") %></small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <%= invite.redeemed_by.nil? ? 'Member Deleted' :  "#{invite.redeemed_by.username}" %> <span class="bullet">•</span> <span class="text-muted"><%= invite.email %></span>
+          <% if invite.created_by.owner? %>
+            <small class="pull-right text-muted">Invited by <%= link_to invite.created_by.full_name, owner_member_path(invite.created_by) %></small>
+          <% else %>
+            <small class="pull-right text-muted">Invited by <%= link_to invite.created_by.full_name, unit_leader_member_path(@unit, invite.created_by) %></small>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

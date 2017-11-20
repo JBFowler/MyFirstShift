@@ -1,4 +1,4 @@
-<div id="owner-user-page">
+<div id="unit-leader-user-page">
   <div class="row justify-content-md-center">
     <div class="col-8 my-5">
       <%= render partial: 'shared/flash_messages' %>
@@ -11,7 +11,7 @@
             </div>
             <% if user.deleted_at.nil? %>
               <div class="col">
-                <%= link_to "Edit", edit_owner_user_path(user), class: "btn btn-primary pull-right px-4" %>
+                <%= link_to "Edit", edit_unit_leader_user_path(@unit, user), class: "btn btn-primary pull-right px-4" %>
                 <%= link_to "Schedule", '', class: "btn btn-light pull-right px-4 mr-3" unless user.scheduled %>
               </div>
             <% end %>
@@ -19,24 +19,14 @@
           <div class="row">
             <div class="col mt-3">
               <% if user.deleted_at.nil? %>
-                <% if user.unit %>
-                  <span class="text-muted">Unit:</span> <%= link_to user.unit.name, owner_unit_path(user.unit) %>
-                  <br />
-                  <% if user.unit_leader? %>
-                    <span class="text-muted">Role:</span> <span class="default-green-text">Unit Leader</span> <%= link_to "(Demote to member)", owner_user_path(user, user: { role: 'member' }), method: :put, class: "pl-1 danger-text" %>
-                    <br />
-                    <%= link_to "Promote to Owner", owner_user_path(user, user: { role: 'owner' }), method: :put, class: "btn btn-info py-1 mt-2" %>
-                  <% else %>
-                    <%= link_to "Promote to Unit Leader", owner_user_path(user, user: { role: 'unit_leader' }), method: :put, class: "btn btn-info py-1 mt-2" %>
-                  <% end %>
+                <span class="text-muted">Unit:</span> <%= user.unit.name %>
+                <br />
+                <% if user.unit_leader? %>
+                  <span class="text-muted">Role:</span> <span class="default-green-text">Unit Leader</span> <%= link_to "(Demote to member)", unit_leader_user_path(@unit, user, user: { role: 'member' }), method: :put, class: "pl-1 danger-text" %>
+                <% elsif user.owner? %>
+                  <span class="text-muted">Role:</span> <span class="default-green-text">Owner</span>
                 <% else %>
-                  <span class="text-muted">Organization:</span> <span class="default-green-text"><%= user.organization.name %></span>
-                  <br />
-                  <% if user.owner? %>
-                    <span class="text-muted">Role:</span> <span class="default-green-text">Owner</span> <%= link_to "(Demote to member)", owner_user_path(user, user: { role: 'member' }), method: :put, class: "pl-1 danger-text" %>
-                  <% else %>
-                    <%= link_to "Promote to Owner", owner_user_path(user, user: { role: 'owner' }), method: :put, class: "btn btn-info py-1 mt-2" %>
-                  <% end %>
+                  <%= link_to "Promote to Unit Leader", unit_leader_user_path(@unit, user, user: { role: 'unit_leader' }), method: :put, class: "btn btn-info py-1 mt-2" %>
                 <% end %>
               <% end %>
             </div>
@@ -65,7 +55,7 @@
         </div>
         <div class="card-footer">
           <% if user.deleted_at.nil? %>
-            <%= link_to "Delete", owner_user_path(user), method: :delete, class: "danger-text" %>
+            <%= link_to "Delete", unit_leader_user_path(@unit, user), method: :delete, class: "danger-text" %>
           <% else %>
             Deleted on <%= user.deleted_at.strftime("%b #{user.deleted_at.day.ordinalize} %Y") %>
           <% end %>
@@ -74,7 +64,7 @@
 
       <div class="row">
         <div class="col mt-3">
-          <u class="text-link"><%= link_to "Back to Members Page", owner_members_path %></u></p>
+          <u class="text-link"><%= link_to "Back to Members Page", unit_leader_members_path(@unit) %></u></p>
         </div>
       </div>
     </div>

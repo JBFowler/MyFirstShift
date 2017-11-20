@@ -1,4 +1,4 @@
-#owner-content {
+#owner-content, #unit-lead-content {
   min-height: 500px;
 
   #owner-nav {
@@ -15,6 +15,33 @@
 
         &:hover:not(.active) {
           background-color: #EFEFEF;
+          transition: all 0.2s cubic-bezier(0,0,0.2,1);
+        }
+      }
+
+      &:not(:last-child) {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  #unit-lead-nav {
+    .nav-item {
+      a {
+        color: #333333;
+        border-radius: 20px;
+        background-color: #FFFFFF;
+        // margin-right: 8px;
+
+        &.active {
+          color: #FFFFFF;
+          box-shadow: 0 1px 4px 0 rgba(0,0,0,.14);
+          background-color: #05ad92;
+        }
+
+        &:hover:not(.active) {
+          color: #FFFFFF;
+          background-color: #05ad92;
           transition: all 0.2s cubic-bezier(0,0,0.2,1);
         }
       }

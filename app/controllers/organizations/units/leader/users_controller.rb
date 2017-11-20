@@ -1,11 +1,8 @@
-class Organizations::Owner::UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :require_owner
-
-  layout 'organizations/owner'
+class Organizations::Units::Leader::UsersController < Organizations::Units::Leader::UnitLeadBaseController
+  layout 'organizations/unit_leader'
 
   def index
-    members = @organization.members.with_deleted
+    members = @unit.members.with_deleted
 
     if params[:search]
       members = ::Services::User::FindUserService.search(members, params[:search]) unless params[:search].blank?
@@ -16,48 +13,48 @@ class Organizations::Owner::UsersController < ApplicationController
     end
 
     locals ({
-      owner: current_user,
+      unit_leader: current_user,
       members: members
     })
   end
 
   def show
-    user = @organization.members.friendly.with_deleted.find(params[:id])
+    user = @unit.members.friendly.with_deleted.find(params[:id])
 
     locals ({
-      owner: current_user,
+      unit_leader: current_user,
       user: user
     })
   end
 
   def edit
-    user = @organization.members.friendly.find(params[:id])
+    user = @unit.members.friendly.find(params[:id])
 
     locals ({
-      owner: current_user,
+      unit_leader: current_user,
       user: user
     })
   end
 
   def update
-    user = @organization.members.friendly.find(params[:id])
+    user = @unit.members.friendly.find(params[:id])
 
     if user.update(user_params)
       flash[:success] = "#{user.full_name} has been updated!"
-      redirect_to owner_member_path(user)
+      redirect_to unit_leader_member_path(@unit, user)
     else
-      render :edit, locals: { owner: current_user, user: user }
+      render :edit, locals: { unit_leader: current_user, user: user }
     end
   end
 
   def destroy
-    user = @organization.members.friendly.find(params[:id])
+    user = @unit.members.friendly.find(params[:id])
 
     if user.destroy
-      redirect_to owner_member_path(user)
+      redirect_to unit_leader_member_path(@unit, user)
     else
       flash[:danger] = "There was a problem deleting the user"
-      redirect_to owner_member_path(user)
+      redirect_to unit_leader_member_path(@unit, user)
     end
   end
 

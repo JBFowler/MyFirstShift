@@ -1,0 +1,33 @@
+<% content_for :content do %>
+  <div id="content">
+    <div id="unit-lead-content" class="container">
+      <div class="row justify-content-center mb-4">
+        <div class="col-sm">
+          <h5 class="page-title" style="font-weight: bold; color: #666666;">Unit Portal: <%= @unit.name %></h5>
+        </div>
+
+        <ul id="unit-lead-nav" class="nav nav-pills mr-3">
+          <li class="nav-item">
+            <%= link_to "Dashboard", unit_leader_root_path(@unit), class: "nav-link #{current_unit_leader_tab?('home')}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Members", unit_leader_members_path(@unit), class: "nav-link #{current_unit_leader_tab?('users')} #{current_unit_leader_tab?('invites')}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Tasks", unit_leader_tasks_path(@unit), class: "nav-link #{current_unit_leader_tab?('tasks')}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Preferences", '', class: "nav-link #{current_unit_leader_tab?('preferences')}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Reports", unit_leader_reports_members_path(@unit), class: "nav-link #{current_unit_leader_tab?('reports/users')}" %>
+          </li>
+        </ul>
+      </div>
+
+      <%= yield %>
+    </div>
+  </div>
+<% end %>
+
+<%= render template: 'layouts/application' %>

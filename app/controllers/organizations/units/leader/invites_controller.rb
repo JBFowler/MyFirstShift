@@ -1,11 +1,8 @@
-class Organizations::Owner::InvitesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :require_owner
-
-  layout 'organizations/owner'
+class Organizations::Units::Leader::InvitesController < Organizations::Units::Leader::UnitLeadBaseController
+  layout 'organizations/unit_leader'
 
   def index
-    invites = @organization.invites.exclude_owners
+    invites = @unit.invites
 
     if params[:search]
       invites = invites.where("invites.email like :email", {email: "%#{params[:search]}%"} )
@@ -19,7 +16,7 @@ class Organizations::Owner::InvitesController < ApplicationController
     accepted_invites = invites.redeemed
 
     locals ({
-      owner: current_user,
+      unit_leader: current_user,
       pending_invites: pending_invites,
       accepted_invites: accepted_invites
     })
@@ -29,42 +26,42 @@ class Organizations::Owner::InvitesController < ApplicationController
     invite = Invite.new
 
     locals ({
-      owner: current_user,
+      unit_leader: current_user,
       invite: invite
     })
   end
 
   def create
-    invite = @organization.invites.exclude_owners.build(invite_params)
-    invite.assign_attributes(subdomain: @organization.subdomain, expires_at: 30.days.from_now.end_of_day, role: "member", created_by: current_user)
+    invite = @unit.invites.build(invite_params)
+    invite.assign_attributes(organization: @organization, subdomain: @organization.subdomain, expires_at: 30.days.from_now.end_of_day, role: "member", created_by: current_user)
 
     if invite.save
       flash[:success] = "Invitation Sent!"
       InviteMailer.invite_member(invite).deliver
-      redirect_to new_owner_invite_path
+      redirect_to new_unit_leader_invite_path(@unit)
     else
-      render :new, locals: { owner: current_user, invite: invite }
+      render :new, locals: { unit_leader: current_user, invite: invite }
     end
   end
 
   def update
-    invite = @organization.invites.exclude_owners.find(params[:id])
+    invite = @unit.invites.find(params[:id])
 
     if invite.update(expires_at: 30.days.from_now.end_of_day)
       flash[:success] = "Invitation Sent!"
       InviteMailer.invite_member(invite).deliver
-      redirect_to owner_invites_path
+      redirect_to unit_leader_invites_path(@unit)
     else
       flash[:danger] = "There was an error resending the invite"
-      redirect_to owner_invites_path
+      redirect_to unit_leader_invites_path(@unit)
     end
   end
 
   def destroy
-    invite = @organization.invites.find(params[:id])
+    invite = @unit.invites.find(params[:id])
 
     invite.destroy
-    redirect_to owner_invites_path
+    redirect_to unit_leader_invites_path(@unit)
   end
 
   private
