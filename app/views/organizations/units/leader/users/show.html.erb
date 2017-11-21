@@ -1,0 +1,74 @@
+<div id="unit-leader-user-page">
+  <div class="row justify-content-md-center">
+    <div class="col-8 my-5">
+      <%= render partial: 'shared/flash_messages' %>
+      <div class="card <%= user.deleted_at.nil? ? '' : 'danger-bg' %>">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h4 class="card-title mb-1"><%= user.full_name %></h4>
+              <small class="text-muted">Joined on <%= user.created_at.strftime("%b #{user.created_at.day.ordinalize} %Y") %></small>
+            </div>
+            <% if user.deleted_at.nil? %>
+              <div class="col">
+                <%= link_to "Edit", edit_unit_leader_user_path(@unit, user), class: "btn btn-primary pull-right px-4" %>
+                <%= link_to "Schedule", '', class: "btn btn-light pull-right px-4 mr-3" unless user.scheduled %>
+              </div>
+            <% end %>
+          </div>
+          <div class="row">
+            <div class="col mt-3">
+              <% if user.deleted_at.nil? %>
+                <span class="text-muted">Unit:</span> <%= user.unit.name %>
+                <br />
+                <% if user.unit_leader? %>
+                  <span class="text-muted">Role:</span> <span class="default-green-text"><%= user.role.humanize %></span> <%= link_to "(Demote to member)", unit_leader_user_path(@unit, user, user: { role: 'member' }), method: :put, class: "pl-1 danger-text" %>
+                <% elsif user.owner? %>
+                  <span class="text-muted">Role:</span> <span class="default-green-text"><%= user.role.humanize %></span>
+                <% else %>
+                  <span class="text-muted">Role:</span> <span class="default-green-text"><%= user.role.humanize %></span>
+                  <br />
+                  <%= link_to "Promote to Unit Leader", unit_leader_user_path(@unit, user, user: { role: 'unit_leader' }), method: :put, class: "btn btn-info py-1 mt-2" %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col pr-0">
+            <div class="card border-right-0 border-left-0 border-bottom-0 btr-radius-none btl-radius-none bbr-radius-none">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span class="text-muted">Username:</span> <span class="default-green-text"><%= user.username %></span></li>
+                <li class="list-group-item"><span class="text-muted">Email:</span> <span class="default-green-text"><%= user.email %></span></li>
+                <li class="list-group-item"><span class="text-muted">Phone:</span> <span class="default-green-text"><%= user.phone %></span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col pl-0">
+            <div class="card border-right-0 border-bottom-0 btr-radius-none btl-radius-none bbl-radius-none">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span class="text-muted">Status:</span> <span class="default-green-text"><%= user.progress %></span></li>
+                <li class="list-group-item"><span class="text-muted">Employee Type:</span> <span class="default-green-text"><%= user.employee_type %></span></li>
+                <li class="list-group-item"><span class="text-muted">Pay:</span> <span class="default-green-text"><%= wage_presenter(user) %></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <% if user.deleted_at.nil? %>
+            <%= link_to "Delete", unit_leader_user_path(@unit, user), method: :delete, class: "danger-text" %>
+          <% else %>
+            Deleted on <%= user.deleted_at.strftime("%b #{user.deleted_at.day.ordinalize} %Y") %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col mt-3">
+          <u class="text-link"><%= link_to "Back to Members Page", unit_leader_members_path(@unit) %></u></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

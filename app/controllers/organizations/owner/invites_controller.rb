@@ -48,7 +48,7 @@ class Organizations::Owner::InvitesController < ApplicationController
   end
 
   def update
-    invite = Invite.exclude_owners.find(params[:id])
+    invite = @organization.invites.exclude_owners.find(params[:id])
 
     if invite.update(expires_at: 30.days.from_now.end_of_day)
       flash[:success] = "Invitation Sent!"
@@ -61,7 +61,7 @@ class Organizations::Owner::InvitesController < ApplicationController
   end
 
   def destroy
-    invite = Invite.find(params[:id])
+    invite = @organization.invites.find(params[:id])
 
     invite.destroy
     redirect_to owner_invites_path

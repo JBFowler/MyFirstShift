@@ -22,7 +22,7 @@ class Organizations::Owner::UsersController < ApplicationController
   end
 
   def show
-    user = @organization.members.with_deleted.find(params[:id])
+    user = @organization.members.friendly.with_deleted.find(params[:id])
 
     locals ({
       owner: current_user,
@@ -31,7 +31,7 @@ class Organizations::Owner::UsersController < ApplicationController
   end
 
   def edit
-    user = @organization.members.find(params[:id])
+    user = @organization.members.friendly.find(params[:id])
 
     locals ({
       owner: current_user,
@@ -40,7 +40,7 @@ class Organizations::Owner::UsersController < ApplicationController
   end
 
   def update
-    user = @organization.members.find(params[:id])
+    user = @organization.members.friendly.find(params[:id])
 
     if user.update(user_params)
       flash[:success] = "#{user.full_name} has been updated!"
@@ -51,7 +51,7 @@ class Organizations::Owner::UsersController < ApplicationController
   end
 
   def destroy
-    user = @organization.members.find(params[:id])
+    user = @organization.members.friendly.find(params[:id])
 
     if user.destroy
       redirect_to owner_member_path(user)

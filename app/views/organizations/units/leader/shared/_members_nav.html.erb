@@ -1,0 +1,10 @@
+<ul class="nav nav-tabs card-header-tabs">
+  <li class="nav-item">
+    <%= link_to unit_leader_members_path(@unit), class: "nav-link #{current_unit_leader_tab?('users')}" do %>
+      <% member_count.nil? ? "Members" : "Members (#{member_count})" %>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Invitations", unit_leader_invites_path(@unit), class: "nav-link #{current_unit_leader_tab?('invites')}" %>
+  </li>
+</ul>

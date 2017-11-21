@@ -1,14 +1,11 @@
-<div id="owner-members-page">
+<div id="unit-leader-members-page">
   <div class="row">
     <div class="col">
-      <div style="border-bottom-right-radius: 0; border-bottom-left-radius: 0; border-bottom: none;" class="card">
+      <div class="card bbr-radius-none bbl-radius-none border-bottom-0">
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
-              <%= link_to "Member Report", '', class: "nav-link active" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Unit Report", '', class: "nav-link" %>
+              <%= link_to "Member Report", unit_leader_reports_members_path(@unit), class: "nav-link active" %>
             </li>
           </ul>
         </div>
@@ -38,17 +35,17 @@
           </div>
         </div>
       </div>
-      <div style="border-top-right-radius: 0; border-top-left-radius: 0;" class="card">
+      <div class="card btr-radius-none btl-radius-none">
         <div class="card-body mx-sm-3">
           <table class="table table-striped">
             <thead class="thead-dark">
               <tr>
-                <th style="border-top: none;" scope="col">First Name</th>
-                <th style="border-top: none;" scope="col">Last Name</th>
-                <th style="border-top: none;" scope="col">Email</th>
-                <th style="border-top: none;" scope="col">Employee Type</th>
-                <th style="border-top: none;" scope="col">Status</th>
-                <th style="border-top: none;" scope="col">Joined</th>
+                <th scope="col border-top-0">First Name</th>
+                <th scope="col border-top-0">Last Name</th>
+                <th scope="col border-top-0">Email</th>
+                <th scope="col border-top-0">Employee Type</th>
+                <th scope="col border-top-0">Status</th>
+                <th scope="col border-top-0">Joined</th>
               </tr>
             </thead>
             <tbody>
@@ -57,8 +54,8 @@
                   <td><%= member.first_name %></td>
                   <td><%= member.last_name %></td>
                   <td><%= member.email %></td>
-                  <td><%= member.employee_type %></td>
-                  <td><%= member.progress %></td>
+                  <td><%= member.employee_type.try(:capitalize) %></td>
+                  <td><%= member.progress.try(:capitalize) %></td>
                   <td><%= member.created_at.strftime("%m/%d/%Y") %></td>
                 </tr>
               <% end %>

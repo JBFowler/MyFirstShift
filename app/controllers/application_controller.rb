@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :get_organization
   before_action :get_mailer_host
 
-  helper_method :return_home?
+  helper_method :return_home?, :not_found
 
   def require_owner
     unless user_signed_in? && current_user.owner?
@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
       flash[:warning] = "You have already completed your onboarding process"
       redirect_to home_path
     end
+  end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
   end
 
   private

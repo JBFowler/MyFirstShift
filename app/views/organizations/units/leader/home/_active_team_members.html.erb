@@ -1,0 +1,9 @@
+<div class="card mb-3">
+  <h5 class="card-header">Active Team Members</h5>
+  <div class="card-body">
+    <h5 class="card-title"><%= active_users.count %></h5>
+    <h6 class="card-subtitle mb-2 text-muted">Active team <%= 'member'.pluralize(active_users.count) %></h6>
+    <p class="card-text">These team members have completed every part of their onboarding process</p>
+    <%= link_to "Team Members", unit_leader_members_path(@unit), class: "btn btn-info" %>
+  </div>
+</div>

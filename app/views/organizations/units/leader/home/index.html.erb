@@ -1,0 +1,16 @@
+<div id="unit-leader-dashboard-page">
+  <div class="row">
+    <div class="col-md-5">
+      <%= render partial: 'active_team_members', locals: { active_users: active_users } %>
+
+      <%= render partial: 'prospects' %>
+
+      <%= render partial: 'scheduler', locals: { ready_to_schedule: ready_to_schedule } %>
+    </div>
+    <div class="col-md-7">
+      <%= render partial: 'new_team_members', locals: { twelve_months: past_twelve_months } %>
+
+      <%= render partial: 'hourly_pay_breakdown', locals: { eight_per_hour: eight_per_hour_members, ten_per_hour: ten_per_hour_members} %>
+    </div>
+  </div>
+</div>

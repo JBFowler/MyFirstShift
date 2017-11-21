@@ -70,15 +70,32 @@ Rails.application.routes.draw do
         get '/members/:id', to: 'users#show', as: :member
 
         resources :invites, except: [:edit]
-        resources :reports, only: [:index]
         resources :tasks, only: [:index]
         resources :units
         resources :users, except: [:new, :create]
+
+        namespace :reports do
+          get '/members', to: 'users#index'
+          get '/units', to: 'units#index'
+        end
       end
 
-      resources :units do
-        namespace :manager do
-          get '/home', to: 'home#index'
+      resources :units, only: [:show] do
+        scope module: 'units' do
+          namespace :leader do
+            root to: 'home#index'
+            get '/home', to: 'home#index'
+            get '/members', to: 'users#index'
+            get '/members/:id', to: 'users#show', as: :member
+
+            resources :invites, except: [:edit]
+            resources :tasks, only: [:index]
+            resources :users, except: [:new, :create]
+
+            namespace :reports do
+              get '/members', to: 'users#index'
+            end
+          end
         end
       end
 

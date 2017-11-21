@@ -3,7 +3,7 @@
     <div id="owner-content" class="container">
       <div class="row justify-content-center mb-4">
         <div class="col-sm">
-          <h5 class="page-title" style="font-weight: bold; color: #666666;">Owner Portal</h5>
+          <h5 class="page-title">Owner Portal | <span class="default-green-text font-weight-bold"><%= @organization.name %></span></h5>
         </div>
 
         <ul id="owner-nav" class="nav nav-pills mr-3">
@@ -17,10 +17,13 @@
             <%= link_to "Units", owner_units_path, class: "nav-link #{current_owner_tab?('units')}" %>
           </li>
           <li class="nav-item">
+            <%= link_to "Preferences", '', class: "nav-link #{current_owner_tab?('preferences')}" %>
+          </li>
+          <li class="nav-item">
             <%= link_to "Tasks", owner_tasks_path, class: "nav-link #{current_owner_tab?('tasks')}" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Reports", owner_reports_path, class: "nav-link #{current_owner_tab?('reports')}" %>
+            <%= link_to "Reports", owner_reports_members_path, class: "nav-link #{current_owner_tab?('reports/users')} #{current_owner_tab?('reports/units')}" %>
           </li>
         </ul>
       </div>

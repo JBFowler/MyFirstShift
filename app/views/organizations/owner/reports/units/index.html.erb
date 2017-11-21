@@ -1,0 +1,69 @@
+<div id="owner-members-page">
+  <div class="row">
+    <div class="col">
+      <div class="card bbr-radius-none bbl-radius-none border-bottom-0">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <%= link_to "Member Report", owner_reports_members_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Unit Report", owner_reports_units_path, class: "nav-link active" %>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <form class="form-inline">
+                <div class="form-group mx-sm-3">
+                  <label class="mr-sm-2" for="inlineFormCustomSelectPref">Filter By:</label>
+                  <select class="custom-select" id="inlineFormCustomSelectPref">
+                    <option selected>Employee Type: Salary</option>
+                    <option value="1">Status: Active</option>
+                  </select>
+                </div>
+                <div class="form-group mx-sm-3">
+                  <label class="mr-sm-2" for="inlineFormCustomSelectPref">Sort By:</label>
+                  <select class="custom-select" id="inlineFormCustomSelectPref">
+                    <option selected>Name</option>
+                    <option value="1">Date of Hire: Desc</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+            <div class="col">
+              <button class="pull-right btn btn-info mr-3"><i class="fa fa-table mr-sm-2" aria-hidden="true"></i> Export to Excel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card btr-radius-none btl-radius-none">
+        <div class="card-body mx-sm-3">
+          <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col border-top-0">Name</th>
+                <th scope="col border-top-0">Member Count</th>
+                <th scope="col border-top-0">City</th>
+                <th scope="col border-top-0">State</th>
+                <th scope="col border-top-0">Created On</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% units.each do |unit| %>
+                <tr class="<%= unit.deleted_at.nil? ? '' : 'text-danger' %>">
+                  <td><%= unit.name %></td>
+                  <td><%= unit.members.count %></td>
+                  <td><%= unit.city %></td>
+                  <td><%= unit.state %></td>
+                  <td><%= unit.created_at.strftime("%m/%d/%Y") %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

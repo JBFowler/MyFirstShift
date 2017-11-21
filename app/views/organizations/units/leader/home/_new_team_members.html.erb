@@ -1,0 +1,19 @@
+<div id="new-team-members-card" class="card mb-3">
+  <h5 class="card-header">New Team Members</h5>
+  <div class="card-body">
+    <ul class="pull-right nav nav-pills">
+      <li class="nav-item">
+        <button id="current-month-nav" class="nav-link">This Month</button>
+      </li>
+      <li class="nav-item">
+        <button id="past-six-months-nav" class="nav-link active">Past 6 Months</button>
+      </li>
+      <li class="nav-item">
+        <button id="past-twelve-months-nav" class="nav-link">Past Year</button>
+      </li>
+    </ul>
+    <canvas class="mb-2" id="newTeamMembersChart" data-one-month="<%= [twelve_months.last] %>" data-six-months="<%= twelve_months.last(6) %>" data-twelve-months="<%= twelve_months %>" height="200"></canvas>
+    <hr>
+    <p class="card-text text-link"><small><%= link_to "Invite New Member", new_unit_leader_invite_path(@unit) %></small></p>
+  </div>
+</div>
