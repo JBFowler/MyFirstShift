@@ -1,0 +1,36 @@
+<div id="new-member-invite-page">
+  <div class="row justify-content-md-center">
+    <div class="col-6 my-5">
+      <h4 class="text-center"><i class="fa fa-paper-plane mr-sm-2 default-blue-text" aria-hidden="true"></i> Invite <span class="font-weight-bold">Members</span></h4>
+    </div>
+  </div>
+
+  <div class="row justify-content-md-center">
+    <div class="col-6">
+      <%= render partial: 'shared/flash_messages' %>
+      <%= render 'shared/errors', obj: invite %>
+      <%= form_for [@unit, :leader, invite] do |f| %>
+        <div class="form-group">
+          <%= f.label :email, "Email Address", class: "form-label" %>
+          <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "name@example.com" %>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label mb-1 mt-3">Default Role</label>
+          <p class="text-muted">Once invited, members will automatically be given the default role of <span class="font-weight-bold">member</span>.  To upgrade a member to <span class="font-weight-bold">unit leader</span>, <u class="text-link"><%= link_to "click here", unit_leader_members_path(@unit) %></u></p>
+        </div>
+
+        <br/>
+
+        <div class="row">
+          <div class="col mt-2">
+            <u class="text-link"><%= link_to "See pending and accepted invites", unit_leader_invites_path(@unit) %></u>
+          </div>
+          <div class="col">
+            <%= f.submit "Send Invite", class: "btn btn-info pull-right px-4" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

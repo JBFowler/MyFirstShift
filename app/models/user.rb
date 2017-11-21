@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :full_name, use: :slugged
+
   acts_as_paranoid
 
   #NEED TO CHECK ABOUT VALIDATIONS!!!!!!

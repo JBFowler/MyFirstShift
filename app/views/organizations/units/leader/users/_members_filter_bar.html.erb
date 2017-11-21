@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-8">
+    <%= form_tag unit_leader_members_path(@unit), method: :get, class: "form-inline" do |f| %>
+      <div class="form-group mx-sm-3">
+        <label class="mr-sm-2">Sort By:</label>
+        <%= select_tag :sort, "<option value='last_name' #{ (params[:sort] == 'last_name') ? 'selected' : '' }>Name</option><option value='email' #{ (params[:sort] == 'email') ? 'selected' : '' }>Email</option><option value='username' #{ (params[:sort] == 'username') ? 'selected' : '' }>Username</option>".html_safe, class: "custom-select" %>
+      </div>
+      <div class="form-group">
+        <%= text_field_tag :search, params[:search] || "", placeholder: "Search Members", class: "form-control search-field" %>
+        <span class="input-group-btn">
+          <%= button_tag(type: "submit", class: "btn btn-secondary search-btn") do %>
+            <i class="fa fa-search" aria-hidden="true"></i>
+          <% end %>
+        </span>
+        <% unless params[:search].blank? && params[:sort].blank? %>
+          <small class="ml-3"><i class="fa fa-times-circle danger-text pr-1" aria-hidden="true"></i><%= link_to "Clear Search/Sort", unit_leader_members_path(@unit), class: "danger-text" %></small>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col">
+    <%= link_to new_unit_leader_invite_path(@unit), class: "pull-right btn btn-info mr-3" do %>
+      <i class="fa fa-envelope mr-sm-2" aria-hidden="true"></i> Invite New Member
+    <% end %>
+  </div>
+</div>

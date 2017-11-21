@@ -1,13 +1,13 @@
-module OwnerHelper
+module PortalHelper
   def hourly_pay_percentage(hourly_pay, eight_members, ten_members)
     total ||= eight_members + ten_members
     return 0 unless total > 0
 
     case hourly_pay
     when 8
-      ((eight_members.to_f / total.to_f) * 100).to_i
+      ((eight_members.to_f / total.to_f) * 100).round
     when 10
-      ((ten_members.to_f / total.to_f) * 100).to_i
+      ((ten_members.to_f / total.to_f) * 100).round
     end
   end
 

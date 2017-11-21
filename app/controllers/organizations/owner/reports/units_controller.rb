@@ -1,15 +1,15 @@
-class Organizations::Owner::ReportsController < ApplicationController
+class Organizations::Owner::Reports::UnitsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_owner
 
   layout 'organizations/owner'
 
   def index
-    members = @organization.members.with_deleted
+    units = @organization.units.with_deleted
 
     locals ({
       owner: current_user,
-      members: members
+      units: units
     })
   end
 end

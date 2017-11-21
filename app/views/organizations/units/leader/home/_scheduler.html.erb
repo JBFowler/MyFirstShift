@@ -1,0 +1,16 @@
+<div id="schedule-card" class="card mb-3">
+  <h5 class="card-header">Scheduler</h5>
+  <div class="card-body">
+    <h5 class="card-title"><%= ready_to_schedule.count %></h5>
+    <% if ready_to_schedule.count > 0 %>
+      <h6 class="card-subtitle mb-2 text-muted">Team <%= 'member'.pluralize(ready_to_schedule.count) %> ready to schedule</h6>
+    <% else %>
+      <h6 class="card-subtitle mb-2 text-muted">All team members have been scheduled</h6>
+    <% end %>
+  </div>
+  <ul class="list-group list-group-flush">
+    <% ready_to_schedule.each do |member| %>
+      <li class="list-group-item"><%= member.full_name %> <%= link_to "Schedule", "", class: "pull-right btn btn-light" %></li>
+    <% end %>
+  </ul>
+</div>
