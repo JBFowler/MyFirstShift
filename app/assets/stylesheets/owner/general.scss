@@ -98,6 +98,11 @@
     }
   }
 
+  .max-height-card {
+    max-height: 700px;
+    overflow: auto;
+  }
+
   .text-link {
     a {
       color: #0695df;

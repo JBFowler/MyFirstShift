@@ -5,9 +5,9 @@ module PortalHelper
 
     case hourly_pay
     when 8
-      ((eight_members.to_f / total.to_f) * 100).to_i
+      ((eight_members.to_f / total.to_f) * 100).round
     when 10
-      ((ten_members.to_f / total.to_f) * 100).to_i
+      ((ten_members.to_f / total.to_f) * 100).round
     end
   end
 

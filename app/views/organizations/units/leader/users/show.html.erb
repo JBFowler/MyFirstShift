@@ -22,10 +22,12 @@
                 <span class="text-muted">Unit:</span> <%= user.unit.name %>
                 <br />
                 <% if user.unit_leader? %>
-                  <span class="text-muted">Role:</span> <span class="default-green-text">Unit Leader</span> <%= link_to "(Demote to member)", unit_leader_user_path(@unit, user, user: { role: 'member' }), method: :put, class: "pl-1 danger-text" %>
+                  <span class="text-muted">Role:</span> <span class="default-green-text"><%= user.role.humanize %></span> <%= link_to "(Demote to member)", unit_leader_user_path(@unit, user, user: { role: 'member' }), method: :put, class: "pl-1 danger-text" %>
                 <% elsif user.owner? %>
-                  <span class="text-muted">Role:</span> <span class="default-green-text">Owner</span>
+                  <span class="text-muted">Role:</span> <span class="default-green-text"><%= user.role.humanize %></span>
                 <% else %>
+                  <span class="text-muted">Role:</span> <span class="default-green-text"><%= user.role.humanize %></span>
+                  <br />
                   <%= link_to "Promote to Unit Leader", unit_leader_user_path(@unit, user, user: { role: 'unit_leader' }), method: :put, class: "btn btn-info py-1 mt-2" %>
                 <% end %>
               <% end %>

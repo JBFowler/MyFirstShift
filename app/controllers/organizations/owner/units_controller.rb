@@ -52,7 +52,7 @@ class Organizations::Owner::UnitsController < ApplicationController
   end
 
   def edit
-    unit = @organization.units.find(params[:id])
+    unit = @organization.units.friendly.find(params[:id])
 
     locals ({
       owner: current_user,
@@ -61,7 +61,7 @@ class Organizations::Owner::UnitsController < ApplicationController
   end
 
   def update
-    unit = @organization.units.find(params[:id])
+    unit = @organization.units.friendly.find(params[:id])
 
     if unit.update(unit_params)
       flash[:success] = "#{unit.name} has been updated!"
@@ -72,7 +72,7 @@ class Organizations::Owner::UnitsController < ApplicationController
   end
 
   def destroy
-    unit = @organization.units.find(params[:id])
+    unit = @organization.units.friendly.find(params[:id])
 
     if unit.destroy
       redirect_to owner_unit_path(unit)

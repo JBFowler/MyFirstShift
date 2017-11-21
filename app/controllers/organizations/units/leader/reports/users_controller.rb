@@ -1,5 +1,5 @@
 class Organizations::Units::Leader::Reports::UsersController < Organizations::Units::Leader::UnitLeadBaseController
-  layout 'organizations/unit-leader'
+  layout 'organizations/unit_leader'
 
   def index
     members = @unit.members.with_deleted
