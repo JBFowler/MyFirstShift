@@ -31,4 +31,8 @@ class Organization < ActiveRecord::Base
   def cached_new_members_by_month(month)
     Rails.cache.fetch([self.class.name, month, :new_member], expires_in: 240.hours) { members.new_members_this_month(month).to_a }
   end
+
+  def cached_units
+    Rails.cache.fetch([self.class.name, self.id, :units], expires_in: 240.hours) { units.to_a }
+  end
 end

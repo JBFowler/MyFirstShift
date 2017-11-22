@@ -23,10 +23,12 @@ class Organizations::Owner::UsersController < ApplicationController
 
   def show
     user = @organization.members.friendly.with_deleted.find(params[:id])
+    units = @organization.cached_units.sort{ |a,b| a.name.downcase <=> b.name.downcase }
 
     locals ({
       owner: current_user,
-      user: user
+      user: user,
+      units: units
     })
   end
 
@@ -47,6 +49,19 @@ class Organizations::Owner::UsersController < ApplicationController
       redirect_to owner_member_path(user)
     else
       render :edit, locals: { owner: current_user, user: user }
+    end
+  end
+
+  def add_unit
+    user = @organization.members.friendly.find(params[:user_id])
+    unit = @organization.units.friendly.find(params[:unit_id])
+
+    if user.join_unit!(unit)
+      flash[:success] = "#{user.full_name} added to #{unit.name}"
+      redirect_to owner_member_path(user)
+    else
+      flash.now[:warning] = "#{user.full_name} is already a part of #{unit.name}"
+      render :show, locals: { owner: current_user, user: user }
     end
   end
 

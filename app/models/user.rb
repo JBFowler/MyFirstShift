@@ -61,6 +61,14 @@ class User < ActiveRecord::Base
     Rails.cache.delete([self.organization.class.name, self.created_at.month, :new_member])
   end
 
+  def join_unit!(unit)
+    return false if self.unit == unit
+    unit.members << self
+
+    reload if persisted?
+    true
+  end
+
   protected
 
   def password_required?

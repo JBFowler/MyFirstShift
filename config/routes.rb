@@ -72,7 +72,9 @@ Rails.application.routes.draw do
         resources :invites, except: [:edit]
         resources :tasks, only: [:index]
         resources :units
-        resources :users, except: [:new, :create]
+        resources :users, except: [:new, :create] do
+          post 'add_unit'
+        end
 
         namespace :reports do
           get '/members', to: 'users#index'

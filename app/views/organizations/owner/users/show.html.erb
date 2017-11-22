@@ -20,8 +20,6 @@
             <div class="col mt-3">
               <% if user.deleted_at.nil? %>
                 <% if user.unit %>
-                  <span class="text-muted">Unit:</span> <%= link_to user.unit.name, owner_unit_path(user.unit) %>
-                  <br />
                   <% if user.unit_leader? %>
                     <span class="text-muted">Role:</span> <span class="default-green-text"><%= user.role.humanize %></span> <%= link_to "(Demote to member)", owner_user_path(user, user: { role: 'member' }), method: :put, class: "pl-1 danger-text" %>
                     <br />
@@ -35,8 +33,6 @@
                     <%= link_to "Promote to Owner", owner_user_path(user, user: { role: 'owner' }), method: :put, class: "btn btn-info py-1 mt-2" %>
                   <% end %>
                 <% else %>
-                  <span class="text-muted">Organization:</span> <span class="default-green-text"><%= user.organization.name %></span>
-                  <br />
                   <% if user.owner? %>
                     <span class="text-muted">Role:</span> <span class="default-green-text"><%= user.role.humanize %></span> <%= link_to "(Demote to member)", owner_user_path(user, user: { role: 'member' }), method: :put, class: "pl-1 danger-text" %>
                   <% else %>
@@ -54,6 +50,7 @@
           <div class="col pr-0">
             <div class="card border-right-0 border-left-0 border-bottom-0 btr-radius-none btl-radius-none bbr-radius-none">
               <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span class="text-muted">Unit:</span> <span class="default-green-text"><%= display_unit(user) %></span></li>
                 <li class="list-group-item"><span class="text-muted">Username:</span> <span class="default-green-text"><%= user.username %></span></li>
                 <li class="list-group-item"><span class="text-muted">Email:</span> <span class="default-green-text"><%= user.email %></span></li>
                 <li class="list-group-item"><span class="text-muted">Phone:</span> <span class="default-green-text"><%= user.phone %></span></li>
@@ -63,6 +60,7 @@
           <div class="col pl-0">
             <div class="card border-right-0 border-bottom-0 btr-radius-none btl-radius-none bbl-radius-none">
               <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span class="text-muted">Organization:</span> <span class="default-green-text"><%= user.organization.name %></span></li>
                 <li class="list-group-item"><span class="text-muted">Status:</span> <span class="default-green-text"><%= user.progress %></span></li>
                 <li class="list-group-item"><span class="text-muted">Employee Type:</span> <span class="default-green-text"><%= user.employee_type %></span></li>
                 <li class="list-group-item"><span class="text-muted">Pay:</span> <span class="default-green-text"><%= wage_presenter(user) %></span></li>
@@ -87,3 +85,5 @@
     </div>
   </div>
 </div>
+
+<%= render partial: 'unit_list', locals: { user: user, units: units } %>
