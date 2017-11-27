@@ -23,10 +23,12 @@ class Organizations::Owner::UsersController < ApplicationController
 
   def show
     user = @organization.members.friendly.with_deleted.find(params[:id])
+    units = @organization.cached_units
 
     locals ({
       owner: current_user,
-      user: user
+      user: user,
+      units: units
     })
   end
 
@@ -43,17 +45,38 @@ class Organizations::Owner::UsersController < ApplicationController
     user = @organization.members.friendly.find(params[:id])
 
     if user.update(user_params)
-      flash[:success] = "#{user.full_name} has been updated!"
+      respond_to do |format|
+        format.json { render json: { message: "#{user.full_name} has been updated!" }.to_json }
+        format.html do
+          flash[:success] = "#{user.full_name} has been updated!"
+          redirect_to owner_member_path(user)
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { render :edit, locals: { owner: current_user, user: user } }
+        format.json { render json: user.errors.full_messages.to_json, status: 400 }
+      end
+    end
+  end
+
+  def add_unit
+    user = @organization.members.friendly.find(params[:user_id])
+    unit = @organization.units.friendly.find(params[:unit_id])
+
+    if user.join_unit!(unit)
+      flash[:success] = "#{user.full_name} added to #{unit.name}"
       redirect_to owner_member_path(user)
     else
-      render :edit, locals: { owner: current_user, user: user }
+      flash.now[:warning] = "#{user.full_name} is already a part of #{unit.name}"
+      render :show, locals: { owner: current_user, user: user }
     end
   end
 
   def destroy
     user = @organization.members.friendly.find(params[:id])
 
-    if user.destroy
+    if user.delete
       redirect_to owner_member_path(user)
     else
       flash[:danger] = "There was a problem deleting the user"
@@ -64,6 +87,6 @@ class Organizations::Owner::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :employee_type, :wage, :username, :phone, :role)
+    params.require(:user).permit(:first_name, :last_name, :email, :employee_type, :wage, :username, :phone, :role, :e_verified, :state_verified)
   end
 end

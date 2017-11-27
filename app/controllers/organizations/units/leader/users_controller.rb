@@ -40,17 +40,25 @@ class Organizations::Units::Leader::UsersController < Organizations::Units::Lead
     user = @unit.members.friendly.find(params[:id])
 
     if user.update(user_params)
-      flash[:success] = "#{user.full_name} has been updated!"
-      redirect_to unit_leader_member_path(@unit, user)
+      respond_to do |format|
+        format.json { render json: { message: "#{user.full_name} has been updated!" }.to_json }
+        format.html do
+          flash[:success] = "#{user.full_name} has been updated!"
+          redirect_to unit_leader_member_path(@unit, user)
+        end
+      end
     else
-      render :edit, locals: { unit_leader: current_user, user: user }
+      respond_to do |format|
+        format.html { render :edit, locals: { unit_leader: current_user, user: user } }
+        format.json { render json: { messages: user.errors.full_messages.to_json }, status: 400 }
+      end
     end
   end
 
   def destroy
     user = @unit.members.friendly.find(params[:id])
 
-    if user.destroy
+    if user.delete
       redirect_to unit_leader_member_path(@unit, user)
     else
       flash[:danger] = "There was a problem deleting the user"
@@ -61,6 +69,6 @@ class Organizations::Units::Leader::UsersController < Organizations::Units::Lead
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :employee_type, :wage, :username, :phone, :role)
+    params.require(:user).permit(:first_name, :last_name, :email, :employee_type, :wage, :username, :phone, :role, :e_verified, :state_verified)
   end
 end

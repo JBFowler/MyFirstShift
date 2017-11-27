@@ -1,0 +1,22 @@
+<div class="modal fade" id="unitListModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add/Switch Unit</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_tag owner_user_add_unit_path(user) do %>
+        <div class="modal-body">
+          <%= label_tag :unit_id, 'Units', class: "form-label" %>
+          <%= select_tag :unit_id, options_from_collection_for_select(units, 'id', 'name', selected: user.unit.try(:id)), class: "form-control custom-select" %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= submit_tag 'Update', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

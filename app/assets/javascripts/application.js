@@ -19,3 +19,7 @@
 //= require Chart.min
 //= require_tree ./owner
 //= require site
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})

@@ -63,7 +63,7 @@ class Organizations::Owner::InvitesController < ApplicationController
   def destroy
     invite = @organization.invites.find(params[:id])
 
-    invite.destroy
+    invite.delete
     redirect_to owner_invites_path
   end
 

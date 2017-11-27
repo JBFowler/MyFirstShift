@@ -1,40 +1,21 @@
 <div id="meet-the-management">
-  <div class="row">
-    <div class="col-xs-12 onboarding-img-header" id="organization-building-img">
-      <%= image_tag("HTX Outside.jpg", alt: "Circle Pop") %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="well onboarding">
-        <div class="row">
-          <h2>Meet the Management</h2>
-        </div>
-
-        <hr class="green-ruler">
-
-        <div class="row onboarding-info-section">
-          <div class="col-md-6">
-            <div class="col-xs-10 col-xs-offset-1 text-center onboarding-video">
-              <iframe src="https://www.youtube.com/embed/o9gRoHTbieY" frameborder="0" allowfullscreen></iframe>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="col-xs-10 col-xs-offset-1 text-center">
-              <p style="font-size: 20px; font-weight: bold;">
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              </p>
+  <%= image_tag @organization.store_front, id: "organization-building-img", class: "card-img-top btr-radius-none btl-radius-none" %>
+  <div class="card-body">
+    <h4 class="card-title">Meet Your Managers</h4>
+    <p class="card-text">Below are the managers of <%= @organization.name %></p>
+    <div class="row">
+      <% @organization.managers.each do |manager| %>
+        <div class="col-sm-4">
+          <div class="manager-card card mb-3">
+            <%= image_tag manager.picture, class: "card-img-top" %>
+            <div class="card-body">
+              <h5 class="card-title"><%= manager.name %></h5>
+              <p class="card-text"><%= manager.description %></p>
             </div>
           </div>
         </div>
-
-        <div class="row">
-          <div class="col-xs-12 text-center">
-            <%= link_to "Next Step", onboarding_employee_info_path, class: "btn btn-default", id: "next-btn" %>
-          </div>
-        </div>
-      </div>
+      <% end %>
     </div>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>
