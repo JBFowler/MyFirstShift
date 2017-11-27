@@ -74,7 +74,7 @@ class Organizations::Owner::UnitsController < ApplicationController
   def destroy
     unit = @organization.units.friendly.find(params[:id])
 
-    if unit.destroy
+    if unit.delete
       redirect_to owner_unit_path(unit)
     else
       flash[:danger] = "There was a problem deleting the unit"

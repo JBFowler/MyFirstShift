@@ -1,85 +1,85 @@
-.top-menu {
+#top-menu {
   .active {
     background-color: #929F4C;
-    box-shadow: none;
-    color: #fff;
-    font-weight: bold;
+    // box-shadow: none;
+    // color: #fff;
+    // font-weight: bold;
   }
 
-  .btn-breadcrumb {
-    width: 100%;
-  }
+  // .btn-breadcrumb {
+  //   width: 100%;
+  // }
 
-  .btn-breadcrumb .btn:not(:last-child):after {
-    content: " ";
-    display: block;
-    width: 0;
-    height: 0;
-    border-top: 17px solid transparent;
-    border-bottom: 17px solid transparent;
-    border-left: 10px solid white;
-    position: absolute;
-    top: 50%;
-    margin-top: -17px;
-    left: 100%;
-    z-index: 3;
-  }
+  // .btn-breadcrumb .btn:not(:last-child):after {
+  //   content: " ";
+  //   display: block;
+  //   width: 0;
+  //   height: 0;
+  //   border-top: 17px solid transparent;
+  //   border-bottom: 17px solid transparent;
+  //   border-left: 10px solid white;
+  //   position: absolute;
+  //   top: 50%;
+  //   margin-top: -17px;
+  //   left: 100%;
+  //   z-index: 3;
+  // }
 
-  .btn-breadcrumb .btn:not(:last-child):before {
-    content: " ";
-    display: block;
-    width: 0;
-    height: 0;
-    border-top: 17px solid transparent;
-    border-bottom: 17px solid transparent;
-    border-left: 10px solid rgb(173, 173, 173);
-    position: absolute;
-    top: 50%;
-    margin-top: -17px;
-    margin-left: 1px;
-    left: 100%;
-    z-index: 3;
-  }
+  // .btn-breadcrumb .btn:not(:last-child):before {
+  //   content: " ";
+  //   display: block;
+  //   width: 0;
+  //   height: 0;
+  //   border-top: 17px solid transparent;
+  //   border-bottom: 17px solid transparent;
+  //   border-left: 10px solid rgb(173, 173, 173);
+  //   position: absolute;
+  //   top: 50%;
+  //   margin-top: -17px;
+  //   margin-left: 1px;
+  //   left: 100%;
+  //   z-index: 3;
+  // }
 
-  /** The Spacing **/
-  .btn-breadcrumb .btn {
-    pointer-events: none;
-    font-weight: bold;
-    padding: 6px 12px 6px 24px;
-    width: 14.36%;
-  }
+  // /** The Spacing **/
+  // .btn-breadcrumb .btn {
+  //   pointer-events: none;
+  //   font-weight: bold;
+  //   padding: 6px 12px 6px 24px;
+  //   width: 14.36%;
+  // }
 
-  .btn-breadcrumb .btn:first-child {
-    padding: 6px 6px 6px 10px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-  }
+  // .btn-breadcrumb .btn:first-child {
+  //   padding: 6px 6px 6px 10px;
+  //   border-top-left-radius: 0px;
+  //   border-bottom-left-radius: 0px;
+  // }
 
-  .btn-breadcrumb .btn:last-child {
-    padding: 6px 18px 6px 24px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-  }
+  // .btn-breadcrumb .btn:last-child {
+  //   padding: 6px 18px 6px 24px;
+  //   border-top-right-radius: 0px;
+  //   border-bottom-right-radius: 0px;
+  // }
 
-  /** Default button **/
-  .btn-breadcrumb .btn.btn-default.active:not(:last-child):after {
-    border-left: 10px solid #929F4C;
-  }
+  // /** Default button **/
+  // .btn-breadcrumb .btn.btn-default.active:not(:last-child):after {
+  //   border-left: 10px solid #929F4C;
+  // }
 
-  .btn-breadcrumb .btn.btn-default.active:not(:last-child):before {
-    border-left: 10px solid #929F4C;
-  }
+  // .btn-breadcrumb .btn.btn-default.active:not(:last-child):before {
+  //   border-left: 10px solid #929F4C;
+  // }
 
-  .btn-breadcrumb .btn.btn-default:not(:last-child):after {
-    border-left: 10px solid #fff;
-  }
-  .btn-breadcrumb .btn.btn-default:not(:last-child):before {
-    border-left: 10px solid #ccc;
-  }
-  .btn-breadcrumb .btn.btn-default:hover:not(:last-child):after {
-    border-left: 10px solid #ebebeb;
-  }
-  .btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
-    border-left: 10px solid #adadad;
-  }
+  // .btn-breadcrumb .btn.btn-default:not(:last-child):after {
+  //   border-left: 10px solid #fff;
+  // }
+  // .btn-breadcrumb .btn.btn-default:not(:last-child):before {
+  //   border-left: 10px solid #ccc;
+  // }
+  // .btn-breadcrumb .btn.btn-default:hover:not(:last-child):after {
+  //   border-left: 10px solid #ebebeb;
+  // }
+  // .btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
+  //   border-left: 10px solid #adadad;
+  // }
 }

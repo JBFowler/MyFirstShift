@@ -1,12 +1,14 @@
 <div id="unit-leader-user-page">
   <div class="row justify-content-md-center">
-    <div class="col-8 my-5">
+    <div class="col my-5">
       <%= render partial: 'shared/flash_messages' %>
       <div class="card <%= user.deleted_at.nil? ? '' : 'danger-bg' %>">
         <div class="card-body">
           <div class="row">
             <div class="col">
               <h4 class="card-title mb-1"><%= user.full_name %></h4>
+              <small class="text-muted"><%= user.email %></small>
+              <br />
               <small class="text-muted">Joined on <%= user.created_at.strftime("%b #{user.created_at.day.ordinalize} %Y") %></small>
             </div>
             <% if user.deleted_at.nil? %>
@@ -19,8 +21,6 @@
           <div class="row">
             <div class="col mt-3">
               <% if user.deleted_at.nil? %>
-                <span class="text-muted">Unit:</span> <%= user.unit.name %>
-                <br />
                 <% if user.unit_leader? %>
                   <span class="text-muted">Role:</span> <span class="default-green-text"><%= user.role.humanize %></span> <%= link_to "(Demote to member)", unit_leader_user_path(@unit, user, user: { role: 'member' }), method: :put, class: "pl-1 danger-text" %>
                 <% elsif user.owner? %>
@@ -39,18 +39,35 @@
           <div class="col pr-0">
             <div class="card border-right-0 border-left-0 border-bottom-0 btr-radius-none btl-radius-none bbr-radius-none">
               <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span class="text-muted">Unit:</span> <span class="default-green-text"><%= user.unit.name %></span></li>
                 <li class="list-group-item"><span class="text-muted">Username:</span> <span class="default-green-text"><%= user.username %></span></li>
-                <li class="list-group-item"><span class="text-muted">Email:</span> <span class="default-green-text"><%= user.email %></span></li>
+                <li class="list-group-item"><span class="text-muted">Date of Birth:</span> <span class="default-green-text"><%= user.date_of_birth.strftime('%m/%d/%Y') %></span></li>
                 <li class="list-group-item"><span class="text-muted">Phone:</span> <span class="default-green-text"><%= user.phone %></span></li>
               </ul>
             </div>
           </div>
-          <div class="col pl-0">
-            <div class="card border-right-0 border-bottom-0 btr-radius-none btl-radius-none bbl-radius-none">
+          <div class="col px-0">
+            <div class="card border-bottom-0 btr-radius-none btl-radius-none bbl-radius-none bbr-radius-none">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item"><span class="text-muted">Status:</span> <span class="default-green-text"><%= user.progress %></span></li>
                 <li class="list-group-item"><span class="text-muted">Employee Type:</span> <span class="default-green-text"><%= user.employee_type %></span></li>
                 <li class="list-group-item"><span class="text-muted">Pay:</span> <span class="default-green-text"><%= wage_presenter(user) %></span></li>
+                <li class="list-group-item"><span class="text-muted">SSN:</span> <span class="default-green-text"><%= user.ssn %></span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col pl-0">
+            <div class="card border-right-0 border-left-0 border-bottom-0 btr-radius-none btl-radius-none bbr-radius-none">
+              <ul class="list-group list-group-flush">
+                <% if !user.drivers_license_number.blank? %>
+                  <li class="list-group-item"><span class="text-muted">Driver's License #:</span> <span class="default-green-text"><%= user.drivers_license_number %></span></li>
+                  <li class="list-group-item"><span class="text-muted">Driver's License Expiration:</span> <span class="default-green-text"><%= user.drivers_license_expiration.strftime('%m/%d/%Y') %></span></li>
+                <% elsif !user.passport_number.blank? %>
+                  <li class="list-group-item"><span class="text-muted">Passport #:</span> <span class="default-green-text"><%= user.passport_number %></span></li>
+                  <li class="list-group-item"><span class="text-muted">Passport Expiration:</span> <span class="default-green-text"><%= user.passport_expiration.strftime('%m/%d/%Y') %></span></li>
+                <% end %>
+                <li class="list-group-item"><span class="text-muted">E-Verified:</span> <span class="default-green-text"><%= user.e_verified %></span> <%= link_to 'Verify', unit_leader_user_path(@unit, user, user: { e_verified: true }), method: :put, class: 'pull-right' unless user.e_verified %></li>
+                <li class="list-group-item"><span class="text-muted">State-Verified:</span> <span class="default-green-text"><%= user.state_verified %></span> <%= link_to 'Verify', unit_leader_user_path(@unit, user, user: { state_verified: true }), method: :put, class: 'pull-right' unless user.state_verified %></li>
               </ul>
             </div>
           </div>

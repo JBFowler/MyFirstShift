@@ -69,10 +69,16 @@ Rails.application.routes.draw do
         get '/members', to: 'users#index'
         get '/members/:id', to: 'users#show', as: :member
 
+        resources :faqs, only: [:create, :destroy]
         resources :invites, except: [:edit]
+        resources :managers, only: [:new, :create, :destroy]
+        resources :organizations, only: [:update]
+        resources :preferences, only: [:index]
         resources :tasks, only: [:index]
         resources :units
-        resources :users, except: [:new, :create]
+        resources :users, except: [:new, :create] do
+          post 'add_unit'
+        end
 
         namespace :reports do
           get '/members', to: 'users#index'
@@ -88,8 +94,12 @@ Rails.application.routes.draw do
             get '/members', to: 'users#index'
             get '/members/:id', to: 'users#show', as: :member
 
+            resources :faqs, only: [:create, :destroy]
             resources :invites, except: [:edit]
+            resources :managers, only: [:new, :create, :destroy]
+            resources :preferences, only: [:index]
             resources :tasks, only: [:index]
+            resources :units, only: [:update]
             resources :users, except: [:new, :create]
 
             namespace :reports do

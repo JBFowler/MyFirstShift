@@ -1,9 +1,36 @@
 <% content_for :content do %>
   <div id="content">
     <div class="container">
-      <%= render partial: "/shared/top_menu", :locals => { :model => @user } %>
+      <!-- <%= render partial: "/shared/top_menu", :locals => { :model => @user } %> -->
+      <div class="card text-center">
+        <div id="top-menu" class="card-header">
+          <ul class="nav nav-pills card-header-pills mx-auto">
+            <li class="nav-item">
+              <a class="nav-link active steel-city-green-bg" href="#">Introduction</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Employee Info</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Paperwork</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Policies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Applications</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Your First Day</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Complete!</a>
+            </li>
+          </ul>
+        </div>
 
-      <%= yield %>
+        <%= yield %>
+      </div>
     </div>
   </div>
 <% end %>
