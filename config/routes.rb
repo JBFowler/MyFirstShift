@@ -70,6 +70,9 @@ Rails.application.routes.draw do
         get '/members/:id', to: 'users#show', as: :member
 
         resources :invites, except: [:edit]
+        resources :managers, only: [:new, :create, :destroy]
+        resources :organizations, only: [:update]
+        resources :preferences, only: [:index]
         resources :tasks, only: [:index]
         resources :units
         resources :users, except: [:new, :create] do

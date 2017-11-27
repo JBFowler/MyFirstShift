@@ -17,7 +17,7 @@
             <%= link_to "Units", owner_units_path, class: "nav-link #{current_owner_tab?('units')}" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Preferences", '', class: "nav-link #{current_owner_tab?('preferences')}" %>
+            <%= link_to "Preferences", owner_preferences_path, class: "nav-link #{current_owner_tab?('preferences')}" %>
           </li>
           <li class="nav-item">
             <%= link_to "Tasks", owner_tasks_path, class: "nav-link #{current_owner_tab?('tasks')}" %>

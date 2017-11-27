@@ -24,12 +24,13 @@ class User < ActiveRecord::Base
 
   after_commit :flush_new_member_cache
 
-  scope :owners, -> { where role: 'owner' }
   scope :active, -> { where progress: 'complete' }
-  scope :ready_to_schedule, -> { where scheduled: false }
   scope :eight_per_hour, -> { where wage: 8 }
-  scope :ten_per_hour, -> { where wage: 10 }
+  scope :need_verification, -> { where('state_verified = ? OR e_verified = ?', false, false) }
   scope :new_members_this_month, -> (month) { where('extract(month from created_at) = ?', month) }
+  scope :owners, -> { where role: 'owner' }
+  scope :ready_to_schedule, -> { active.where scheduled: false }
+  scope :ten_per_hour, -> { where wage: 10 }
 
   def self.find_for_authentication(warden_conditions)
     where(:email => warden_conditions[:email], :subdomain => warden_conditions[:subdomain]).first
@@ -47,6 +48,10 @@ class User < ActiveRecord::Base
 
   def owner?
     role == "owner"
+  end
+
+  def ready_for_verification?
+    !ssn.blank? && !date_of_birth.blank? && ((!drivers_license_number.blank? && !drivers_license_expiration?.blank?) || (!passport_number.blank? && !passport_expiration.blank?))
   end
 
   def unit_leader?

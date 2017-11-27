@@ -23,7 +23,7 @@ class Organizations::Owner::UsersController < ApplicationController
 
   def show
     user = @organization.members.friendly.with_deleted.find(params[:id])
-    units = @organization.cached_units.sort{ |a,b| a.name.downcase <=> b.name.downcase }
+    units = @organization.cached_units
 
     locals ({
       owner: current_user,
@@ -45,10 +45,18 @@ class Organizations::Owner::UsersController < ApplicationController
     user = @organization.members.friendly.find(params[:id])
 
     if user.update(user_params)
-      flash[:success] = "#{user.full_name} has been updated!"
-      redirect_to owner_member_path(user)
+      respond_to do |format|
+        format.json { render json: { message: "#{user.full_name} has been updated!" }.to_json }
+        format.html do
+          flash[:success] = "#{user.full_name} has been updated!"
+          redirect_to owner_member_path(user)
+        end
+      end
     else
-      render :edit, locals: { owner: current_user, user: user }
+      respond_to do |format|
+        format.html { render :edit, locals: { owner: current_user, user: user } }
+        format.json { render json: user.errors.full_messages.to_json, status: 400 }
+      end
     end
   end
 
@@ -79,6 +87,6 @@ class Organizations::Owner::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :employee_type, :wage, :username, :phone, :role)
+    params.require(:user).permit(:first_name, :last_name, :email, :employee_type, :wage, :username, :phone, :role, :e_verified, :state_verified)
   end
 end

@@ -5,11 +5,14 @@ class Organizations::Owner::TasksController < ApplicationController
   layout 'organizations/owner'
 
   def index
-    members = @organization.members.ready_to_schedule
+    members = @organization.members
+    ready_to_schedule = members.ready_to_schedule
+    need_verification = members.need_verification
 
     locals ({
       owner: current_user,
-      members: members
+      ready_to_schedule: ready_to_schedule,
+      need_verification: need_verification
     })
   end
 end

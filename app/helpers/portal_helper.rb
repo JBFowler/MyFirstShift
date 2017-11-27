@@ -19,6 +19,19 @@ module PortalHelper
     end
   end
 
+  def missing_verification_items(user)
+    missing_items = []
+
+    missing_items << 'SSN' if user.ssn.blank?
+    missing_items << 'DOB' if user.date_of_birth.blank?
+    if user.drivers_license_number.blank? && user.drivers_license_expiration.blank?
+      if user.passport_number.blank? && user.passport_expiration.blank?
+        missing_items << 'DL/Passport Info'
+      end
+    end
+    return missing_items.join(', ')
+  end
+
   def total_hourly_pay_percentage(eight_members, ten_members)
     hourly_pay_percentage(8, eight_members, ten_members) + hourly_pay_percentage(10, eight_members, ten_members)
   end

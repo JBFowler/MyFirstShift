@@ -8,6 +8,10 @@ FactoryGirl.define do
     password_confirmation "Password1"
     role "member"
     progress nil
+    ssn '111-11-1111'
+    date_of_birth Date.new(1995, 10, 01)
+    drivers_license_number 1111111
+    drivers_license_expiration 1.year.from_now.to_date
     organization
 
     trait :completed do

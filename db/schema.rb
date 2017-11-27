@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120011052) do
+ActiveRecord::Schema.define(version: 20171127033934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,15 +69,28 @@ ActiveRecord::Schema.define(version: 20171120011052) do
     t.index ["email"], name: "index_invites_on_email", using: :btree
   end
 
+  create_table "managers", force: :cascade do |t|
+    t.string  "name"
+    t.string  "role"
+    t.string  "picture"
+    t.text    "description"
+    t.integer "organization_id"
+    t.integer "unit_id"
+    t.index ["organization_id"], name: "index_managers_on_organization_id", using: :btree
+    t.index ["unit_id"], name: "index_managers_on_unit_id", using: :btree
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.integer  "size"
     t.string   "sector"
     t.string   "subdomain"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.datetime "deleted_at"
-    t.string   "onboarding_steps", default: [],              array: true
+    t.string   "onboarding_steps", default: [],                   array: true
+    t.string   "store_front"
+    t.integer  "wages",            default: [8, 10],              array: true
     t.index ["deleted_at"], name: "index_organizations_on_deleted_at", using: :btree
   end
 
@@ -86,33 +99,35 @@ ActiveRecord::Schema.define(version: 20171120011052) do
     t.integer  "size"
     t.string   "city"
     t.integer  "organization_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.datetime "deleted_at"
-    t.string   "onboarding_steps",   default: [],              array: true
+    t.string   "onboarding_steps",   default: [],                   array: true
     t.string   "state"
     t.integer  "created_by_user_id"
     t.string   "slug"
+    t.string   "store_front"
+    t.integer  "wages",              default: [8, 10],              array: true
     t.index ["deleted_at"], name: "index_units_on_deleted_at", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",       null: false
-    t.string   "encrypted_password",     default: "",       null: false
+    t.string   "email",                      default: "",       null: false
+    t.string   "encrypted_password",         default: "",       null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,        null: false
+    t.integer  "sign_in_count",              default: 0,        null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "username"
-    t.string   "role",                   default: "member"
+    t.string   "role",                       default: "member"
     t.integer  "organization_id"
     t.string   "subdomain"
     t.integer  "unit_id"
@@ -120,9 +135,17 @@ ActiveRecord::Schema.define(version: 20171120011052) do
     t.string   "progress"
     t.string   "phone"
     t.string   "employee_type"
-    t.boolean  "scheduled",              default: false
+    t.boolean  "scheduled",                  default: false
     t.integer  "wage"
     t.string   "slug"
+    t.string   "ssn"
+    t.boolean  "e_verified",                 default: false
+    t.boolean  "state_verified",             default: false
+    t.date     "date_of_birth"
+    t.string   "drivers_license_number"
+    t.date     "drivers_license_expiration"
+    t.string   "passport_number"
+    t.date     "passport_expiration"
     t.index ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
     t.index ["email", "subdomain"], name: "index_users_on_email_and_subdomain", unique: true, using: :btree
     t.index ["progress"], name: "index_users_on_progress", using: :btree

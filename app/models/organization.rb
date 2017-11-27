@@ -1,5 +1,6 @@
 class Organization < ActiveRecord::Base
   acts_as_paranoid
+  mount_uploader :store_front, StoreFrontUploader
 
   validates_presence_of(:name, :size, :sector, :subdomain)
   validates :name, length: { in: 4..30 }
@@ -8,11 +9,17 @@ class Organization < ActiveRecord::Base
 
   has_many :invites, dependent: :destroy
   has_many :units, dependent: :destroy
+  has_many :managers, dependent: :destroy
   has_many :members, class_name: 'User', dependent: :destroy#, inverse_of: :organization
 
   def self.search_by_subdomain(search_term)
     return nil if search_term.blank?
     where("subdomain LIKE ?", "%#{search_term}%").first
+  end
+
+  def add_wage(wage)
+    wages << wage.to_i
+    save
   end
 
   def owners
@@ -33,6 +40,6 @@ class Organization < ActiveRecord::Base
   end
 
   def cached_units
-    Rails.cache.fetch([self.class.name, self.id, :units], expires_in: 240.hours) { units.to_a }
+    Rails.cache.fetch([self.class.name, self.id, :units], expires_in: 240.hours) { units.order("lower(name) ASC").to_a }
   end
 end

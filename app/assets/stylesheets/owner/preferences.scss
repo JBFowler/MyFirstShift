@@ -1,0 +1,9 @@
+#owner-preferences-page, #unit-leader-preferences-page {
+  #wages-list {
+    .list-group {
+      li:first-child {
+        border-top: none;
+      }
+    }
+  }
+}
