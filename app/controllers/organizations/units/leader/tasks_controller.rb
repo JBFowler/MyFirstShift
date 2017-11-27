@@ -2,7 +2,7 @@ class Organizations::Units::Leader::TasksController < Organizations::Units::Lead
   layout 'organizations/unit_leader'
 
   def index
-    members = @unit.members.ready_to_schedule
+    members = @unit.members
     ready_to_schedule = members.ready_to_schedule
     need_verification = members.need_verification
 
