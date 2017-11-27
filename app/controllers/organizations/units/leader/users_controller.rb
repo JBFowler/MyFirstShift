@@ -58,7 +58,7 @@ class Organizations::Units::Leader::UsersController < Organizations::Units::Lead
   def destroy
     user = @unit.members.friendly.find(params[:id])
 
-    if user.destroy
+    if user.delete
       redirect_to unit_leader_member_path(@unit, user)
     else
       flash[:danger] = "There was a problem deleting the user"

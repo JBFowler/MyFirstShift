@@ -27,7 +27,7 @@ class Organizations::Owner::ManagersController < ApplicationController
   def destroy
     manager = @organization.managers.find(params[:id])
 
-    if manager.destroy
+    if manager.delete
       flash[:success] = "Manager Removed"
       redirect_to owner_preferences_path
     else

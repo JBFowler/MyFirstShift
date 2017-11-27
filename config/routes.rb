@@ -69,6 +69,7 @@ Rails.application.routes.draw do
         get '/members', to: 'users#index'
         get '/members/:id', to: 'users#show', as: :member
 
+        resources :faqs, only: [:create, :destroy]
         resources :invites, except: [:edit]
         resources :managers, only: [:new, :create, :destroy]
         resources :organizations, only: [:update]
@@ -93,8 +94,12 @@ Rails.application.routes.draw do
             get '/members', to: 'users#index'
             get '/members/:id', to: 'users#show', as: :member
 
+            resources :faqs, only: [:create, :destroy]
             resources :invites, except: [:edit]
+            resources :managers, only: [:new, :create, :destroy]
+            resources :preferences, only: [:index]
             resources :tasks, only: [:index]
+            resources :units, only: [:update]
             resources :users, except: [:new, :create]
 
             namespace :reports do

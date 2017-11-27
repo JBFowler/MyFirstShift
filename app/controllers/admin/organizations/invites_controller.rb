@@ -25,7 +25,7 @@ class Admin::Organizations::InvitesController < Admin::BaseController
   def destroy
     @invite = Invite.find(params[:id])
 
-    @invite.destroy
+    @invite.delete
     redirect_to admin_organization_invites_path(@organization)
   end
 

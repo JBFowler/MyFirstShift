@@ -1,7 +1,7 @@
 <div id="owner-preferences-page">
   <%= render partial: 'shared/flash_messages' %>
   <div class="row">
-    <div class="col-8">
+    <div class="col">
       <div class="card">
         <h5 class="card-header">
           Store Front
@@ -19,6 +19,35 @@
         </div>
       </div>
     </div>
+    <div class="col">
+      <div class="card">
+        <h5 class="card-header">
+          Frequenty Asked Questions
+        </h5>
+        <div class="card-body">
+          <%= form_for [:owner, Faq.new], method: :post do |f| %>
+            <%= f.text_area :question, rows: 4, class: "form-control mb-3" %>
+            <%= f.submit "Add FAQ", class: "btn btn-primary pull-right px-5" %>
+          <% end %>
+        </div>
+        <ul class="list-group list-group-flush">
+          <% @organization.faqs.each do |faq| %>
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-10">
+                  <%= faq.question %>
+                </div>
+                <div class="col">
+                  <%= link_to owner_faq_path(faq), method: :delete do %>
+                    <i class="fa fa-trash fa-lg danger-text pull-right mt-1" aria-hidden="true"></i>
+                  <% end %>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
   <div class="row mt-4">
     <div class="col">
@@ -30,7 +59,7 @@
           <div class="row">
             <% managers.each do |manager| %>
               <div class="col-sm-4">
-                <div class="card mb-3">
+                <div class="manager-card card mb-3">
                   <%= image_tag manager.picture, class: "card-img-top" %>
                   <div class="card-body">
                     <h5 class="card-title"><%= manager.name %></h5>

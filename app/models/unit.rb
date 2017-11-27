@@ -6,6 +6,7 @@ class Unit < ActiveRecord::Base
   mount_uploader :store_front, StoreFrontUploader
 
   belongs_to :organization
+  has_many :faqs
   has_many :invites, dependent: :destroy
   has_many :managers, dependent: :destroy
   has_many :members, class_name: 'User', dependent: :destroy

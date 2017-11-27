@@ -76,7 +76,7 @@ class Organizations::Owner::UsersController < ApplicationController
   def destroy
     user = @organization.members.friendly.find(params[:id])
 
-    if user.destroy
+    if user.delete
       redirect_to owner_member_path(user)
     else
       flash[:danger] = "There was a problem deleting the user"

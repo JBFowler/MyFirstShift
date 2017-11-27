@@ -3,8 +3,6 @@ document.addEventListener("turbolinks:load", function() {
   var wageField = $('#add-wage-field');
 
   updateWagesBtn.on('click', function() {
-    debugger;
-
     $.ajax({
       type: "POST",
       url: $(this).data('wage-url'),

@@ -60,7 +60,7 @@ class Organizations::Units::Leader::InvitesController < Organizations::Units::Le
   def destroy
     invite = @unit.invites.find(params[:id])
 
-    invite.destroy
+    invite.delete
     redirect_to unit_leader_invites_path(@unit)
   end
 
