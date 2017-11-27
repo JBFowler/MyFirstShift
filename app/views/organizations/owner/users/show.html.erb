@@ -54,7 +54,7 @@
               <ul class="list-group list-group-flush">
                 <li class="list-group-item"><span class="text-muted">Unit:</span> <span class="default-green-text"><%= display_unit(user) %></span></li>
                 <li class="list-group-item"><span class="text-muted">Username:</span> <span class="default-green-text"><%= user.username %></span></li>
-                <li class="list-group-item"><span class="text-muted">Date of Birth:</span> <span class="default-green-text"><%= user.date_of_birth.strftime('%m/%d/%Y') %></span></li>
+                <li class="list-group-item"><span class="text-muted">Date of Birth:</span> <span class="default-green-text"><%= user.date_of_birth.nil? ? '' : user.date_of_birth.strftime('%m/%d/%Y') %></span></li>
                 <li class="list-group-item"><span class="text-muted">Phone:</span> <span class="default-green-text"><%= user.phone %></span></li>
               </ul>
             </div>
@@ -78,6 +78,9 @@
                 <% elsif !user.passport_number.blank? %>
                   <li class="list-group-item"><span class="text-muted">Passport #:</span> <span class="default-green-text"><%= user.passport_number %></span></li>
                   <li class="list-group-item"><span class="text-muted">Passport Expiration:</span> <span class="default-green-text"><%= user.passport_expiration.strftime('%m/%d/%Y') %></span></li>
+                <% else %>
+                  <li class="list-group-item"><span class="text-muted">SSN/Passport #:</span></li>
+                  <li class="list-group-item"><span class="text-muted">SSN/Passport Expiration:</span></li>
                 <% end %>
                 <li class="list-group-item"><span class="text-muted">E-Verified:</span> <span class="default-green-text"><%= user.e_verified %></span> <%= link_to 'Verify', owner_user_path(user, user: { e_verified: true }), method: :put, class: 'pull-right' unless user.e_verified %></li>
                 <li class="list-group-item"><span class="text-muted">State-Verified:</span> <span class="default-green-text"><%= user.state_verified %></span> <%= link_to 'Verify', owner_user_path(user, user: { state_verified: true }), method: :put, class: 'pull-right' unless user.state_verified %></li>
