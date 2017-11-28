@@ -37,8 +37,8 @@ class User < ActiveRecord::Base
   end
 
   def complete!
-    self.progress = "complete"
-    self.save #consider update_column(:progress, 'complete')
+    update_column(:progress, "Complete")
+    true
   end
 
   def full_name
@@ -59,7 +59,15 @@ class User < ActiveRecord::Base
   end
 
   def progress_complete?
-    progress == "complete"
+    progress.casecmp("complete") == 0
+  end
+
+  def progress_intro?
+    progress.casecmp("intro") == 0
+  end
+
+  def progress_intro?
+    progress.casecmp("paperwork") == 0
   end
 
   def flush_new_member_cache
@@ -71,6 +79,13 @@ class User < ActiveRecord::Base
     unit.members << self
 
     reload if persisted?
+    true
+  end
+
+  def update_progress(stage)
+    return false if stage.nil?
+
+    update_column(:progress, stage)
     true
   end
 

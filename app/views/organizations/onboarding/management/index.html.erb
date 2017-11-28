@@ -1,21 +1,28 @@
 <div id="meet-the-management">
   <%= image_tag @organization.store_front, id: "organization-building-img", class: "card-img-top btr-radius-none btl-radius-none" %>
-  <div class="card-body">
-    <h4 class="card-title">Meet Your Managers</h4>
-    <p class="card-text">Below are the managers of <%= @organization.name %></p>
-    <div class="row">
+  <div class="card-body text-center">
+    <h4 class="page-title">Meet Your Managers</h4>
+    <hr class="green-ruler">
+    <div class="row justify-content-md-center">
+      <div class="col-4">
+        <p class="card-text text-muted">Below are the managers of <strong><%= @organization.name %></strong></p>
+      </div>
+    </div>
+    <div class="row justify-content-md-center mt-5">
       <% @organization.managers.each do |manager| %>
-        <div class="col-sm-4">
+        <div class="col-4">
           <div class="manager-card card mb-3">
             <%= image_tag manager.picture, class: "card-img-top" %>
             <div class="card-body">
               <h5 class="card-title"><%= manager.name %></h5>
-              <p class="card-text"><%= manager.description %></p>
+              <p class="card-text text-muted"><%= manager.description %></p>
             </div>
           </div>
         </div>
       <% end %>
     </div>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+  <div class="card-footer text-center">
+    <%= link_to "Next Step", onboarding_employee_info_path, class: "btn btn-default", id: "next-btn" %>
   </div>
 </div>

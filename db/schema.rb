@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127052054) do
+ActiveRecord::Schema.define(version: 20171128062850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 20171127052054) do
     t.string   "subdomain"
     t.integer  "unit_id"
     t.datetime "deleted_at"
-    t.string   "progress"
+    t.string   "progress",                   default: "Intro"
     t.string   "phone"
     t.string   "employee_type"
     t.boolean  "scheduled",                  default: false
