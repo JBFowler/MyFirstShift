@@ -26,7 +26,16 @@
         </h5>
         <div class="card-body">
           <%= form_for [:owner, Faq.new], method: :post do |f| %>
-            <%= f.text_area :question, rows: 4, class: "form-control mb-3" %>
+            <div class="form-group">
+            <%= f.label :question, class: "form-label" %>
+            <%= f.text_area :question, rows: 2, class: "form-control mb-3" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :answer, class: "form-label" %>
+              <%= f.text_area :answer, rows: 4, class: "form-control mb-3" %>
+            </div>
+
             <%= f.submit "Add FAQ", class: "btn btn-primary pull-right px-5" %>
           <% end %>
         </div>
@@ -35,7 +44,9 @@
             <li class="list-group-item">
               <div class="row">
                 <div class="col-10">
-                  <%= faq.question %>
+                  <strong><%= faq.question %></strong>
+
+                  <%= faq.answer %>
                 </div>
                 <div class="col">
                   <%= link_to owner_faq_path(faq), method: :delete do %>
@@ -63,6 +74,7 @@
                   <%= image_tag manager.picture, class: "card-img-top" %>
                   <div class="card-body">
                     <h5 class="card-title"><%= manager.name %></h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><%= manager.email %></h6>
                     <p class="card-text"><%= manager.description %></p>
                     <%= link_to "Remove", owner_manager_path(manager), method: :delete, class: "btn btn-danger" %>
                   </div>

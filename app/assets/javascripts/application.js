@@ -19,6 +19,7 @@
 //= require Chart.min
 //= require_tree ./owner
 //= require site
+//= require bootstrap-datepicker
 
 document.addEventListener("turbolinks:load", function() {
   $('[data-toggle="tooltip"]').tooltip()

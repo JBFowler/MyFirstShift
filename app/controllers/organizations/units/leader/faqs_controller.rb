@@ -28,6 +28,6 @@ class Organizations::Units::Leader::FaqsController < Organizations::Units::Leade
   private
 
   def faq_params
-    params.require(:faq).permit(:question)
+    params.require(:faq).permit(:question, :answer)
   end
 end

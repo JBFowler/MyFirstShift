@@ -19,7 +19,7 @@
               </div>
               <div class="col">
                 <%= f.label :phone, class: "form-label" %>
-                <%= f.telephone_field :phone, class: "form-control" %>
+                <%= f.telephone_field :phone, placeholder: "xxx-xxx-xxxx", class: "form-control" %>
               </div>
             </div>
           </div>
@@ -27,11 +27,11 @@
           <div class="form-group mb-4">
             <div class="row">
               <div class="col">
-                <%= f.label :date_of_birth, class: "form-label" %>
+                <%= f.label :date_of_birth, "Date of Birth", class: "form-label" %>
                 <%= f.text_field :date_of_birth, class: "form-control" %>
               </div>
               <div class="col">
-                <%= f.label :ssn, class: "form-label" %>
+                <%= f.label :ssn, "Social Security Number", class: "form-label" %>
                 <%= f.text_field :ssn, class: "form-control" %>
               </div>
             </div>
@@ -40,12 +40,12 @@
           <div class="form-group my-3">
             <div class="row">
               <div class="col">
-                <%= f.label :drivers_license_number, class: "form-label" %>
+                <%= f.label :drivers_license_number, "Drivers License Number", class: "form-label" %>
                 <%= f.text_field :drivers_license_number, class: "form-control" %>
               </div>
               <div class="col">
-                <%= f.label :drivers_license_expiration, class: "form-label" %>
-                <%= f.text_field :drivers_license_expiration, class: "form-control" %>
+                <%= f.label :drivers_license_expiration, "Drivers License Expiration", class: "form-label" %>
+                <%= f.date_field :drivers_license_expiration, class: "form-control" %>
               </div>
             </div>
           </div>
@@ -65,12 +65,12 @@
           <div class="form-group mt-2">
             <div class="row">
               <div class="col">
-                <%= f.label :passport_number, class: "form-label" %>
+                <%= f.label :passport_number, "Passport Number", class: "form-label" %>
                 <%= f.text_field :passport_number, class: "form-control" %>
               </div>
               <div class="col">
-                <%= f.label :passport_expiration, class: "form-label" %>
-                <%= f.text_field :passport_expiration, class: "form-control" %>
+                <%= f.label :passport_expiration, "Passport Expiration", class: "form-label" %>
+                <%= f.date_field :passport_expiration, class: "form-control" %>
               </div>
             </div>
           </div>

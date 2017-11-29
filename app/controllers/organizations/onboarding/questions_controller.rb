@@ -5,6 +5,13 @@ class Organizations::Onboarding::QuestionsController < ApplicationController
   layout 'organizations/onboarding'
 
   def index
-    @user = current_user
+    if current_user.progress_paperwork?
+      current_user.update_progress("FAQ")
+    end
+
+    locals ({
+      user: current_user,
+      faqs: @organization.faqs
+    })
   end
 end

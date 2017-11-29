@@ -36,6 +36,6 @@ class Organizations::Units::Leader::ManagersController < Organizations::Units::L
   private
 
   def manager_params
-    params.require(:manager).permit(:name, :description, :picture)
+    params.require(:manager).permit(:name, :description, :picture, :email)
   end
 end

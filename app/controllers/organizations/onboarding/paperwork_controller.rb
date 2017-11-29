@@ -5,6 +5,8 @@ class Organizations::Onboarding::PaperworkController < ApplicationController
   layout 'organizations/onboarding'
 
   def index
-    @user = current_user
+    locals ({
+      user: current_user
+    })
   end
 end

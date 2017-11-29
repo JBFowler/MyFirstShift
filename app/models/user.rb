@@ -12,12 +12,19 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, request_keys: [:subdomain]
 
   validates_presence_of :first_name, :last_name, :email
-  validates_presence_of :employee_type, if: :persisted?
-  validates_presence_of :phone, if: :persisted?
+  validates_presence_of :employee_type, :phone, :date_of_birth, :ssn, if: :persisted?
+  validates_presence_of :drivers_license_number, message: "or Passport number can't be blank", unless: :passport_number?
+  validates_presence_of :drivers_license_expiration, if: :drivers_license_number?
+  validates_presence_of :passport_expiration, if: :passport_number?
+  validates_presence_of :drivers_license_number, if: :drivers_license_expiration?
+  validates_presence_of :passport_number, if: :passport_expiration?
+  # validates_presence_of :phone, if: :persisted?
+  validate :phone_format, if: :persisted?
+  validate :ssn_format, if: :persisted?
   # validates_format_of     :email, with: email_regexp, allow_blank: true, if: :email_changed?
   validates_presence_of     :password, if: :password_required?
   validates_confirmation_of :password, if: :password_required?
-  # validates_length_of       :password, within: password_length, allow_blank: true
+  validates_length_of       :password, within: 8..128, allow_blank: true
 
   belongs_to :organization#, inverse_of: :users
   belongs_to :unit, optional: true
@@ -50,8 +57,20 @@ class User < ActiveRecord::Base
     role == "owner"
   end
 
+  def phone_format
+    unless /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.match(phone)
+      errors.add(:phone, ": Please enter number as (xxx) xxx-xxxx")
+    end
+  end
+
   def ready_for_verification?
     !ssn.blank? && !date_of_birth.blank? && ((!drivers_license_number.blank? && !drivers_license_expiration?.blank?) || (!passport_number.blank? && !passport_expiration.blank?))
+  end
+
+  def ssn_format
+    unless /^\d{3}-?\d{2}-?\d{4}$/.match(ssn)
+      errors.add(:ssn, ": Please enter SSN as XXX-XX-XXXX")
+    end
   end
 
   def unit_leader?
@@ -66,7 +85,11 @@ class User < ActiveRecord::Base
     progress.casecmp("intro") == 0
   end
 
-  def progress_intro?
+  def progress_employee_info?
+    progress.casecmp("employee info") == 0
+  end
+
+  def progress_paperwork?
     progress.casecmp("paperwork") == 0
   end
 

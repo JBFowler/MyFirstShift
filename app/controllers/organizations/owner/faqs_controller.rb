@@ -38,6 +38,6 @@ class Organizations::Owner::FaqsController < ApplicationController
   private
 
   def faq_params
-    params.require(:faq).permit(:question)
+    params.require(:faq).permit(:question, :answer)
   end
 end
