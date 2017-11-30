@@ -22,10 +22,10 @@ body {
     // min-height: 400px;
   }
 
-  #next-btn, #previous-btn {
+  .next-btn {
     // margin-top: 20px;
     background: #929F4C;
-    color: white;
+    color: #FFFFFF;
     font-weight: bold;
     text-transform: uppercase;
     min-width: 170px;
@@ -37,6 +37,26 @@ body {
 
     &:hover {
       background: #666f35;
+      color: #ffffff;
+    }
+  }
+
+  .previous-btn {
+    background: #FFFFFF;
+    color: #929F4C;
+    font-weight: bold;
+    text-transform: uppercase;
+    min-width: 170px;
+    cursor: pointer;
+    border-color: #929F4C;
+
+    &:hover {
+      background: #929F4C;
+      color: #FFFFFF;
+    }
+
+    &:focus {
+      outline: 0;
     }
   }
 
@@ -47,6 +67,11 @@ body {
   //     margin-top: 0;
   //   }
   // }
+
+  .datepicker {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+  }
 
   .float-none {
     float: none;

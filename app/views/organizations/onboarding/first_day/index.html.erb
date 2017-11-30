@@ -1,34 +1,23 @@
-<div id="meet-the-management">
-  <div class="row">
-    <div class="col-xs-12 onboarding-img-header" id="organization-building-img">
-      <%= image_tag("HTX.jpg", alt: "Circle Pop") %>
+<div id="first-day">
+  <%= image_tag "HTX.jpg", class: "page-image-header card-img-top btr-radius-none btl-radius-none position-center-center" %>
+  <div class="card-body">
+    <h4 class="page-title text-center">Your First Day</h4>
+    <hr class="green-ruler">
+    <div class="row justify-content-md-center">
+      <div class="col-6 text-center">
+        <p class="card-text text-muted">The first day is just around the corner!  The content below gives you everything you need to be ready for your first day!</p>
+      </div>
+    </div>
+
+    <div class="row justify-content-md-center mt-5 mb-3">
+      <div class="col-8 mt-5">
+        <small class="text-muted">*** Once you have clicked 'Complete', you will be taken to your dashboard. If you need to update any information in the prior steps, click on any of the links above to go back to that page.</small>
+      </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="well onboarding">
-        <div class="row">
-          <h2>Your First Day</h2>
-        </div>
-
-        <hr class="green-ruler">
-
-        <div class="row onboarding-info-section">
-          <div class="col-xs-12 text-center">
-            <p>
-              "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-            </p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-12 text-center">
-            <%= link_to "Previous Step", onboarding_apps_path, class: "btn btn-default", id: "next-btn" %>
-            <%= link_to "Finished!", onboarding_complete_path, class: "btn btn-default disabled", id: "next-btn" %>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="card-footer text-center">
+    <%= link_to "Previous Step", onboarding_apps_path, class: "btn mx-3 previous-btn" %>
+    <%= link_to "Finish", '', class: "btn mx-3 next-btn", id: "finish-btn" %>
   </div>
 </div>

@@ -40,6 +40,7 @@ gem 'chart-js-rails'
 gem 'sendgrid-ruby'
 gem 'friendly_id', '~> 5.1.0'
 gem 'carrierwave', '~> 1.0'
+gem 'bootstrap-datepicker-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :get_organization
   before_action :get_mailer_host
 
-  helper_method :return_home?, :not_found
+  helper_method :allowed_onboarding_access?, :return_home?, :not_found
 
   def require_owner
     unless user_signed_in? && current_user.owner?
@@ -15,6 +15,16 @@ class ApplicationController < ActionController::Base
   def return_home?
     if current_user.progress_complete?
       flash[:warning] = "You have already completed your onboarding process"
+      redirect_to home_path
+    end
+  end
+
+  def allowed_onboarding_access?(progress_point)
+    @progress_points ||= ["Intro", "Employee Info", "Paperwork", "FAQ", "Policies", "Applications", "First Day", "Complete"]
+
+    if @progress_points.index(current_user.progress) >= @progress_points.index(progress_point)
+      return
+    else
       redirect_to home_path
     end
   end

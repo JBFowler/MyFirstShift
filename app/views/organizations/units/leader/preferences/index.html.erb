@@ -1,74 +1,43 @@
 <div id="unit-leader-preferences-page">
-  <%= render partial: 'shared/flash_messages' %>
   <div class="row">
     <div class="col">
-      <div class="card">
-        <h5 class="card-header">
-          Store Front
-        </h5>
-        <% if !@unit.store_front.blank? %>
-          <%= image_tag @unit.store_front, class: "card-img-top btr-radius-none btl-radius-none" %>
-        <% end %>
-        <div class="card-body">
-          <p class="card-text">Click below to upload a new photo of your unit</p>
-          <%= form_for [@unit, :leader, @unit], multipart: true do |f| %>
-            <%= f.file_field :store_front, class: 'mb-3' %>
-            <br />
-            <%= f.submit "Upload", class: "btn btn-primary" %>
-          <% end %>
+      <div class="tabular-card card">
+        <div class="card-header">
+          <%= render partial: 'organizations/units/leader/shared/preferences_nav', locals: { managers: nil, faqs: nil } %>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <h5 class="card-header">
-          Frequenty Asked Questions
-        </h5>
+      <div class="card tab-joiner-card border-top-0">
         <div class="card-body">
-          <%= form_for [@unit, :leader, Faq.new], method: :post do |f| %>
-            <%= f.text_area :question, rows: 4, class: "form-control mb-3" %>
-            <%= f.submit "Add FAQ", class: "btn btn-primary pull-right px-5" %>
-          <% end %>
-        </div>
-        <ul class="list-group list-group-flush">
-          <% @unit.faqs.each do |faq| %>
-            <li class="list-group-item">
-              <div class="row">
-                <div class="col-10">
-                  <%= faq.question %>
+          <div class="row">
+            <div class="col">
+              <div class="card">
+                <h5 class="card-header">
+                  First Day
+                </h5>
+                <div class="card-body">
+                  <h5 class="card-title">Video</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">A video showing what to expect on the first day</h6>
                 </div>
-                <div class="col">
-                  <%= link_to unit_leader_faq_path(@unit, faq), method: :delete do %>
-                    <i class="fa fa-trash fa-lg danger-text pull-right mt-1" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <h5 class="card-header">
+                  Store Front
+                </h5>
+                <% if !@unit.store_front.blank? %>
+                  <%= image_tag @unit.store_front, class: "card-img-top btr-radius-none btl-radius-none" %>
+                <% end %>
+                <div class="card-body">
+                  <p class="card-text text-muted">Click below to upload a new photo of your organization</p>
+                  <%= form_for [@unit, :leader, @unit], multipart: true do |f| %>
+                    <%= f.file_field :store_front, class: 'mb-3' %>
+                    <br />
+                    <%= f.submit "Upload", class: "btn btn-primary" %>
                   <% end %>
                 </div>
               </div>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="row mt-4">
-    <div class="col">
-      <div class="card">
-        <h5 class="card-header">
-          Managers <%= link_to "Add Manager", new_unit_leader_manager_path(@unit), class: 'pull-right' %>
-        </h5>
-        <div class="card-body">
-          <div class="row">
-            <% managers.each do |manager| %>
-              <div class="col-sm-4">
-                <div class="manager-card card mb-3">
-                  <%= image_tag manager.picture, class: "card-img-top" %>
-                  <div class="card-body">
-                    <h5 class="card-title"><%= manager.name %></h5>
-                    <p class="card-text"><%= manager.description %></p>
-                    <%= link_to "Remove", unit_leader_manager_path(@unit, manager), method: :delete, class: "btn btn-danger" %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
+            </div>
           </div>
         </div>
       </div>

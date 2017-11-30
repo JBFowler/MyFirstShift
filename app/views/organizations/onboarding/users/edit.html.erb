@@ -1,44 +1,86 @@
 <div id="employee-info">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="well onboarding">
-        <div class="row">
-          <h2>Employee Info</h2>
+  <%= form_for [:onboarding, user] do |f| %>
+    <div class="card-body">
+      <h4 class="page-title text-center">Employee Info</h4>
+      <hr class="green-ruler">
+      <div class="row justify-content-md-center">
+        <div class="col-4">
+          <p class="card-text text-muted text-center">We need to gather a few additional details before beginning the paperwork process</p>
         </div>
-
-        <hr class="green-ruler">
-
-        <%= render 'shared/errors', obj: @user %>
-
-        <div class="row">
-          <%= form_for @user, url: onboarding_employee_info_path do |f| %>
-            <div class="col-xs-4 center-block form-group float-none">
-              <%= f.label :employee_type %>
-              <%= f.select :employee_type, ["salary", "hourly"], {}, {class: "form-control"} %>
+      </div>
+      <div class="row justify-content-md-center mt-5">
+        <div class="col-6 mb-3">
+          <%= render 'shared/errors', obj: user %>
+          <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <%= f.label :employee_type, class: "form-label" %>
+                <%= f.select :employee_type, ["Salary", "Hourly"], {}, class: "form-control custom-select" %>
+              </div>
+              <div class="col">
+                <%= f.label :phone, class: "form-label" %>
+                <%= f.telephone_field :phone, placeholder: "xxx-xxx-xxxx", class: "form-control" %>
+              </div>
             </div>
+          </div>
 
-            <div class="col-xs-4 center-block form-group float-none">
-              <%= f.label :phone, "Phone (xxx-xxx-xxxx)" %>
-              <%= f.telephone_field :phone, class: "form-control", placeholder: "xxx-xxx-xxxx", required: true %>
+          <div class="form-group mb-4">
+            <div class="row">
+              <div class="col">
+                <%= f.label :date_of_birth, "Date of Birth", class: "form-label" %>
+                <%= f.date_field :date_of_birth, class: "form-control" %>
+              </div>
+              <div class="col">
+                <%= f.label :ssn, "Social Security Number", class: "form-label" %>
+                <%= f.text_field :ssn, class: "form-control" %>
+              </div>
             </div>
+          </div>
 
-            <div class="col-xs-4 center-block form-group float-none">
-              <%= label_tag :email %>
-              <%= email_field_tag "", @user.email, class: "form-control", readonly: true %>
+          <div class="form-group my-3">
+            <div class="row">
+              <div class="col">
+                <%= f.label :drivers_license_number, "Drivers License Number", class: "form-label" %>
+                <%= f.text_field :drivers_license_number, class: "form-control" %>
+              </div>
+              <div class="col">
+                <%= f.label :drivers_license_expiration, "Drivers License Expiration", class: "form-label" %>
+                <%= f.date_field :drivers_license_expiration, class: "form-control" %>
+              </div>
             </div>
+          </div>
 
-            <div class="col-xs-4 center-block form-group float-none">
-              <%= label_tag :organization %>
-              <%= text_field_tag "", @user.organization.name, class: "form-control", readonly: true %>
+          <div class="row justify-content-md-center">
+            <div class="col">
+              <hr>
             </div>
+            <div class="col-2 text-center">
+              OR
+            </div>
+            <div class="col">
+              <hr>
+            </div>
+          </div>
 
-            <div class="col-xs-12 text-center">
-              <%= link_to "Previous Step", onboarding_meet_the_management_path, class: "btn btn-default", id: "next-btn" %>
-              <%= f.submit "Next Step", class: "btn btn-default", id: "next-btn" %>
+          <div class="form-group mt-2">
+            <div class="row">
+              <div class="col">
+                <%= f.label :passport_number, "Passport Number", class: "form-label" %>
+                <%= f.text_field :passport_number, class: "form-control" %>
+              </div>
+              <div class="col">
+                <%= f.label :passport_expiration, "Passport Expiration", class: "form-label" %>
+                <%= f.date_field :passport_expiration, class: "form-control" %>
+              </div>
             </div>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+
+    <div class="card-footer text-center">
+      <%= link_to "Previous Step", onboarding_meet_the_management_path, class: "btn mx-3 previous-btn" %>
+      <%= f.submit "Next Step", class: "btn mx-3 next-btn" %>
+    </div>
+  <% end %>
 </div>

@@ -50,14 +50,15 @@ Rails.application.routes.draw do
 
       namespace :onboarding do
         get '/apps', to: 'apps#index'
-        get '/complete', to: 'users#complete'
+        post '/complete', to: 'users#complete'
         get '/employee_info', to: 'users#edit'
-        patch '/employee_info', to: 'users#update'
         get '/first_day', to: 'first_day#index'
         get '/meet_the_management', to: 'management#index'
         get '/policies', to: 'policies#index'
         get '/paperwork', to: 'paperwork#index'
         get '/questions', to: 'questions#index'
+        resources :users, only: [:update]
+
         namespace :paperwork do
           # resource :forms, only: [:show]
         end
@@ -69,9 +70,9 @@ Rails.application.routes.draw do
         get '/members', to: 'users#index'
         get '/members/:id', to: 'users#show', as: :member
 
-        resources :faqs, only: [:create, :destroy]
+        resources :faqs, only: [:index, :create, :destroy]
         resources :invites, except: [:edit]
-        resources :managers, only: [:new, :create, :destroy]
+        resources :managers, only: [:index, :new, :create, :destroy]
         resources :organizations, only: [:update]
         resources :preferences, only: [:index]
         resources :tasks, only: [:index]
@@ -94,9 +95,9 @@ Rails.application.routes.draw do
             get '/members', to: 'users#index'
             get '/members/:id', to: 'users#show', as: :member
 
-            resources :faqs, only: [:create, :destroy]
+            resources :faqs, only: [:index, :create, :destroy]
             resources :invites, except: [:edit]
-            resources :managers, only: [:new, :create, :destroy]
+            resources :managers, only: [:index, :new, :create, :destroy]
             resources :preferences, only: [:index]
             resources :tasks, only: [:index]
             resources :units, only: [:update]

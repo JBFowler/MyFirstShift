@@ -1,34 +1,34 @@
 <div id="questions">
-  <div class="row">
-    <div class="col-xs-12 onboarding-img-header">
-      <%= image_tag("paperwork2.jpg", alt: "Circle Pop") %>
+  <%= image_tag "paperwork2.jpg", class: "page-image-header card-img-top btr-radius-none btl-radius-none position-center-top" %>
+  <div class="card-body">
+    <h4 class="page-title text-center">Frequently Asked Questions</h4>
+    <hr class="green-ruler">
+
+    <div class="row justify-content-md-center mt-5 mb-3">
+      <% if faqs.empty? %>
+        <p class="pt-2"><strong>Whoops!</strong> <span class="text-muted">Looks like there are no frequently asked questions yet, people need to be more inquisitive!</span></p>
+      <% else %>
+        <% faqs.each do |faq| %>
+          <div class="col-8">
+            <strong><%= faq.question %></strong>
+
+            <p class="text-muted pt-2"><%= faq.answer %></p>
+
+            <% unless faq.equal?(faqs.last) %>
+              <hr>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <div class="col-8 mt-5">
+        <small class="text-muted">*** If you have any additional questions, please prepare and bring them with you on your first day.  You can also click <%= link_to "here", onboarding_meet_the_management_path %> to find your managers email and ask them directly.</small>
+      </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="well onboarding">
-        <div class="row">
-          <h2>FAQ</h2>
-        </div>
-
-        <hr class="green-ruler">
-
-        <div class="row onboarding-info-section">
-          <div class="col-xs-12 text-center">
-            <p>
-              "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-            </p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-12 text-center">
-            <%= link_to "Previous Step", onboarding_paperwork_path, class: "btn btn-default", id: "next-btn" %>
-            <%= link_to "Next Step", onboarding_policies_path, class: "btn btn-default", id: "next-btn" %>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="card-footer text-center">
+    <%= link_to "Previous Step", onboarding_paperwork_path, class: "btn mx-3 previous-btn" %>
+    <%= link_to "Next Step", onboarding_policies_path, class: "btn mx-3 next-btn" %>
   </div>
 </div>

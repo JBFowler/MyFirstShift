@@ -1,10 +1,17 @@
 class Organizations::Onboarding::QuestionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :return_home?
+  # before_action :allowed_onboarding_access?("Paperwork")
 
   layout 'organizations/onboarding'
 
   def index
-    @user = current_user
+    if current_user.progress_paperwork?
+      current_user.update_progress("FAQ")
+    end
+
+    locals ({
+      user: current_user,
+      faqs: @organization.faqs
+    })
   end
 end

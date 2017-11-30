@@ -17,7 +17,7 @@
             <%= link_to "Tasks", unit_leader_tasks_path(@unit), class: "nav-link #{current_unit_leader_tab?('tasks')}" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Preferences", unit_leader_preferences_path(@unit), class: "nav-link #{current_unit_leader_tab?('preferences')}" %>
+            <%= link_to "Preferences", unit_leader_preferences_path(@unit), class: "nav-link #{current_unit_leader_tab?('preferences')} #{current_unit_leader_tab?('managers')} #{current_unit_leader_tab?('faqs')}" %>
           </li>
           <li class="nav-item">
             <%= link_to "Reports", unit_leader_reports_members_path(@unit), class: "nav-link #{current_unit_leader_tab?('reports/users')}" %>

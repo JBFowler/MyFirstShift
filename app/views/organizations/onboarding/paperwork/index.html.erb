@@ -1,25 +1,20 @@
 <div id="paperwork">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="well onboarding">
-        <div class="row">
-          <h2>Paperwork</h2>
-        </div>
-
-        <hr class="green-ruler">
-
-        <div class="row" style="height: 500px;">
-          <h1 class="text-center">Coming Soon...</h1>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-12 text-center">
-            <%= link_to "Previous Step", onboarding_employee_info_path, class: "btn btn-default", id: "next-btn" %>
-            <%= link_to "Next Step", onboarding_questions_path, class: "btn btn-default", id: "next-btn" %>
-          </div>
-        </div>
+  <div class="card-body text-center">
+    <h4 class="page-title">Paperwork</h4>
+    <hr class="green-ruler">
+    <div class="row justify-content-md-center">
+      <div class="col-6">
+        <p class="card-text text-muted">Here is where you fill out all of your paperwork</p>
       </div>
     </div>
+
+    <div class="row justify-content-md-center my-5">
+      <p class="card-text text-muted">Feature Coming Soon....</p>
+    </div>
+  </div>
+
+  <div class="card-footer text-center">
+    <%= link_to "Previous Step", onboarding_employee_info_path, class: "btn mx-3 previous-btn" %>
+    <%= link_to "Next Step", onboarding_questions_path, class: "btn mx-3 next-btn" %>
   </div>
 </div>
-

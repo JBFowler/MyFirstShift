@@ -1,35 +1,45 @@
 <% content_for :content do %>
   <div id="content">
-    <div class="container">
-      <!-- <%= render partial: "/shared/top_menu", :locals => { :model => @user } %> -->
-      <div class="card text-center">
+    <div id="onboarding-process" class="container">
+      <div class="card">
         <div id="top-menu" class="card-header">
-          <ul class="nav nav-pills card-header-pills mx-auto">
-            <li class="nav-item">
-              <a class="nav-link active steel-city-green-bg" href="#">Introduction</a>
+          <ul class="nav nav-pills card-header-pills">
+            <li class="nav-item mx-auto">
+              <%= onboarding_tab(user, 0, "Introduction", onboarding_meet_the_management_path, current_onboarding_tab?('management')) %>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Employee Info</a>
+            <li class="nav-item mx-auto">
+              <%= onboarding_tab(user, 1, "Employee Info", onboarding_employee_info_path, current_onboarding_tab?('users', 'edit')) %>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Paperwork</a>
+            <li class="nav-item mx-auto">
+              <%= onboarding_tab(user, 2, "Paperwork", onboarding_paperwork_path, current_onboarding_tab?('paperwork')) %>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Policies</a>
+            <li class="nav-item mx-auto">
+              <%= onboarding_tab(user, 3, "FAQ's", onboarding_questions_path, current_onboarding_tab?('questions')) %>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Applications</a>
+            <li class="nav-item mx-auto">
+              <%= onboarding_tab(user, 4, "Policies", onboarding_policies_path, current_onboarding_tab?('policies')) %>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Your First Day</a>
+            <li class="nav-item mx-auto">
+              <%= onboarding_tab(user, 5, "Applications", onboarding_apps_path, current_onboarding_tab?('apps')) %>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Complete!</a>
+            <li class="nav-item mx-auto">
+              <%= onboarding_tab(user, 6, "Your First Day", onboarding_first_day_path, current_onboarding_tab?('first_day'), 'first-day-tab') %>
+            </li>
+            <li class="nav-item mx-auto">
+              <%= onboarding_tab(user, 7, "Complete!", '', current_onboarding_tab?('users', 'complete'), 'complete-tab') %>
             </li>
           </ul>
         </div>
 
         <%= yield %>
+      </div>
+
+      <div id="ready-to-start-div" class="row justify-content-md-center">
+        <div class="col text-center">
+          <h4>Congratulations!</h4>
+          <p class="text-muted">You've completed your onboarding process for <strong class="steel-city-green-text"><%= @organization.name %></strong>!</p>
+          <%= link_to "Dashboard <i class='fa fa-arrow-right'></i>".html_safe, onboarding_complete_path, method: :post, class: "btn btn-primary mt-4 px-4" %>
+        </div>
       </div>
     </div>
   </div>

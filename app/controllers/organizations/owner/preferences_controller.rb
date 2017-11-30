@@ -5,17 +5,8 @@ class Organizations::Owner::PreferencesController < ApplicationController
   layout 'organizations/owner'
 
   def index
-    managers = @organization.managers
-
     locals ({
-      owner: current_user,
-      managers: managers
+      unit_leader: current_user
     })
-  end
-
-  private
-
-  def manager_params
-    params.require(:manager).permit(:name, :description, :picture)
   end
 end

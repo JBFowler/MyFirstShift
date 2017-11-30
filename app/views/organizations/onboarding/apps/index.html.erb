@@ -1,57 +1,62 @@
 <div id="apps">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="well onboarding">
-        <div class="row">
-          <h2>Apps</h2>
-        </div>
+  <div class="card-body">
+    <h4 class="page-title text-center">Applications</h4>
+    <hr class="green-ruler">
+    <div class="row justify-content-md-center">
+      <div class="col-6">
+        <p class="card-text text-muted text-center"><strong><%= @organization.name %> uses several third party applications in their day to day operations. Below we will walk you through signing up for each one.</strong></p>
+      </div>
+    </div>
 
-        <hr class="green-ruler">
-
-        <div class="row onboarding-info-section">
-          <div class="col-xs-4 col-xs-offset-2">
-            <div class="row text-center">
-              <%= image_tag("Slack Logo.png", width: 50, height: 50, alt: "Circle Pop") %>
-            </div>
-            <div class="row text-center app-wrapers" style="padding: 0 50px 0 50px;">
-              <h2>Slack</h2>
-              <p>Slack is a communication software for teams.</p>
-              <p>Your primary means of communicating with your team.</p>
-              <p>You can sign up for your team account <%= link_to "here", "http://www.slack.com", target: "_blank" %>.</p>
-              <p>You can access Slack online on a computer or a phone.  They also offer a great app.</p>
-            </div>
+    <div class="row justify-content-md-center mt-5 mb-3 pt-3">
+      <div class="col">
+        <div class="card">
+          <%= image_tag "Slack Logo.png", class: "card-img-top mx-auto" %>
+          <div class="card-body text-center mt-4">
+            <h4 class="card-title">Slack</h4>
+            <p class="card-text text-muted"><strong>Slack</strong> brings all your team's communication together, giving everyone a shared workspace where conversations are organized and accessible.</p>
+            <p class="card-text text-muted"><strong><%= @organization.name %></strong> has a <strong>Slack</strong> team already setup for you to start communicating with.</p>
           </div>
-          <div class="col-xs-4 col-xs-offset-0">
-            <div class="row text-center">
-              <%= image_tag("WhenIWork Logo.png", width: 50, height: 50, alt: "Circle Pop") %>
-            </div>
-            <div class="row text-center app-wrapers" style="padding: 0 50px 0 50px;">
-              <h2>WhenIWork</h2>
-              <p>WhenIWork is a scheduling software for teams.</p>
-              <p>
-                This will be where you can...</br>
-                - Set your availablity</br>
-                - Request days off</br>
-                - Swap shifts with your co-workers
-              </p>
-              <p> You can access WIW online on a computer or a phone.  They also offer a great app.</p>
-              <p>You will receive an invite from your Unit Lead so that you can join the WIW team.</p>
-              <p>
-                Once you receive the link, you should</br>
-                1) Set up your account</br>
-                2) Set your availability
-              </p>
-            </div>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-xs-12 text-center">
-            <%= link_to "Previous Step", onboarding_policies_path, class: "btn btn-default", id: "next-btn" %>
-            <%= link_to "Next Step", onboarding_first_day_path, class: "btn btn-default", id: "next-btn" %>
+          <div class="card-btn text-center">
+            <a id="slack-btn" href="#" class="btn btn-primary px-5">Join</a>
           </div>
         </div>
       </div>
+      <div class="col">
+        <div class="card">
+          <%= image_tag "WhenIWork Logo.png", class: "card-img-top mx-auto" %>
+          <div class="card-body text-center mt-4">
+            <h4 class="card-title">When I Work</h4>
+            <p class="card-text text-muted"><strong>When I Work</strong> makes scheduling easy for your team. You can file availabilities and change shifts all from your desktop or mobile device, and never have to come into the store.</p>
+            <p class="card-text text-muted"><strong><%= @organization.name %></strong> has a <strong>When I Work</strong> group already setup.  Click below to join and create your schedule.</p>
+          </div>
+          <div class="card-btn text-center">
+            <a id="wheniwork-btn" href="#" class="btn btn-primary px-5">Join</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <%= image_tag "Square Logo.png", class: "card-img-top mx-auto" %>
+          <div class="card-body text-center mt-4">
+            <h4 class="card-title">Square</h4>
+            <p class="card-text text-muted"><strong>Square</strong> Point of Sale is designed for simplicity. Drag and drop items and categories, customize your items grid, and bring popular items front and center.</p>
+            <p class="card-text text-muted"><strong><%= @organization.name %></strong> uses <strong>Square</strong> as their point of sale system.  Click Below to become more familiar with how the system works.</p>
+          </div>
+          <div class="card-btn text-center">
+            <a id="square-btn" href="https://squareup.com/help/us/en/article/5123-square-get-started-guide" class="btn btn-primary px-5" target="_blank">Learn</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-8 mt-5">
+        <small class="text-muted">*** The products and applications made available on this page are provided by third-parties unaffiliated with MyFirstShift, Inc.</small>
+      </div>
     </div>
+  </div>
+
+  <div class="card-footer text-center">
+    <%= link_to "Previous Step", onboarding_policies_path, class: "btn mx-3 previous-btn" %>
+    <%= link_to "Next Step", onboarding_first_day_path, class: "btn mx-3 next-btn" %>
   </div>
 </div>
