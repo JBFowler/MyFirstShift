@@ -44,18 +44,29 @@ class Organizations::Owner::UsersController < ApplicationController
   def update
     user = @organization.members.friendly.find(params[:id])
 
-    if user.update(user_params)
-      respond_to do |format|
-        format.json { render json: { message: "#{user.full_name} has been updated!" }.to_json }
-        format.html do
-          flash[:success] = "#{user.full_name} has been updated!"
-          redirect_to owner_member_path(user)
+    if user_params[:role].blank?
+      if user.update(user_params)
+        respond_to do |format|
+          format.json { render json: { message: "#{user.full_name} has been updated!" }.to_json }
+          format.html do
+            flash[:success] = "#{user.full_name} has been updated!"
+            redirect_to owner_member_path(user)
+          end
+        end
+      else
+        respond_to do |format|
+          format.html { render :edit, locals: { owner: current_user, user: user } }
+          format.json { render json: user.errors.full_messages.to_json, status: 400 }
         end
       end
     else
-      respond_to do |format|
-        format.html { render :edit, locals: { owner: current_user, user: user } }
-        format.json { render json: user.errors.full_messages.to_json, status: 400 }
+      user.role = user_params[:role]
+
+      if user.save(validate: false)
+        flash[:success] = "#{user.full_name}'s role has been changed to #{user_params[:role].humanize}!"
+        redirect_to owner_member_path(user)
+      else
+        render :edit, locals: { owner: current_user, user: user }
       end
     end
   end
@@ -87,6 +98,6 @@ class Organizations::Owner::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :employee_type, :wage, :username, :phone, :role, :e_verified, :state_verified)
+    params.require(:user).permit(:first_name, :last_name, :email, :employee_type, :wage, :username, :phone, :role, :e_verified, :state_verified, :date_of_birth, :ssn, :drivers_license_number, :drivers_license_expiration, :passport_number, :passport_expiration)
   end
 end
