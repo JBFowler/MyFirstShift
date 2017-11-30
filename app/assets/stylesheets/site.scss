@@ -13,6 +13,13 @@ body {
     }
   }
 
+  #confetti {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+  }
+
   #content {
     margin-top: 50px;
     margin-bottom: 25px;
