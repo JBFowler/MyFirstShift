@@ -1,10 +1,12 @@
 class Organizations::Onboarding::PaperworkController < ApplicationController
   before_action :authenticate_user!
-  before_action :return_home?
+  # before_action :allowed_onboarding_access?("Employee Info")
 
   layout 'organizations/onboarding'
 
   def index
-    @user = current_user
+    locals ({
+      user: current_user
+    })
   end
 end

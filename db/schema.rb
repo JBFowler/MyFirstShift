@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127052054) do
+ActiveRecord::Schema.define(version: 20171129054640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20171127052054) do
     t.text    "question"
     t.integer "organization_id"
     t.integer "unit_id"
+    t.text    "answer"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -82,6 +83,7 @@ ActiveRecord::Schema.define(version: 20171127052054) do
     t.text    "description"
     t.integer "organization_id"
     t.integer "unit_id"
+    t.string  "email"
     t.index ["organization_id"], name: "index_managers_on_organization_id", using: :btree
     t.index ["unit_id"], name: "index_managers_on_unit_id", using: :btree
   end
@@ -138,7 +140,7 @@ ActiveRecord::Schema.define(version: 20171127052054) do
     t.string   "subdomain"
     t.integer  "unit_id"
     t.datetime "deleted_at"
-    t.string   "progress"
+    t.string   "progress",                   default: "Intro"
     t.string   "phone"
     t.string   "employee_type"
     t.boolean  "scheduled",                  default: false

@@ -1,0 +1,42 @@
+<div id="unit-leader-preferences-page">
+  <div class="row">
+    <div class="col">
+      <div class="tabular-card card">
+        <div class="card-header">
+          <%= render partial: 'organizations/units/leader/shared/preferences_nav', locals: { managers: managers, faqs: nil } %>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="co-8">
+              <p class="text-muted ml-3">User this page to create and remove managers for your organization</p>
+            </div>
+            <div class="col">
+              <%= link_to new_unit_leader_manager_path(@unit), class: "pull-right btn btn-info mr-3" do %>
+                <i class="fa fa-user mr-sm-2" aria-hidden="true"></i> Add Manager
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card tab-joiner-card">
+        <div class="card-body mx-sm-3">
+          <div class="row">
+            <% managers.each do |manager| %>
+              <div class="col-sm-4">
+                <div class="manager-card card mb-3">
+                  <%= image_tag manager.picture, class: "card-img-top" %>
+                  <div class="card-body">
+                    <h5 class="card-title"><%= manager.name %></h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><%= manager.email %></h6>
+                    <p class="card-text"><%= manager.description %></p>
+                    <%= link_to "Remove", unit_leader_manager_path(@unit, manager), method: :delete, class: "btn btn-danger" %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

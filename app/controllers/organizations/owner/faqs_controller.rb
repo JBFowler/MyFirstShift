@@ -4,6 +4,15 @@ class Organizations::Owner::FaqsController < ApplicationController
 
   layout 'organizations/owner'
 
+  def index
+    faqs = @organization.faqs
+
+    locals ({
+      owner: current_user,
+      faqs: faqs
+    })
+  end
+
   def create
     faq = @organization.faqs.build(faq_params)
 
@@ -16,10 +25,10 @@ class Organizations::Owner::FaqsController < ApplicationController
       end
 
       flash[:success] = "FAQ Added!"
-      redirect_to owner_preferences_path
+      redirect_to owner_faqs_path
     else
       flash[:danger] = "There was an issue creating the FAQ, please try again"
-      redirect_to owner_preferences_path
+      redirect_to owner_faqs_path
     end
   end
 
@@ -28,16 +37,16 @@ class Organizations::Owner::FaqsController < ApplicationController
 
     if faq.delete
       flash[:success] = "FAQ Removed!"
-      redirect_to owner_preferences_path
+      redirect_to owner_faqs_path
     else
       flash[:danger] = "There was a problem deleting the FAQ, please try again"
-      redirect_to owner_preferences_path
+      redirect_to owner_faqs_path
     end
   end
 
   private
 
   def faq_params
-    params.require(:faq).permit(:question)
+    params.require(:faq).permit(:question, :answer)
   end
 end
