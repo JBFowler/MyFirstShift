@@ -1,4 +1,15 @@
 #onboarding-process {
+  min-height: 650px;
+
+  #ready-to-start-div {
+    margin-top: 200px;
+    display: none;
+
+    p {
+      font-size: 20px;
+    }
+  }
+
   .page-title {
     margin-top: 20px;
     color: #929F4C;
@@ -38,9 +49,16 @@
   }
 
   .page-image-header {
-    object-position: center top;
     object-fit: cover;
     width: 100%;
     max-height: 275px;
+  }
+
+  .position-center-top {
+    object-position: center top;
+  }
+
+  .position-center-center {
+    object-position: center center;
   }
 }

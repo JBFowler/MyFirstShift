@@ -1,0 +1,23 @@
+<ul class="nav nav-tabs card-header-tabs">
+  <li class="nav-item">
+    <%= link_to "General", unit_leader_preferences_path(@unit), class: "nav-link #{current_unit_leader_tab?('preferences')}" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to unit_leader_managers_path(@unit), class: "nav-link #{current_unit_leader_tab?('managers')}" do %>
+      <% if managers.nil? %>
+        Managers
+      <% else %>
+        Managers (<%= managers.count %>)
+      <% end %>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to unit_leader_faqs_path(@unit), class: "nav-link #{current_unit_leader_tab?('faqs')}" do %>
+      <% if faqs.nil? %>
+        Frequently Asked Questions
+      <% else %>
+        Frequently Asked Questions (<%= faqs.count %>)
+      <% end %>
+    <% end %>
+  </li>
+</ul>

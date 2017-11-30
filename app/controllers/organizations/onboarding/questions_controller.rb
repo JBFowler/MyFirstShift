@@ -1,6 +1,6 @@
 class Organizations::Onboarding::QuestionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :return_home?
+  # before_action :allowed_onboarding_access?("Paperwork")
 
   layout 'organizations/onboarding'
 

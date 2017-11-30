@@ -4,6 +4,15 @@ class Organizations::Owner::ManagersController < ApplicationController
 
   layout 'organizations/owner'
 
+  def index
+    managers = @organization.managers
+
+    locals ({
+      owner: current_user,
+      managers: managers
+    })
+  end
+
   def new
     manager = @organization.managers.new
 
@@ -18,7 +27,7 @@ class Organizations::Owner::ManagersController < ApplicationController
 
     if manager.save
       flash[:success] = "Manager Created!"
-      redirect_to owner_preferences_path
+      redirect_to owner_managers_path
     else
       render :new, locals: { owner: current_user, manager: manager }
     end
@@ -29,10 +38,10 @@ class Organizations::Owner::ManagersController < ApplicationController
 
     if manager.delete
       flash[:success] = "Manager Removed"
-      redirect_to owner_preferences_path
+      redirect_to owner_managers_path
     else
       flash[:danger] = "There was a problem removing the manager, please try again"
-      redirect_to owner_preferences_path
+      redirect_to owner_managers_path
     end
   end
 

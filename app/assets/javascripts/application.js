@@ -18,6 +18,8 @@
 //= require bootstrap-sprockets
 //= require Chart.min
 //= require_tree ./owner
+//= require_tree ./onboarding
+//= require confetti
 //= require site
 //= require bootstrap-datepicker
 

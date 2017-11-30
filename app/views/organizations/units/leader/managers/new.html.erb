@@ -33,7 +33,7 @@
 
         <div class="row">
           <div class="col mt-2">
-            <u class="text-link"><%= link_to "See existing Managers", unit_leader_preferences_path %></u>
+            <u class="text-link"><%= link_to "See existing Managers", unit_leader_managers_path(@unit) %></u>
           </div>
           <div class="col">
             <%= f.submit "Create Manager", class: "btn btn-info pull-right px-4" %>

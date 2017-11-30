@@ -22,7 +22,7 @@ body {
     // min-height: 400px;
   }
 
-  #next-btn {
+  .next-btn {
     // margin-top: 20px;
     background: #929F4C;
     color: #FFFFFF;
@@ -37,10 +37,11 @@ body {
 
     &:hover {
       background: #666f35;
+      color: #ffffff;
     }
   }
 
-  #previous-btn {
+  .previous-btn {
     background: #FFFFFF;
     color: #929F4C;
     font-weight: bold;
@@ -52,6 +53,10 @@ body {
     &:hover {
       background: #929F4C;
       color: #FFFFFF;
+    }
+
+    &:focus {
+      outline: 0;
     }
   }
 

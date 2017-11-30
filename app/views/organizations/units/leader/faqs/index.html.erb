@@ -1,0 +1,52 @@
+<div id="unit-leader-preferences-page">
+  <div class="row">
+    <div class="col">
+      <div class="tabular-card card">
+        <div class="card-header">
+          <%= render partial: 'organizations/units/leader/shared/preferences_nav', locals: { managers: nil, faqs: faqs } %>
+        </div>
+        <div class="card-body">
+          <%= form_for [@unit, :leader, Faq.new], method: :post, class: "form-inline" do |f| %>
+            <div class="row">
+              <div class="col-5">
+                <%= f.text_area :question, rows: 1, class: "form-control", placeholder: "Enter Question Here..." %>
+              </div>
+              <div class="col-5">
+                <%= f.text_area :answer, rows: 1, class: "form-control", placeholder: "Enter Answer Here..." %>
+              </div>
+              <div class="col">
+                <%= f.submit "Add FAQ", class: "btn btn-primary pull-right" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-joiner-card card">
+        <div class="card-body">
+          <div class="row mt-2 mb-3">
+            <% if faqs.empty? %>
+              <div class="col-12">
+                <p class="pt-2"><strong>Whoops!</strong> <span class="text-muted">Looks like there are no frequently asked questions yet, people need to be more inquisitive!</span></p>
+              </div>
+            <% else %>
+              <% faqs.each do |faq| %>
+                <div class="col-12">
+                  <strong><%= faq.question %></strong>
+                  <%= link_to unit_leader_faq_path(@unit, faq), method: :delete do %>
+                    <i class="fa fa-trash fa-lg danger-text ml-2" aria-hidden="true"></i>
+                  <% end %>
+
+                  <p class="text-muted pt-2"><%= faq.answer %></p>
+
+                  <% unless faq.equal?(faqs.last) %>
+                    <hr>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

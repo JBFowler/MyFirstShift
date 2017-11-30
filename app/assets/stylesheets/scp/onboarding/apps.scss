@@ -1,3 +1,47 @@
-.app-wrapers {
-  // border: 1px solid gray;
+#apps {
+  #wheniwork-btn {
+    background-color: #51a33d;
+    border-color: #51a33d;
+  }
+
+  #slack-btn {
+    background-color: #6ecadc;
+    border-color: #6ecadc;
+  }
+
+  #square-btn {
+    background-color: #222222;
+    border-color: #222222;
+  }
+
+  .card-img-top {
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+  }
+
+  .card {
+    .card-body {
+      min-height: 330px;
+    }
+
+    .card-btn {
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      transition:all 0.3s ease;
+
+      &:hover {
+        -webkit-transform: scale(1.02);
+        -ms-transform: scale(1.02);
+        transform: scale(1.02);
+      }
+    }
+  }
 }

@@ -77,8 +77,16 @@ class User < ActiveRecord::Base
     role == "unit_leader"
   end
 
+  def progress_applications?
+    progress.casecmp("applications") == 0
+  end
+
   def progress_complete?
     progress.casecmp("complete") == 0
+  end
+
+  def progress_first_day?
+    progress.casecmp("first day") == 0
   end
 
   def progress_intro?
@@ -91,6 +99,14 @@ class User < ActiveRecord::Base
 
   def progress_paperwork?
     progress.casecmp("paperwork") == 0
+  end
+
+  def progress_policies?
+    progress.casecmp("policies") == 0
+  end
+
+  def progress_faqs?
+    progress.casecmp("FAQ") == 0
   end
 
   def flush_new_member_cache

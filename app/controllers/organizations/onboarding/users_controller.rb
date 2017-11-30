@@ -1,16 +1,16 @@
 class Organizations::Onboarding::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :return_home?
 
   layout 'organizations/onboarding'
 
   def complete
-    user = current_user
-    if user.complete!
-      redirect_to home_path
-    else
-      redirect_to welcome_path
-    end
+    # if allowed_onboarding_access?("First Day")
+      if current_user.progress_first_day?
+        current_user.complete!
+      end
+    # end
+
+    redirect_to home_path
   end
 
   def edit
