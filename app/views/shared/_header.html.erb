@@ -14,6 +14,7 @@
       <ul class="navbar-nav ml-lg-auto" id="top-nav-links">
         <% if current_user %>
           <li class="nav-item"><%= link_to "Home", home_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Onboarding", onboarding_meet_the_management_path, class: "nav-link" %></li>
           <% if current_user.owner? %>
             <li class="nav-item"><%= link_to "Owner Portal", owner_root_path, class: "nav-link" %></li>
             <% if !current_user.unit.nil? %>

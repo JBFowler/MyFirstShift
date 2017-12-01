@@ -5,8 +5,21 @@
     <hr class="green-ruler">
 
     <div class="row justify-content-md-center my-5">
+      <% if policies.empty? %>
+        <p class="pt-2"><strong>Whoops!</strong> <span class="text-muted">Looks like there are no policies yet, this could be good or bad...</span></p>></p>
+      <% else %>
+        <% policies.each do |policy| %>
+          <div class="col-8">
+            <strong><%= policy.name %></strong>
 
-      <p class="pt-2"><strong>Whoops!</strong> <span class="text-muted">Looks like there are no policies yet, this could be good or bad...</span></p>
+            <p class="text-muted pt-2 policy-description"><%= policy.description %></p>
+
+            <% unless policy.equal?(policies.last) %>
+              <hr>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
 
       <div class="col-8 mt-5">
         <small class="text-muted">*** The policies shown here are reflective of <strong><%= @organization.name %></strong> and not MyFirstShift, Inc.</small>

@@ -1,5 +1,6 @@
 body {
-  background-color: #FFFFFF;
+  // background-color: #FFFFFF;
+  background: linear-gradient(5deg, #f7f8f2, #ffffff);
   font-family: 'Muli', sans-serif;
   font-size: 16px;
   color: #333333;
@@ -11,6 +12,13 @@ body {
       padding-left: 30px;
       padding-right: 30px;
     }
+  }
+
+  #confetti {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
   }
 
   #content {

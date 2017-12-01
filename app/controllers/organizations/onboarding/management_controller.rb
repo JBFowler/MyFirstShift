@@ -4,8 +4,15 @@ class Organizations::Onboarding::ManagementController < ApplicationController
   layout 'organizations/onboarding'
 
   def index
+    managers = @organization.managers
+    store_front = @organization.store_front
+    videos = @organization.videos.introduction
+
     locals ({
-      user: current_user
+      user: current_user,
+      managers: managers,
+      store_front: store_front,
+      videos: videos
     })
   end
 end

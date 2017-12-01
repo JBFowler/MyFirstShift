@@ -61,4 +61,13 @@
   .position-center-center {
     object-position: center center;
   }
+
+  .policy-description {
+    max-height: 100px;
+    overflow: auto;
+  }
+
+  .videos-present {
+    display: none;
+  }
 }

@@ -20,4 +20,10 @@
       <% end %>
     <% end %>
   </li>
+  <li class="nav-item">
+    <%= link_to "Videos", owner_videos_path, class: "nav-link #{current_owner_tab?('videos')}" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Policies", owner_policies_path, class: "nav-link #{current_owner_tab?('policies')}" %>
+  </li>
 </ul>

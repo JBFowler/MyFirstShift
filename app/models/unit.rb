@@ -7,9 +7,12 @@ class Unit < ActiveRecord::Base
 
   belongs_to :organization
   has_many :faqs
+  has_many :first_day_items
   has_many :invites, dependent: :destroy
   has_many :managers, dependent: :destroy
   has_many :members, class_name: 'User', dependent: :destroy
+  has_many :policies
+  has_many :videos
   belongs_to :created_by, foreign_key: 'created_by_user_id', class_name: 'User', optional: true
 
   after_commit :flush_units_cache
