@@ -9,7 +9,46 @@
       </div>
     </div>
 
-    <div class="row justify-content-md-center mt-5 mb-3">
+    <% if videos.any? %>
+      <div id="onboarding-first-day-videos-div">
+        <div class="row justify-content-md-center mt-5">
+          <% if videos.count > 1 %>
+            <% videos.each do |video| %>
+              <div class="col-6 text-center">
+                <iframe src="<%= video.url %>" frameborder="0" allowfullscreen></iframe>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="col text-center">
+              <iframe src="<%= videos.first.url %>" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if first_day_items.any? %>
+      <div style="max-height: 400px; overflow: auto;" id="onboarding-first-day-items-div" class="mt-5 <%= videos.any? ? 'videos-present' : '' %>">
+        <div class="row justify-content-md-center">
+          <div class="col-10">
+            <div class="row">
+              <% first_day_items.each do |first_day_item| %>
+                <div class="col-6 mb-4">
+                  <strong><%= first_day_item.title %></strong>
+                  <ul>
+                    <% first_day_item.list_items.each do |list_item| %>
+                      <li><p class="text-muted pt-2"><%= list_item %></p></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row justify-content-md-center mb-3">
       <div class="col-8 mt-5">
         <small class="text-muted">*** Once you have clicked 'Finish', you will be taken to your dashboard. If you need to update any information in the prior steps, click on any of the links above to go back to that page.</small>
       </div>
@@ -18,6 +57,12 @@
 
   <div class="card-footer text-center">
     <%= link_to "Previous Step", onboarding_apps_path, class: "btn mx-3 previous-btn" %>
-    <%= link_to "Finish", '', class: "btn mx-3 next-btn", id: "finish-btn" %>
+    <% if videos.any? && first_day_items.any? %>
+      <button id="first-day-additional-items-btn" class="btn btn-default next-btn">Additional Items</button>
+      <button id="first-day-back-to-videos-btn" class="btn btn-default previous-btn videos-present">Back to <%= 'Video'.pluralize(videos.count) %></button>
+      <%= link_to "Finish", '', class: "btn mx-3 next-btn videos-present px-5", id: "finish-btn" %>
+    <% else %>
+      <%= link_to "Finish", '', class: "btn mx-3 next-btn", id: "finish-btn" %>
+    <% end %>
   </div>
 </div>
