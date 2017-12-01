@@ -3,6 +3,6 @@ class Organizations::HomeController < ApplicationController
 
   def index
     @user = current_user
-    redirect_to welcome_path unless @user.progress_complete?
+    # redirect_to welcome_path unless @user.progress_complete?
   end
 end
