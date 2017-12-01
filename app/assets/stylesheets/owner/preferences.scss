@@ -14,4 +14,9 @@
       max-height: 250px;
     }
   }
+
+  .policy-description {
+    max-height: 100px;
+    overflow: auto;
+  }
 }

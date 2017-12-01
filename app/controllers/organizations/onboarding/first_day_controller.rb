@@ -9,8 +9,13 @@ class Organizations::Onboarding::FirstDayController < ApplicationController
       current_user.update_progress("First Day")
     end
 
+    first_day_items = @organization.first_day_items
+    videos = @organization.videos.your_first_day
+
     locals ({
-      user: current_user
+      user: current_user,
+      first_day_items: first_day_items,
+      videos: videos
     })
   end
 end

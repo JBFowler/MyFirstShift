@@ -1,0 +1,64 @@
+<div id="owner-preferences-page">
+  <div class="row">
+    <div class="col">
+      <%= render partial: 'shared/flash_messages' %>
+      <div class="tabular-card card">
+        <div class="card-header">
+          <%= render partial: 'organizations/owner/shared/preferences_nav', locals: { managers: nil, faqs: nil } %>
+        </div>
+        <div class="card-body">
+          <%= form_for [:owner, Video.new], method: :post, class: "form-inline" do |f| %>
+            <div class="row">
+              <div class="col-3">
+                <%= f.label :name %>
+                <%= f.text_field :name, class: "form-control", placeholder: "Video Name" %>
+              </div>
+              <div class="col-3">
+                <%= f.label :page, "Page to Display Video" %>
+                <%= f.select :page, ["Introduction", "Your First Day"], {}, class: "form-control custom-select" %>
+              </div>
+              <div class="col-6">
+                <%= f.label :url %>
+                <%= f.text_field :url, class: "form-control", placeholder: "Enter video embedded url here..." %>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-10">
+                <%= f.text_area :description, rows: 1, class: "form-control", placeholder: "Video Description" %>
+              </div>
+              <div class="col">
+                <%= f.submit "Add Video", class: "btn btn-primary pull-right" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-joiner-card card">
+        <div class="card-body">
+          <div class="row mt-2 mb-3">
+            <% if videos.empty? %>
+              <div class="col-12">
+                <p class="pt-2 text-muted">You haven't connected any videos yet! Add a video above and select which page you would like it displayed on.</p>
+              </div>
+            <% else %>
+              <% videos.each do |video| %>
+                <div class="col-sm-4">
+                  <div class="manager-card card mb-3">
+                    <iframe src="<%= video.url %>" frameborder="0" allowfullscreen></iframe>
+                    <div class="card-body">
+                      <h5 class="card-title"><%= video.name %></h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Page: <%= video.page %></h6>
+                      <p class="card-text"><%= video.description %></p>
+                      <%= link_to "Remove", owner_video_path(video), method: :delete, class: "btn btn-danger" %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

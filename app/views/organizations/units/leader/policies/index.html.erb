@@ -1,0 +1,53 @@
+<div id="unit-leader-preferences-page">
+  <div class="row">
+    <div class="col">
+      <%= render partial: 'shared/flash_messages' %>
+      <div class="tabular-card card">
+        <div class="card-header">
+          <%= render partial: 'organizations/units/leader/shared/preferences_nav', locals: { managers: nil, faqs: nil } %>
+        </div>
+        <div class="card-body">
+          <%= form_for [@unit, :leader, Policy.new], method: :post, class: "form-inline" do |f| %>
+            <div class="row">
+              <div class="col-3">
+                <%= f.text_field :name, class: "form-control", placeholder: "Policy Name" %>
+              </div>
+              <div class="col-7">
+                <%= f.text_area :description, rows: 1, class: "form-control", placeholder: "Enter Policy Information Here..." %>
+              </div>
+              <div class="col">
+                <%= f.submit "Add Policy", class: "btn btn-primary pull-right" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-joiner-card card">
+        <div class="card-body">
+          <div class="row mt-2 mb-3">
+            <% if policies.empty? %>
+              <div class="col-12">
+                <p class="pt-2"><strong>Whoops!</strong> <span class="text-muted">Looks like there are no policies yet. You can add one above, and they will display on the policy page of the onboarding process</span></p>
+              </div>
+            <% else %>
+              <% policies.each do |policy| %>
+                <div class="col-12">
+                  <strong><%= policy.name %></strong>
+                  <%= link_to unit_leader_policy_path(@unit, policy), method: :delete do %>
+                    <i class="fa fa-trash fa-lg danger-text ml-2" aria-hidden="true"></i>
+                  <% end %>
+
+                  <p class="text-muted pt-2 policy-description"><%= policy.description %></p>
+
+                  <% unless policy.equal?(policies.last) %>
+                    <hr>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

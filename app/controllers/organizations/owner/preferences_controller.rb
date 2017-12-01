@@ -5,8 +5,13 @@ class Organizations::Owner::PreferencesController < ApplicationController
   layout 'organizations/owner'
 
   def index
+    first_day_items = @organization.first_day_items
+    store_front = @organization.store_front
+
     locals ({
-      unit_leader: current_user
+      owner: current_user,
+      first_day_items: first_day_items,
+      store_front: store_front
     })
   end
 end

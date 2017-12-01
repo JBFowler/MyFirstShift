@@ -71,15 +71,18 @@ Rails.application.routes.draw do
         get '/members/:id', to: 'users#show', as: :member
 
         resources :faqs, only: [:index, :create, :destroy]
+        resources :first_day_items, only: [:create, :destroy]
         resources :invites, except: [:edit]
         resources :managers, only: [:index, :new, :create, :destroy]
         resources :organizations, only: [:update]
+        resources :policies, only: [:index, :create, :destroy]
         resources :preferences, only: [:index]
         resources :tasks, only: [:index]
         resources :units
         resources :users, except: [:new, :create] do
           post 'add_unit'
         end
+        resources :videos, only: [:index, :create, :destroy]
 
         namespace :reports do
           get '/members', to: 'users#index'
@@ -96,12 +99,15 @@ Rails.application.routes.draw do
             get '/members/:id', to: 'users#show', as: :member
 
             resources :faqs, only: [:index, :create, :destroy]
+            resources :first_day_items, only: [:create, :destroy]
             resources :invites, except: [:edit]
             resources :managers, only: [:index, :new, :create, :destroy]
+            resources :policies, only: [:index, :create, :destroy]
             resources :preferences, only: [:index]
             resources :tasks, only: [:index]
             resources :units, only: [:update]
             resources :users, except: [:new, :create]
+            resources :videos, only: [:index, :create, :destroy]
 
             namespace :reports do
               get '/members', to: 'users#index'

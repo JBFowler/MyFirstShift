@@ -27,7 +27,7 @@ class Organizations::Units::Leader::FaqsController < Organizations::Units::Leade
 
     if @unit.faqs.delete(faq)
       flash[:success] = "FAQ Removed!"
-    redirect_to unit_leader_faqs_path(@unit)
+      redirect_to unit_leader_faqs_path(@unit)
     else
       flash[:danger] = "There was a problem deleting the FAQ, please try again"
       redirect_to unit_leader_faqs_path(@unit)
