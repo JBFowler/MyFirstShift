@@ -8,17 +8,23 @@
       <% if policies.empty? %>
         <p class="pt-2"><strong>Whoops!</strong> <span class="text-muted">Looks like there are no policies yet, this could be good or bad...</span></p>></p>
       <% else %>
-        <% policies.each do |policy| %>
-          <div class="col-8">
-            <strong><%= policy.name %></strong>
+        <div class="col-8">
+          <div style="max-height: 450px; overflow: auto;" class="card">
+            <div class="card-body">
+              <% policies.each do |policy| %>
+                <div class="col">
+                  <strong><%= policy.name %></strong>
 
-            <p class="text-muted pt-2 policy-description"><%= policy.description %></p>
+                  <p class="text-muted pt-2 policy-description"><%= policy.description %></p>
 
-            <% unless policy.equal?(policies.last) %>
-              <hr>
-            <% end %>
+                  <% unless policy.equal?(policies.last) %>
+                    <hr>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
           </div>
-        <% end %>
+        </div>
       <% end %>
 
       <div class="col-8 mt-5">
