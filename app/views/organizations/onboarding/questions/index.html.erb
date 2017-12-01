@@ -6,7 +6,10 @@
 
     <div class="row justify-content-md-center mt-5 mb-3">
       <% if faqs.empty? %>
-        <p class="pt-2"><strong>Whoops!</strong> <span class="text-muted">Looks like there are no frequently asked questions yet, people need to be more inquisitive!</span></p>
+        <p class="pt-2">
+          <strong>Whoops!</strong>
+          <span class="text-muted">Looks like there are no frequently asked questions yet, people need to be more inquisitive!</span>
+        </p>
       <% else %>
         <% faqs.each do |faq| %>
           <div class="col-8">
