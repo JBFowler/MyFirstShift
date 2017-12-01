@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 
   after_commit :flush_new_member_cache
 
-  scope :active, -> { where progress: 'complete' }
+  scope :active, -> { where progress: 'Complete' }
   scope :eight_per_hour, -> { where wage: 8 }
   scope :need_verification, -> { where('state_verified = ? OR e_verified = ?', false, false) }
   scope :new_members_this_month, -> (month) { where('extract(month from created_at) = ?', month) }
