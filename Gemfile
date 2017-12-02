@@ -41,6 +41,7 @@ gem 'sendgrid-ruby'
 gem 'friendly_id', '~> 5.1.0'
 gem 'carrierwave', '~> 1.0'
 gem 'bootstrap-datepicker-rails'
+gem "fog-aws"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

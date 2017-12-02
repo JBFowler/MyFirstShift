@@ -1,7 +1,7 @@
 module TopMenuHelper
-  def current_onboarding_tab?(controller, action="index")
+  def current_onboarding_tab?(controller, action=["index"])
     case
-    when controller?("organizations/onboarding/#{controller}") && action?(action)
+    when controller?("organizations/onboarding/#{controller}") && action?(*action)
       "active"
     else
       nil

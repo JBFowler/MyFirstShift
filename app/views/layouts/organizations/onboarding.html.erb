@@ -8,7 +8,7 @@
               <%= onboarding_tab(user, 0, "Introduction", onboarding_meet_the_management_path, current_onboarding_tab?('management')) %>
             </li>
             <li class="nav-item mx-auto">
-              <%= onboarding_tab(user, 1, "Employee Info", onboarding_employee_info_path, current_onboarding_tab?('users', 'edit')) %>
+              <%= onboarding_tab(user, 1, "Employee Info", onboarding_employee_info_path, current_onboarding_tab?('users', ['edit', 'update'])) %>
             </li>
             <li class="nav-item mx-auto">
               <%= onboarding_tab(user, 2, "Paperwork", onboarding_paperwork_path, current_onboarding_tab?('paperwork')) %>
