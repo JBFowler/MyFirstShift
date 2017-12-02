@@ -11,8 +11,9 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
-# Ignore database yml file
+# Ignore yml files
 /config/database.yml
+/config/amazon_s3.yml
 
 # Ignore all logfiles and tempfiles.
 /log/*
