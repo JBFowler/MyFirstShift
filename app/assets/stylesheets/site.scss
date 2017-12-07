@@ -219,4 +219,19 @@ html {
       border-color: #8dd09c;
     }
   }
+
+  input.form-control, span.input-group-addon {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 0.8px rgba(50,50,93,.27), 0 0 0 0.5px rgba(50,151,211,0), 0 0 0 2px rgba(50,151,211,0), 0 0.5px 1px rgba(0,0,0,.08);
+  }
+
+  select.form-control, input[type=date].form-control {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 0.5px rgba(50,50,93,.17), 0 2px 5px 0 rgba(50,50,93,.1), 0 1px 1.5px 0 rgba(0,0,0,.07), 0 1px 2px 0 rgba(0,0,0,.08), 0 0 0 0 transparent;
+    height: calc(2.25rem + 2px);
+  }
+
+  span.input-group-addon {
+    border-color: #e9ecef;
+  }
 }

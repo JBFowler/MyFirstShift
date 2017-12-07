@@ -37,7 +37,7 @@ module PortalHelper
   end
 
   def wage_presenter(user)
-    case user.employee_type
+    case user.employee_type.downcase
     when "salary"
       return "#{number_to_currency(user.wage)}/yr"
     when "hourly"
