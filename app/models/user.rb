@@ -115,7 +115,8 @@ class User < ActiveRecord::Base
 
   def join_unit!(unit)
     return false if self.unit == unit
-    unit.members << self
+    self.unit = unit
+    self.save(validate: false)
 
     reload if persisted?
     true
