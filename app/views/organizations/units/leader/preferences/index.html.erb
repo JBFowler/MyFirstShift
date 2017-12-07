@@ -27,7 +27,6 @@
                     </div>
                     <div id="item-descriptions-div" class="mb-2">
                       <%= f.text_area :list_items, rows: 1, multiple: true, class: "form-control mt-3", placeholder: "Item Description (example: Company Shirt)" %>
-                      <%= f.text_area :list_items, rows: 1, multiple: true, class: "form-control mt-3", placeholder: "Item Description (example: Kakhis)" %>
                       <%= content_tag(:span, data: { f_field: "#{f.text_area :list_items, rows: 1, multiple: true, class: 'form-control mt-3', placeholder: 'Item Description'}" }, class: "mb-2", id: "additional-item-description") do %>
                       <% end %>
                     </div>

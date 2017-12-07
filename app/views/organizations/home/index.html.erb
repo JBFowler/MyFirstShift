@@ -7,17 +7,50 @@
           <h6 class="card-subtitle mb-2 text-muted">Current Progress: <%= user.progress %></h6>
           <hr>
           <div class="progress">
-            <div class="progress-bar progress-bar-striped default-blue-bg" role="progressbar" style="width: 27%; height: 27px; font-size: 16px; padding-top: 5px;" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100">27%</div>
+            <div class="progress-bar progress-bar-striped default-blue-bg" role="progressbar" style="width: <%= onboarding_percentage_complete(user) %>%; height: 27px; font-size: 16px; padding-top: 5px;" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
-          <%= link_to "Continue Onboarding", onboarding_meet_the_management_path, class: "btn next-btn mt-3" %>
+          <%= link_to "#{onboarding_button_name(user.progress)} Onboarding", onboarding_current_path(user.progress), class: "btn next-btn mt-3" %>
         </div>
       </div>
       <div class="card mb-3">
         <div class="card-body">
-          <h4 class="card-title steel-city-green-text">Profile <%= image_tag "https://s3.us-east-2.amazonaws.com/myfirstshift-onboarding-assets-demo/man-blk.png", width: 25, height: 25 %></h4>
-          <h6 class="card-subtitle mb-2 text-muted">Incomplete</h6>
+          <h4 class="card-title steel-city-green-text"><%= user.full_name %> <%= image_tag "https://s3.us-east-2.amazonaws.com/myfirstshift-onboarding-assets-demo/man-blk.png", width: 25, height: 25 %></h4>
+          <h6 class="card-subtitle mb-2 text-muted"><%= user.email %></h6>
           <hr>
-          <p class="card-text">Under Construction...</p>
+          <div class="row mb-3">
+            <div class="col-4">
+              <label class="card-text text-muted pull-right mt-1">Organization</label>
+            </div>
+            <div class="col">
+              <input style="width: 70%; background: linear-gradient(5deg, #f7f8f2, #ffffff);" value="<%= @organization.name %>" class="pull-left form-control" disabled>
+            </div>
+          </div>
+          <% if !user.unit.nil? %>
+            <div class="row mb-3">
+              <div class="col-4">
+                <label class="card-text text-muted pull-right mt-1">Unit</label>
+              </div>
+              <div class="col">
+                <input style="width: 70%; background: linear-gradient(5deg, #f7f8f2, #ffffff);" value="<%= user.unit.name %>" class="pull-left form-control" disabled>
+              </div>
+            </div>
+          <% end %>
+          <div class="row mb-3">
+            <div class="col-4">
+              <label class="card-text text-muted pull-right mt-1">Employee Type</label>
+            </div>
+            <div class="col">
+              <input style="width: 70%; background: linear-gradient(5deg, #f7f8f2, #ffffff);" value="<%= user.employee_type %>" class="pull-left form-control" placeholder="Pending..." disabled>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-4">
+              <label class="card-text text-muted pull-right mt-1">Wage</label>
+            </div>
+            <div class="col">
+              <input style="width: 70%; background: linear-gradient(5deg, #f7f8f2, #ffffff);" value="<%= wage_presenter(user) %>" class="pull-left form-control" placeholder="Pending..." disabled>
+            </div>
+          </div>
         </div>
       </div>
       <div class="card mb-3">
