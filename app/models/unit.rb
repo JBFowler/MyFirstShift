@@ -8,6 +8,7 @@ class Unit < ActiveRecord::Base
   belongs_to :organization
   has_many :faqs
   has_many :first_day_items
+  has_many :fun_facts
   has_many :invites, dependent: :destroy
   has_many :managers, dependent: :destroy
   has_many :members, class_name: 'User', dependent: :destroy

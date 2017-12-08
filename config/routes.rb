@@ -116,6 +116,10 @@ Rails.application.routes.draw do
         end
       end
 
+      namespace :users do
+        resources :fun_facts, only: [:create]
+      end
+
       get '/home', to: 'home#index'
       get '/welcome', to: 'welcome#index'
     end

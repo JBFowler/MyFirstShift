@@ -125,13 +125,15 @@
         <div class="card-body">
           <h4 class="card-title steel-city-green-text">Fun Fact</h4>
           <hr>
-          <small class="card-subtitle text-muted">What is your favorite Restaurant?</small>
-          <div class="input-group mt-2">
-            <input type="text" class="form-control" placeholder="">
-            <span class="input-group-btn">
-              <button style="cursor: pointer;" class="btn btn-primary" type="button"><i class="fa fa-check" aria-hidden="true"></i></button>
-            </span>
-          </div>
+          <%= form_for [:users, fun_fact] do |f| %>
+            <small class="card-subtitle text-muted">What is your favorite Restaurant?</small>
+            <div class="input-group mt-2">
+              <input type="text" class="form-control" placeholder="">
+              <span class="input-group-btn">
+                <button style="cursor: pointer;" class="btn btn-primary" type="button"><i class="fa fa-check" aria-hidden="true"></i></button>
+              </span>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
 
   belongs_to :organization#, inverse_of: :users
   belongs_to :unit, optional: true
+  has_many :fun_facts
 
   after_commit :flush_new_member_cache
 
