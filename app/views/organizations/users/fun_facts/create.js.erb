@@ -1,0 +1,9 @@
+<% if fun_fact.errors.any? %>
+  $("#fun-fact-errors").empty();
+  $("#fun-fact-errors").append("<%= escape_javascript(render 'shared/errors', obj: fun_fact) %>");
+<% else %>
+  $("#old-fun-fact-div").hide();
+  $("#old-fun-fact-div").append("<small class='card-subtitle text-muted'><%= fun_fact.question %></small><input value='<%= fun_fact.answer %>' class='form-control default-linear-background mt-2' disabled>");
+  $("#old-fun-fact-div").slideDown();
+  $("#new-fun-fact-div").slideUp();
+<% end %>

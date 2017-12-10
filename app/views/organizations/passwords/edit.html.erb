@@ -1,0 +1,31 @@
+<div id="edit-password-page">
+  <div class="row justify-content-center">
+    <div class="col-6 my-5">
+      <h4 class="text-center"><i class="fa fa-pencil-square-o default-blue-text mr-sm-2" aria-hidden="true"></i> Change your <span class="font-weight-bold">password</span></h4>
+    </div>
+  </div>
+
+  <div class="row justify-content-md-center">
+    <div class="col-4">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render 'shared/errors', obj: resource %>
+        <%= f.hidden_field :reset_password_token %>
+
+        <div class="form-group">
+          <%= f.label :password, "New password", class: "form-label" %>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+          <% end %>
+          <%= f.password_field :password, class: "form-control", autofocus: true, autocomplete: "off" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation, "Confirm new password", class: "form-label" %>
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+        </div>
+
+        <%= f.submit "Change my password", class: "btn btn-primary w-100 mb-3 mt-1" %>
+      <% end %>
+    </div>
+  </div>
+</div>
