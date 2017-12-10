@@ -22,6 +22,9 @@
 
         <div class="form-group">
           <%= f.label :password, class: "form-label" %>
+          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            <%= link_to "Forgot password?", new_password_path(resource_name), class: "pull-right" %><br />
+          <% end -%>
           <%= f.password_field :password, class: "form-control", autocomplete: "off", placeholder: "Password" %>
         </div>
 

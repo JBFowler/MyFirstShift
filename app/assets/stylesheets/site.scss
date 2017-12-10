@@ -220,6 +220,14 @@ html {
     }
   }
 
+  .default-linear-background {
+    background: linear-gradient(5deg, #f7f8f2, #ffffff);
+  }
+
+  .add-pointer-cursor {
+    cursor: pointer;
+  }
+
   input.form-control, span.input-group-addon, :not(span.input-group-btn) {
     border-color: #ffffff;
     box-shadow: 0 0 0 0.8px rgba(50,50,93,.27), 0 0 0 0.5px rgba(50,151,211,0), 0 0 0 2px rgba(50,151,211,0), 0 0.5px 1px rgba(0,0,0,.08);

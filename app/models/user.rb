@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name, :email
   validates_presence_of :employee_type, :phone, :date_of_birth, :ssn, if: :persisted?
-  validates_presence_of :drivers_license_number, message: "or Passport number can't be blank", unless: :passport_number?
+  validates_presence_of :drivers_license_number, message: "or Passport number can't be blank", if: :persisted?, unless: :passport_number?
   validates_presence_of :drivers_license_expiration, if: :drivers_license_number?
   validates_presence_of :passport_expiration, if: :passport_number?
   validates_presence_of :drivers_license_number, if: :drivers_license_expiration?
@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
 
   belongs_to :organization#, inverse_of: :users
   belongs_to :unit, optional: true
-  has_many :fun_facts
+  has_many :fun_facts, dependent: :destroy
 
   after_commit :flush_new_member_cache
 

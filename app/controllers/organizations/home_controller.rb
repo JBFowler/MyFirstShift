@@ -2,10 +2,12 @@ class Organizations::HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    fun_fact = FunFact.new
+    new_fun_fact = FunFact.new
+    old_fun_fact = current_user.fun_facts.sample
 
     locals ({
-      fun_fact: fun_fact,
+      new_fun_fact: new_fun_fact,
+      old_fun_fact: old_fun_fact,
       user: current_user
     })
   end

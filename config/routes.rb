@@ -117,7 +117,7 @@ Rails.application.routes.draw do
       end
 
       namespace :users do
-        resources :fun_facts, only: [:create]
+        resources :fun_facts, only: [:create, :update]
       end
 
       get '/home', to: 'home#index'
