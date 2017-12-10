@@ -7,7 +7,7 @@
           <h6 class="card-subtitle mb-2 text-muted">Current Progress: <%= user.progress %></h6>
           <hr>
           <div class="progress">
-            <div class="progress-bar progress-bar-striped default-blue-bg" role="progressbar" style="width: <%= onboarding_percentage_complete(user) %>%; height: 27px; font-size: 16px; padding-top: 5px;" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar progress-bar-striped default-blue-bg" role="progressbar" style="width: <%= onboarding_percentage_complete(user) %>%;" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
           <%= link_to "#{onboarding_button_name(user.progress)} Onboarding", onboarding_current_path(user.progress), class: "btn next-btn mt-3" %>
         </div>
@@ -22,7 +22,7 @@
               <label class="card-text text-muted pull-right mt-1">Organization</label>
             </div>
             <div class="col">
-              <input style="width: 70%; background: linear-gradient(5deg, #f7f8f2, #ffffff);" value="<%= @organization.name %>" class="pull-left form-control" disabled>
+              <input value="<%= @organization.name %>" class="pull-left form-control default-linear-background user-disabled-info-input" disabled>
             </div>
           </div>
           <% if !user.unit.nil? %>
@@ -31,7 +31,7 @@
                 <label class="card-text text-muted pull-right mt-1">Unit</label>
               </div>
               <div class="col">
-                <input style="width: 70%; background: linear-gradient(5deg, #f7f8f2, #ffffff);" value="<%= user.unit.name %>" class="pull-left form-control" disabled>
+                <input value="<%= user.unit.name %>" class="pull-left form-control default-linear-background user-disabled-info-input" disabled>
               </div>
             </div>
           <% end %>
@@ -40,7 +40,7 @@
               <label class="card-text text-muted pull-right mt-1">Employee Type</label>
             </div>
             <div class="col">
-              <input style="width: 70%; background: linear-gradient(5deg, #f7f8f2, #ffffff);" value="<%= user.employee_type %>" class="pull-left form-control" placeholder="Pending..." disabled>
+              <input value="<%= user.employee_type %>" class="pull-left form-control default-linear-background user-disabled-info-input" placeholder="Pending..." disabled>
             </div>
           </div>
           <div class="row mb-3">
@@ -48,7 +48,7 @@
               <label class="card-text text-muted pull-right mt-1">Wage</label>
             </div>
             <div class="col">
-              <input style="width: 70%; background: linear-gradient(5deg, #f7f8f2, #ffffff);" value="<%= wage_presenter(user) %>" class="pull-left form-control" placeholder="Pending..." disabled>
+              <input value="<%= user.wage.nil? ? '' : wage_presenter(user) %>" class="pull-left form-control default-linear-background user-disabled-info-input" placeholder="Pending..." disabled>
             </div>
           </div>
         </div>
@@ -68,7 +68,7 @@
           <hr>
           <div class="row justify-content-md-center">
             <div class="col-md-4 text-center">
-              <strong style="font-size: 18px;" class="text-muted">
+              <strong class="text-muted app-information">
                 <%= image_tag "https://s3.us-east-2.amazonaws.com/myfirstshift-onboarding-assets-demo/Slack+Logo.png", height: 40, width: 40 %>
                 <div class="mt-2">
                   Slack
@@ -79,7 +79,7 @@
               </strong>
             </div>
             <div class="col-md-4 text-center">
-              <strong style="font-size: 18px;" class="text-muted">
+              <strong class="text-muted app-information">
                 <%= image_tag "https://s3.us-east-2.amazonaws.com/myfirstshift-onboarding-assets-demo/WhenIWork+Logo.png", height: 40, width: 40 %>
                 <div class="mt-2">
                   WhenIWork
@@ -90,7 +90,7 @@
               </strong>
             </div>
             <div class="col-md-4 text-center">
-              <strong style="font-size: 18px;" class="text-muted">
+              <strong class="text-muted app-information">
                 <%= image_tag "https://s3.us-east-2.amazonaws.com/myfirstshift-onboarding-assets-demo/Square+Logo.png", height: 40, width: 40 %>
                 <div class="mt-2">
                   Square
@@ -125,15 +125,53 @@
         <div class="card-body">
           <h4 class="card-title steel-city-green-text">Fun Fact</h4>
           <hr>
-          <small class="card-subtitle text-muted">What is your favorite Restaurant?</small>
-          <div class="input-group mt-2">
-            <input type="text" class="form-control" placeholder="">
-            <span class="input-group-btn">
-              <button style="cursor: pointer;" class="btn btn-primary" type="button"><i class="fa fa-check" aria-hidden="true"></i></button>
-            </span>
-          </div>
+          <% if old_fun_fact %>
+            <div id="old-fun-fact-div">
+              <small class="card-subtitle text-muted"><%= old_fun_fact.question %></small>
+              <small id="change-fun-fact-answer-link" class="danger-text add-pointer-cursor">(Change Answer)</small>
+              <input value="<%= old_fun_fact.answer %>" class="form-control default-linear-background mt-2" disabled>
+            </div>
+            <div id="update-fun-fact-div">
+              <%= form_for [:users, old_fun_fact], remote: true do |f| %>
+                <span id="fun-fact-errors"></span>
+                <small class="card-subtitle text-muted">What is your favorite Restaurant?</small>
+                <div class="input-group mt-2">
+                  <%= f.text_field :answer, class: "form-control" %>
+                  <span class="input-group-btn">
+                    <%= f.button :submit, class: "btn btn-primary" do %>
+                      <i class='fa fa-check' aria-hidden='true'></i>
+                    <% end %>
+                  </span>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <div id="old-fun-fact-div"></div>
+            <div id="new-fun-fact-div">
+              <%= form_for [:users, new_fun_fact], remote: true do |f| %>
+                <span id="fun-fact-errors"></span>
+                <small class="card-subtitle text-muted">What is your favorite Restaurant?</small>
+                <%= f.hidden_field :question, value: "What is your favorite Restaurant?" %>
+                <div class="input-group mt-2">
+                  <%= f.text_field :answer, class: "form-control" %>
+                  <span class="input-group-btn">
+                    <%= f.button :submit, class: "btn btn-primary" do %>
+                      <i class='fa fa-check' aria-hidden='true'></i>
+                    <% end %>
+                  </span>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $("#change-fun-fact-answer-link").on('click', function() {
+    $("#old-fun-fact-div").slideToggle();
+    $("#update-fun-fact-div").slideToggle();
+  });
+</script>

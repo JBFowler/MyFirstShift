@@ -1,0 +1,14 @@
+<% if fun_fact.errors.any? %>
+  $("#fun-fact-errors").empty();
+  $("#fun-fact-errors").append("<%= escape_javascript(render 'shared/errors', obj: fun_fact) %>");
+<% else %>
+  $("#old-fun-fact-div").empty();
+  $("#old-fun-fact-div").append("<small class='card-subtitle text-muted'><%= fun_fact.question %> </small><small id='change-fun-fact-answer-link' class='danger-text add-pointer-cursor'> (Change Answer)</small><input value='<%= fun_fact.answer %>' class='form-control default-linear-background mt-2' disabled>");
+  $("#update-fun-fact-div").slideUp();
+  $("#old-fun-fact-div").slideDown();
+
+  $("#change-fun-fact-answer-link").on('click', function() {
+    $("#old-fun-fact-div").slideToggle();
+    $("#update-fun-fact-div").slideToggle();
+  });
+<% end %>

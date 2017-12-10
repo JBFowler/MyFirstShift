@@ -18,9 +18,9 @@ FactoryGirl.create(:admin, email: "badadmin@myfirstshift.com", password: "Passwo
 unit = FactoryGirl.create(:unit, organization: organization_2, created_by: User.last)
 
 12.times.each do |n|
-  FactoryGirl.create_list(:user, n, :completed, organization: organization_2, created_at: n.months.ago)
+  FactoryGirl.create_list(:user, n, :completed, organization: organization_2, created_at: n.months.ago, subdomain: organization_2.subdomain)
 end
 
 12.times.each do |n|
-  FactoryGirl.create_list(:user, n, :completed, organization: organization_2, unit: unit, created_at: n.months.ago)
+  FactoryGirl.create_list(:user, n, :completed, organization: organization_2, unit: unit, created_at: n.months.ago, subdomain: organization_2.subdomain)
 end
