@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admins, skip: [:sessions, :registrations]
-  devise_for :users, skip: [:sessions, :registrations], :controllers => {:registrations => "registrations"}
+  devise_for :users, skip: [:sessions, :registrations, :passwords], :controllers => {:registrations => "registrations"}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   #letter opener
@@ -46,6 +46,11 @@ Rails.application.routes.draw do
         delete '/sign_out', to: 'sessions#destroy', as: :destroy_user_session
         get '/invite/:id', to: 'invites#show', as: :user_invite
         post '/invite/:id/redeem', to: 'invites#redeem', as: :redeem_invite
+        get '/user/password/new', to: 'passwords#new', as: :new_user_password
+        get '/user/password/edit', to: 'passwords#edit', as: :edit_user_password
+        post '/user/password', to: 'passwords#create'
+        put '/user/password', to: 'passwords#update'
+        patch '/user/password', to: 'passwords#update'
       end
 
       namespace :onboarding do
