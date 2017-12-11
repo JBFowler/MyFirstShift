@@ -1,10 +1,19 @@
 
-Welcome to example.com,
+We found the following accounts associated with <%= @email %>
 ===============================================
 
-You have successfully signed up to example.com,
-your username is:
+<% if @users.any? %>
+  You are already a part of the following organizations
+  <% @users.each do |user| %>
+    <%= user.organization.name %>
+    <%= link_to "Sign in", new_user_session_url(subdomain: user.organization.subdomain), target: "_blank" %>
+  <% end %>
+<% end %>
+<% if @invites.any? %>
+  You have been invited to join the following organizations
+  <% @invites.each do |invite| %>
 
-To login to the site, just follow this link: .
-
-Thanks for joining and have a great day!
+    <%= invite.organization.name %>
+    Please click the following link to signup: <%= link_to "Join", user_invite_url(id: invite.code, subdomain: invite.subdomain), target: "_blank" %>
+  <% end %>
+<% end %>

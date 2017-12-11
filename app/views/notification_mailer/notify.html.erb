@@ -1,32 +1,24 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>Hello,</h1>
-    <p>
-      We found the following accounts associated with <%= @email %>
-    </p>
-    <% if @users.any? %>
-      <p>You are already a part of the following organizations</p>
-      <% @users.each do |user| %>
-        <ul>
-          <li><%= user.organization.name %></li>
-          <li><%= link_to "Sign in", new_user_session_url(subdomain: user.organization.subdomain), target: "_blank" %></li>
-        </ul>
-        </br>
-      <% end %>
-    <% end %>
-    <% if @invites.any? %>
-      <p>You have been invited to join the following organizations</p>
-      <% @invites.each do |invite| %>
-        <ul>
-          <li><%= invite.organization.name %></li>
-          <li>Please click the following link to signup: <%= link_to "Join", user_invite_url(id: invite.code, subdomain: invite.subdomain), target: "_blank" %></li>
-        </ul>
-        </br>
-      <% end %>
-    <% end %>
-  </body>
-</html>
+<h1>Hello,</h1>
+<p>
+  We found the following accounts associated with <%= @email %>
+</p>
+<% if @users.any? %>
+  <p>You are already a part of the following organizations</p>
+  <% @users.each do |user| %>
+    <ul>
+      <li><%= user.organization.name %></li>
+      <li><%= link_to "Sign in", new_user_session_url(subdomain: user.organization.subdomain), target: "_blank" %></li>
+    </ul>
+    </br>
+  <% end %>
+<% end %>
+<% if @invites.any? %>
+  <p>You have been invited to join the following organizations</p>
+  <% @invites.each do |invite| %>
+    <ul>
+      <li><%= invite.organization.name %></li>
+      <li>Please click the following link to signup: <%= link_to "Join", user_invite_url(id: invite.code, subdomain: invite.subdomain), target: "_blank" %></li>
+    </ul>
+    </br>
+  <% end %>
+<% end %>
