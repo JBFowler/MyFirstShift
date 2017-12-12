@@ -22,7 +22,7 @@ class SignIn::OrganizationsController < ApplicationController
   def send_notification
     @email = params[:email]
     @users = User.where(email: @email)
-    @invites = Invite.where(email: @email)
+    @invites = Invite.where(email: @email, redeemed_at: nil)
     @accounts = @users + @invites
 
     if @accounts.any?
