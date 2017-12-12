@@ -4,7 +4,7 @@ class InviteMailer < ApplicationMailer
     @invite = invite
     @organization = invite.organization
 
-    mail(to: invite.email, subject: "Come join #{@organization.name}'s Onboarding Group")
+    mail(to: invite.email, subject: "Join #{@organization.name}'s Onboarding Group")
   end
 
   def invite_owner(invite)

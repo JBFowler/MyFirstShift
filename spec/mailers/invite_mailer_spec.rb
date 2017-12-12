@@ -11,7 +11,7 @@ describe InviteMailer, type: :mailer do
     before { ActionMailer::Base.default_url_options = { :host => "subdomain.myfirstshift.com" } }
 
     it "renders the subject" do
-      expect(mail.subject).to eq("Come join #{organization.name}'s Onboarding Group")
+      expect(mail.subject).to eq("Join #{organization.name}'s Onboarding Group")
     end
 
     it "renders the receiver email" do

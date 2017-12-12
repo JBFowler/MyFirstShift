@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>Please join your group, <%= @organization.name %></h1>
-    <p>
-      Please click the following link to signup: <%= link_to "Join", user_invite_url(id: @invite.code, subdomain: @organization.subdomain) %>
-    </p>
-    <p>Thanks for joining and have a great day!</p>
-  </body>
-</html>
+<h4>Hooray! You have been invited to join</h4>
+
+<h3 style="color: #929F4C; font-size: 22px;"><%= @organization.name %>!</h3>
+
+<p style="margin-top: 40px;">
+  Click <%= link_to "here", user_invite_url(id: @invite.code, subdomain: @organization.subdomain) %> to get started with your onboarding journey.
+</p>
+
+<p>Thanks for joining and have a great day!</p>

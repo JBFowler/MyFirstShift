@@ -1,6 +1,7 @@
 <div id="owner-invites-page">
   <div class="row">
     <div class="col">
+      <%= render partial: 'shared/flash_messages' %>
       <div class="tabular-card card">
         <div class="card-header">
           <%= render partial: 'organizations/owner/shared/members_nav', locals: { member_count: nil } %>

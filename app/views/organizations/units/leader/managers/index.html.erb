@@ -1,6 +1,7 @@
 <div id="unit-leader-preferences-page">
   <div class="row">
     <div class="col">
+      <%= render partial: 'shared/flash_messages' %>
       <div class="tabular-card card">
         <div class="card-header">
           <%= render partial: 'organizations/units/leader/shared/preferences_nav', locals: { managers: managers, faqs: nil } %>
