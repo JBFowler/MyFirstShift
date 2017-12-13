@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, request_keys: [:subdomain]
 
-  validates_presence_of :first_name, :last_name, :email, unless: :progress_intro?
+  validates_presence_of :first_name, :last_name, :email, :username
   validates_presence_of :employee_type, :phone, :date_of_birth, :ssn, if: :persisted?, unless: :progress_intro?
   validates_presence_of :drivers_license_number, message: "or Passport number can't be blank", if: :persisted?, unless: :passport_number?, unless: :progress_intro?
   validates_presence_of :drivers_license_expiration, if: :drivers_license_number?, unless: :progress_intro?

@@ -1,0 +1,105 @@
+<div id="user-edit-profile-page">
+  <div class="row justify-content-md-center">
+    <div class="col-6 my-5">
+      <h4 class="text-center"><i class="fa fa-user-circle mr-sm-2 default-blue-text" aria-hidden="true"></i> Edit <span class="font-weight-bold">Profile</span></h4>
+    </div>
+  </div>
+
+  <div class="row justify-content-md-center">
+    <div class="col-6 mb-3">
+      <%= render 'shared/errors', obj: user %>
+      <%= form_for user do |f| %>
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <%= f.label :first_name, class: "form-label" %>
+              <%= f.text_field :first_name, class: "form-control" %>
+            </div>
+            <div class="col">
+              <%= f.label :last_name, class: "form-label" %>
+              <%= f.text_field :last_name, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <%= f.label :email, "Email Address", class: "form-label" %>
+              <%= f.email_field :email, class: "form-control", disabled: true %>
+            </div>
+            <div class="col">
+              <%= f.label :username, class: "form-label" %>
+              <%= f.text_field :username, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+
+        <% unless user.progress_intro? || user.progress_employee_info? %>
+          <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <%= f.label :employee_type, class: "form-label" %>
+                <%= f.select :employee_type, ["Salary", "Hourly"], {}, class: "form-control custom-select" %>
+              </div>
+              <div class="col">
+                <%= f.label :phone, class: "form-label" %>
+                <%= f.telephone_field :phone, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <%= f.label :date_of_birth, "Date of Birth", class: "form-label" %>
+                <%= f.date_field :date_of_birth, class: "form-control" %>
+              </div>
+              <div class="col">
+                <%= f.label :ssn, "Social Security Number", class: "form-label" %>
+                <%= f.text_field :ssn, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+
+          <% if user.drivers_license_number? %>
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <%= f.label :drivers_license_number, "Drivers License Number", class: "form-label" %>
+                  <%= f.text_field :drivers_license_number, class: "form-control" %>
+                </div>
+                <div class="col">
+                  <%= f.label :drivers_license_expiration, "Drivers License Expiration", class: "form-label" %>
+                  <%= f.date_field :drivers_license_expiration, class: "form-control" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <% if user.passport_number? %>
+            <div class="form-group mt-2">
+              <div class="row">
+                <div class="col">
+                  <%= f.label :passport_number, "Passport Number", class: "form-label" %>
+                  <%= f.text_field :passport_number, class: "form-control" %>
+                </div>
+                <div class="col">
+                  <%= f.label :passport_expiration, "Passport Expiration", class: "form-label" %>
+                  <%= f.date_field :passport_expiration, class: "form-control" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+
+        <%= f.submit "Update", class: "btn btn-primary pull-right px-4 mt-2" %>
+        <%= link_to "Cancel", home_path, class: "btn btn-danger pull-right px-4 mr-3 mt-2" %>
+      <% end %>
+    </div>
+  </div>
+</div>
