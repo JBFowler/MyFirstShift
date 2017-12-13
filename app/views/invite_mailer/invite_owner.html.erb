@@ -1,9 +1,11 @@
-<h4>Hooray! You have been invited to join</h4>
+<div style="width: 80%;">
+  <h4>Hooray! You have been invited to join</h4>
 
-<h3 style="color: #929F4C; font-size: 22px;"><%= @organization.name %>!</h3>
+  <h3 style="color: #929F4C; font-size: 22px;"><%= @organization.name %>!</h3>
 
-<p style="margin-top: 40px;">
-  Click <%= link_to "here", user_invite_url(id: @invite.code, subdomain: @organization.subdomain) %> to get started with your onboarding journey.
-</p>
+  <p style="margin-top: 40px;">
+    Click <%= link_to "here", user_invite_url(id: @invite.code, subdomain: @organization.subdomain) %> to get started with your onboarding journey.
+  </p>
 
-<p>Thanks for joining and have a great day!</p>
+  <p>Thanks for joining and have a great day!</p>
+</div>

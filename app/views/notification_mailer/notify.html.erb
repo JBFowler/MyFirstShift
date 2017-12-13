@@ -1,29 +1,31 @@
-<% if @users.any? %>
-  <h4>Hello, <span style="color: #929F4C;"><%= @users.first.full_name %></span>!</h4>
-<% else %>
-  <h4>Hello!</h4>
-<% end %>
-<p style="max-width: 500px;">
-  We found the following accounts associated with <strong><%= @email %></strong>
-</p>
-
-<% if @users.any? %>
-  <p>You are already a part of the following organizations:</p>
-  <% @users.each do |user| %>
-    <ul style="list-style: none; border: 1px solid #868e96; border-radius: 5px; max-width: 60%; padding: 10px;">
-      <li><span style="color: #929F4C; font-weight: bold;"><%= user.organization.name %></span> <%= link_to "(Sign in)", new_user_session_url(subdomain: user.organization.subdomain), target: "_blank" %></li>
-    </ul>
-  <% end %>
-<% end %>
-<% if @invites.any? %>
+<div style="width: 80%;">
   <% if @users.any? %>
-    <br />
-    <hr style="color: #868e96; width: 75%;">
+    <h4>Hello, <span style="color: #929F4C;"><%= @users.first.full_name %></span>!</h4>
+  <% else %>
+    <h4>Hello!</h4>
   <% end %>
-  <p>You have been invited to join the following organizations:</p>
-  <% @invites.each do |invite| %>
-    <ul style="list-style: none; border: 1px solid #868e96; border-radius: 5px; max-width: 60%; padding: 10px;">
-      <li><span style="color: #929F4C; font-weight: bold;"><%= invite.organization.name %></span> <%= link_to "(Join)", user_invite_url(id: invite.code, subdomain: invite.subdomain), target: "_blank" %></li>
-    </ul>
+  <p style="max-width: 500px;">
+    We found the following accounts associated with <strong><%= @email %></strong>
+  </p>
+
+  <% if @users.any? %>
+    <p>You are already a part of the following organizations:</p>
+    <% @users.each do |user| %>
+      <ul style="list-style: none; border: 1px solid #868e96; border-radius: 5px; max-width: 60%; padding: 10px;">
+        <li><span style="color: #929F4C; font-weight: bold;"><%= user.organization.name %></span> <%= link_to "(Sign in)", new_user_session_url(subdomain: user.organization.subdomain), target: "_blank" %></li>
+      </ul>
+    <% end %>
   <% end %>
-<% end %>
+  <% if @invites.any? %>
+    <% if @users.any? %>
+      <br />
+      <hr style="color: #868e96; width: 75%;">
+    <% end %>
+    <p>You have been invited to join the following organizations:</p>
+    <% @invites.each do |invite| %>
+      <ul style="list-style: none; border: 1px solid #868e96; border-radius: 5px; max-width: 60%; padding: 10px;">
+        <li><span style="color: #929F4C; font-weight: bold;"><%= invite.organization.name %></span> <%= link_to "(Join)", user_invite_url(id: invite.code, subdomain: invite.subdomain), target: "_blank" %></li>
+      </ul>
+    <% end %>
+  <% end %>
+</div>
