@@ -127,6 +127,8 @@ Rails.application.routes.draw do
 
       get '/home', to: 'home#index'
       get '/welcome', to: 'welcome#index'
+
+      resources :users, only: [:edit, :update]
     end
   end
 end
