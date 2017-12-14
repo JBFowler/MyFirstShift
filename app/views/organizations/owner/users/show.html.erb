@@ -64,7 +64,7 @@
               <ul class="list-group list-group-flush">
                 <li class="list-group-item"><span class="text-muted">Status:</span> <span class="default-green-text"><%= user.progress %></span></li>
                 <li class="list-group-item"><span class="text-muted">Employee Type:</span> <span class="default-green-text"><%= user.employee_type %></span></li>
-                <li class="list-group-item"><span class="text-muted">Pay:</span> <span class="default-green-text"><%= wage_presenter(user) %></span></li>
+                <li class="list-group-item"><span class="text-muted">Pay:</span> <span class="default-green-text"><%= user.wage.nil? ? '' : wage_presenter(user) %></span></li>
                 <li class="list-group-item"><span class="text-muted">SSN:</span> <span class="default-green-text"><%= user.ssn %></span></li>
               </ul>
             </div>
