@@ -1,5 +1,5 @@
 class Admin::OrganizationsController < Admin::BaseController
-  before_action :get_organization, only: [:show, :edit, :update]
+  before_action :get_organization, only: [:show, :edit, :update, :destroy]
 
   def index
     @organizations = Organization.unscoped
@@ -33,6 +33,17 @@ class Admin::OrganizationsController < Admin::BaseController
     else
       render :edit
     end
+  end
+
+  def destroy
+    if params[:permanent] == "true"
+      @organization.really_destroy!
+    else
+      @organization.destroy
+    end
+
+    flash[:success] = "#{@organization.name} has been deleted"
+    redirect_to admin_organizations_path
   end
 
   private

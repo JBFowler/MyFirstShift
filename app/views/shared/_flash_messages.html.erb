@@ -1,5 +1,8 @@
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
+    <% unless ['primary', 'secondary', 'success', 'danger', 'warning', 'info'].include?(name) %>
+      <% name = "info" %>
+    <% end %>
     <div class="alert alert-<%= name %> alert-dismissible fade show py-1 mb-3" role="alert">
       <%= msg %> <i class="fa fa-times pull-right pt-1" data-dismiss="alert" aria-hidden="true"></i>
     </div>
