@@ -62,6 +62,7 @@ Rails.application.routes.draw do
         get '/policies', to: 'policies#index'
         get '/paperwork', to: 'paperwork#index'
         get '/questions', to: 'questions#index'
+        get '/users/:id', to: 'users#edit'
         resources :users, only: [:update]
 
         namespace :paperwork do

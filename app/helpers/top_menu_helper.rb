@@ -34,7 +34,7 @@ module TopMenuHelper
     elsif (path_position <= @path.index(user.progress)) && active
       return link_to(link_text, link_url, class: "nav-link #{active} available", id: "#{custom_id}")
     else
-      return link_to(link_text, '', class: "nav-link #{active} disabled", id: "#{custom_id}")
+      return link_to(link_text, '', class: "nav-link #{active} disabled", id: "#{custom_id}", onclick: "return false;")
     end
   end
 end
