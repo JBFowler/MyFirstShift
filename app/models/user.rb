@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, request_keys: [:subdomain]
+         :recoverable, :rememberable, :trackable, request_keys: [:subdomain], reset_password_keys: [:email, :subdomain]
 
   validates_presence_of :first_name, :last_name, :email, :username
   validates_presence_of :employee_type, :phone, :date_of_birth, :ssn, if: :persisted?, unless: :progress_intro?
@@ -42,6 +42,11 @@ class User < ActiveRecord::Base
 
   def self.find_for_authentication(warden_conditions)
     where(:email => warden_conditions[:email], :subdomain => warden_conditions[:subdomain]).first
+  end
+
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    where(conditions).first
   end
 
   def complete!
