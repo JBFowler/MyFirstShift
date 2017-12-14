@@ -7,15 +7,15 @@ class Organization < ActiveRecord::Base
   validates :subdomain, length: { in: 4..20 }
   validates :subdomain, format: { with: /\A[a-z0-9]+\z/, message: 'must be all lowercase and include only letters and numbers' }
 
-  has_many :faqs
-  has_many :first_day_items
-  has_many :fun_facts
+  has_many :faqs, dependent: :destroy
+  has_many :first_day_items, dependent: :destroy
+  has_many :fun_facts, dependent: :destroy
   has_many :invites, dependent: :destroy
   has_many :managers, dependent: :destroy
-  has_many :members, class_name: 'User', dependent: :destroy#, inverse_of: :organization
-  has_many :policies
+  has_many :members, class_name: 'User', dependent: :destroy
+  has_many :policies, dependent: :destroy
   has_many :units, dependent: :destroy
-  has_many :videos
+  has_many :videos, dependent: :destroy
 
 
   def self.search_by_subdomain(search_term)

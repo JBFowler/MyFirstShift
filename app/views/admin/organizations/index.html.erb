@@ -7,7 +7,7 @@
 <h2>Organizations</h2>
 <div class="row">
   <% @organizations.each do |organization| %>
-    <div>
+    <div class="<%= organization.deleted_at? ? 'danger-text' : '' %>">
       <%= link_to organization.name, admin_organization_path(organization) %>
     </div>
   <% end %>
