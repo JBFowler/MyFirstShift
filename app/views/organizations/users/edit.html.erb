@@ -39,7 +39,7 @@
           </div>
         </div>
 
-        <% unless user.progress_intro? || user.progress_employee_info? %>
+        <% unless user.progress_intro? %>
           <div class="form-group">
             <div class="row">
               <div class="col">
@@ -66,7 +66,7 @@
             </div>
           </div>
 
-          <% if user.drivers_license_number? %>
+          <% if user.drivers_license_number? || !user.passport_number? %>
             <div class="form-group">
               <div class="row">
                 <div class="col">
