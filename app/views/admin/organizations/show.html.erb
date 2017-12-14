@@ -6,6 +6,11 @@
 </ul>
 
 <%= link_to "Edit", edit_admin_organization_path(@organization) %>
+<% if @organization.deleted_at %>
+  <%= link_to "Permanently Delete", admin_organization_path(@organization, permanent: true), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% else %>
+  <%= link_to "Delete", admin_organization_path(@organization), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
 <%= link_to "Invite Owner", new_admin_organization_invite_path(@organization) %>
 <%= link_to "All Invites", admin_organization_invites_path(@organization) %>
 <%= link_to "Home", admin_home_path %>
