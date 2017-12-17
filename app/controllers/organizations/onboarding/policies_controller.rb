@@ -1,6 +1,6 @@
 class Organizations::Onboarding::PoliciesController < ApplicationController
   before_action :authenticate_user!
-  # before_action :allowed_onboarding_access?("FAQ")
+  before_action :unit_available?
 
   layout 'organizations/onboarding'
 

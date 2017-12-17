@@ -5,7 +5,7 @@
   <div class="card-body text-center">
     <% if videos.any? %>
       <div id="intro-videos-div">
-        <h4 class="page-title">Welcome To <%= @organization.name %></h4>
+        <h4 class="page-title">Welcome To <%= @unit.name %></h4>
         <hr class="green-ruler">
         <div class="row justify-content-md-center">
           <div class="col-4">
@@ -32,7 +32,7 @@
       <hr class="green-ruler">
       <div class="row justify-content-md-center">
         <div class="col-4">
-          <p class="card-text text-muted">Below are the managers of <strong><%= @organization.name %></strong></p>
+          <p class="card-text text-muted">Below are the managers of <strong><%= @unit.name %></strong></p>
         </div>
       </div>
       <div class="row justify-content-md-center mt-5">
@@ -56,6 +56,6 @@
       <button id="meet-managers-btn" class="btn btn-default next-btn">Meet Your Managers</button>
       <button id="back-to-videos-btn" class="btn btn-default previous-btn videos-present">Back to <%= 'Video'.pluralize(videos.count) %></button>
     <% end %>
-    <%= link_to "Next Step", onboarding_employee_info_path, class: "btn btn-default next-btn px-5 #{videos.any? ? 'videos-present' : '' }", id: "to-user-info-btn" %>
+    <%= link_to "Next Step", unit_onboarding_employee_info_path(@unit), class: "btn btn-default next-btn px-5 #{videos.any? ? 'videos-present' : '' }", id: "to-user-info-btn" %>
   </div>
 </div>

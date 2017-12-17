@@ -119,6 +119,29 @@ Rails.application.routes.draw do
               get '/members', to: 'users#index'
             end
           end
+
+          namespace :onboarding do
+            get '/apps', to: 'apps#index'
+            post '/complete', to: 'users#complete'
+            get '/employee_info', to: 'users#edit'
+            get '/first_day', to: 'first_day#index'
+            get '/meet_the_management', to: 'management#index'
+            get '/policies', to: 'policies#index'
+            get '/paperwork', to: 'paperwork#index'
+            get '/questions', to: 'questions#index'
+            get '/users/:id', to: 'users#edit'
+            resources :users, only: [:update]
+
+            namespace :paperwork do
+              # resource :forms, only: [:show]
+            end
+          end
+
+          namespace :users do
+            resources :fun_facts, only: [:create, :update]
+          end
+
+          get '/home', to: 'home#index'
         end
       end
 
