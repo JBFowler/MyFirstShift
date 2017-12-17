@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :get_organization
   before_action :get_mailer_host
 
-  helper_method :allowed_onboarding_access?, :return_home?, :not_found
+  helper_method :not_found, :unit_available?
 
   def require_owner
     unless user_signed_in? && current_user.owner?
@@ -12,21 +12,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def return_home?
-    if current_user.progress_complete?
-      flash[:warning] = "You have already completed your onboarding process"
-      redirect_to home_path
-    end
-  end
-
-  def allowed_onboarding_access?(progress_point)
-    @progress_points ||= ["Intro", "Employee Info", "Paperwork", "FAQ", "Policies", "Applications", "First Day", "Complete"]
-
-    if @progress_points.index(current_user.progress) >= @progress_points.index(progress_point)
-      return
-    else
-      redirect_to home_path
-    end
+  def unit_available?
+    redirect_to unit_home_path(current_user.unit) if current_user.unit
   end
 
   def not_found
@@ -50,7 +37,11 @@ class ApplicationController < ActionController::Base
     when 'supernova'
       admin_home_path
     else
-      home_path
+      if current_user.unit
+        unit_home_path(current_user.unit)
+      else
+        home_path
+      end
     end
   end
 

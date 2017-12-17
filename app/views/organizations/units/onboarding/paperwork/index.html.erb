@@ -1,0 +1,20 @@
+<div id="paperwork">
+  <div class="card-body text-center">
+    <h4 class="page-title">Paperwork</h4>
+    <hr class="green-ruler">
+    <div class="row justify-content-md-center">
+      <div class="col-6">
+        <p class="card-text text-muted">Here is where you fill out all of your paperwork</p>
+      </div>
+    </div>
+
+    <div class="row justify-content-md-center my-5">
+      <p class="card-text text-muted">Feature Coming Soon....</p>
+    </div>
+  </div>
+
+  <div class="card-footer text-center">
+    <%= link_to "Previous Step", unit_onboarding_employee_info_path(@unit), class: "btn mx-3 previous-btn" %>
+    <%= link_to "Next Step", unit_onboarding_questions_path(@unit), class: "btn mx-3 next-btn" %>
+  </div>
+</div>

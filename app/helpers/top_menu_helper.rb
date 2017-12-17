@@ -8,6 +8,15 @@ module TopMenuHelper
     end
   end
 
+  def current_unit_onboarding_tab?(controller, action=["index"])
+    case
+    when controller?("organizations/units/onboarding/#{controller}") && action?(*action)
+      "active"
+    else
+      nil
+    end
+  end
+
   def current_owner_tab?(controller)
     case
     when controller?("organizations/owner/#{controller}")
