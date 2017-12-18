@@ -79,8 +79,8 @@
                   <li class="list-group-item"><span class="text-muted">Passport #:</span> <span class="default-green-text"><%= user.passport_number %></span></li>
                   <li class="list-group-item"><span class="text-muted">Passport Expiration:</span> <span class="default-green-text"><%= user.passport_expiration.strftime('%m/%d/%Y') %></span></li>
                 <% else %>
-                  <li class="list-group-item"><span class="text-muted">SSN/Passport #:</span></li>
-                  <li class="list-group-item"><span class="text-muted">SSN/Passport Expiration:</span></li>
+                  <li class="list-group-item"><span class="text-muted">Driver's License/Passport #:</span></li>
+                  <li class="list-group-item"><span class="text-muted">Driver's License/Passport Expiration:</span></li>
                 <% end %>
                 <li class="list-group-item"><span class="text-muted">E-Verified:</span> <span class="default-green-text"><%= user.e_verified %></span> <%= link_to 'Verify', owner_user_path(user, user: { e_verified: true }), method: :put, class: 'pull-right' unless user.e_verified %></li>
                 <li class="list-group-item"><span class="text-muted">State-Verified:</span> <span class="default-green-text"><%= user.state_verified %></span> <%= link_to 'Verify', owner_user_path(user, user: { state_verified: true }), method: :put, class: 'pull-right' unless user.state_verified %></li>
