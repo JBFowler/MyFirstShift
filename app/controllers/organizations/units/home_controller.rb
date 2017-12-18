@@ -1,7 +1,4 @@
-class Organizations::HomeController < ApplicationController
-  before_action :authenticate_user!
-  before_action :unit_available?
-
+class Organizations::Units::HomeController < Organizations::Units::BaseController
   def index
     new_fun_fact = FunFact.new
     old_fun_fact = current_user.fun_facts.sample

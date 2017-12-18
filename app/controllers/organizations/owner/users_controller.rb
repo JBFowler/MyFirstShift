@@ -13,6 +13,8 @@ class Organizations::Owner::UsersController < ApplicationController
 
     if params[:sort]
       members = members.order(params[:sort]) unless params[:sort].blank?
+    else
+      members = members.order(:last_name)
     end
 
     locals ({
@@ -73,10 +75,19 @@ class Organizations::Owner::UsersController < ApplicationController
 
   def add_unit
     user = @organization.members.friendly.find(params[:user_id])
-    unit = @organization.units.friendly.find(params[:unit_id])
+    if params[:unit_id].blank?
+      unit = nil
+    else
+      unit = @organization.units.friendly.find(params[:unit_id])
+    end
 
     if user.join_unit!(unit)
-      flash[:success] = "#{user.full_name} added to #{unit.name}"
+      if unit
+        flash[:success] = "#{user.full_name} added to #{unit.name}"
+      else
+        flash[:success] = "#{user.full_name} removed from unit"
+      end
+
       redirect_to owner_member_path(user)
     else
       flash.now[:warning] = "#{user.full_name} is already a part of #{unit.name}"

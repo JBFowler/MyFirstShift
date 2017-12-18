@@ -10,7 +10,7 @@
       <%= form_tag owner_user_add_unit_path(user) do %>
         <div class="modal-body">
           <%= label_tag :unit_id, 'Units', class: "form-label" %>
-          <%= select_tag :unit_id, options_from_collection_for_select(units, 'id', 'name', selected: user.unit.try(:id)), class: "form-control custom-select" %>
+          <%= select_tag :unit_id, options_from_collection_for_select(units, 'id', 'name', selected: user.unit.try(:id)), class: "form-control custom-select", include_blank: "No Unit (Removes user from unit)" %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

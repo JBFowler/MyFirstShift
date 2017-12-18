@@ -1,8 +1,5 @@
-class Organizations::Onboarding::UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :unit_available?
-
-  layout 'organizations/onboarding'
+class Organizations::Units::Onboarding::UsersController < Organizations::Units::BaseController
+  layout 'organizations/units/onboarding'
 
   def complete
     if current_user.progress_first_day?
@@ -30,7 +27,7 @@ class Organizations::Onboarding::UsersController < ApplicationController
         current_user.update_progress("Paperwork")
       end
 
-      redirect_to onboarding_paperwork_path
+      redirect_to unit_onboarding_paperwork_path(@unit)
     else
       render :edit, locals: { user: user }
     end

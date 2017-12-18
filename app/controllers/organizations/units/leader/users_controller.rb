@@ -10,6 +10,8 @@ class Organizations::Units::Leader::UsersController < Organizations::Units::Lead
 
     if params[:sort]
       members = members.order(params[:sort]) unless params[:sort].blank?
+    else
+      members = members.order(:last_name)
     end
 
     locals ({

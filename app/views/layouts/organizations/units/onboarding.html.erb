@@ -1,0 +1,49 @@
+<% content_for :content do %>
+  <div id="content">
+    <div id="onboarding-process" class="container">
+      <div class="card">
+        <div id="top-menu" class="card-header">
+          <ul class="nav nav-pills card-header-pills">
+            <li class="nav-item mx-auto">
+              <%= onboarding_tab(user, 0, "Introduction", unit_onboarding_meet_the_management_path(@unit), current_unit_onboarding_tab?('management')) %>
+            </li>
+            <li class="nav-item mx-auto">
+              <%= onboarding_tab(user, 1, "Employee Info", unit_onboarding_employee_info_path(@unit), current_unit_onboarding_tab?('users', ['edit', 'update'])) %>
+            </li>
+            <li class="nav-item mx-auto">
+              <%= onboarding_tab(user, 2, "Paperwork", unit_onboarding_paperwork_path(@unit), current_unit_onboarding_tab?('paperwork')) %>
+            </li>
+            <li class="nav-item mx-auto">
+              <%= onboarding_tab(user, 3, "FAQ's", unit_onboarding_questions_path(@unit), current_unit_onboarding_tab?('questions')) %>
+            </li>
+            <li class="nav-item mx-auto">
+              <%= onboarding_tab(user, 4, "Policies", unit_onboarding_policies_path(@unit), current_unit_onboarding_tab?('policies')) %>
+            </li>
+            <li class="nav-item mx-auto">
+              <%= onboarding_tab(user, 5, "Applications", unit_onboarding_apps_path(@unit), current_unit_onboarding_tab?('apps')) %>
+            </li>
+            <li class="nav-item mx-auto">
+              <%= onboarding_tab(user, 6, "Your First Day", unit_onboarding_first_day_path(@unit), current_unit_onboarding_tab?('first_day'), 'first-day-tab') %>
+            </li>
+            <li class="nav-item mx-auto">
+              <%= onboarding_tab(user, 7, "Complete!", '', current_unit_onboarding_tab?('users', 'complete'), 'complete-tab') %>
+            </li>
+          </ul>
+        </div>
+
+        <%= yield %>
+      </div>
+
+      <div id="ready-to-start-div" class="row justify-content-md-center">
+        <div class="col text-center">
+          <h4>Congratulations!</h4>
+          <p class="text-muted">You've completed your onboarding process for <strong class="steel-city-green-text"><%= @unit.name %></strong>!</p>
+          <%= link_to "Dashboard <i class='fa fa-arrow-right'></i>".html_safe, unit_onboarding_complete_path(@unit), method: :post, class: "btn btn-primary mt-4 px-4" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<%= render template: 'layouts/application' %>
+
+

@@ -1,5 +1,6 @@
 class Organizations::Onboarding::ManagementController < ApplicationController
   before_action :authenticate_user!
+  before_action :unit_available?
 
   layout 'organizations/onboarding'
 

@@ -27,4 +27,25 @@ module ApplicationHelper
       onboarding_meet_the_management_path
     end
   end
+
+  def unit_onboarding_current_path(progress, unit)
+    case progress
+    when "Intro"
+      unit_onboarding_meet_the_management_path(unit)
+    when "Employee Info"
+      unit_onboarding_employee_info_path(unit)
+    when "Paperwork"
+      unit_onboarding_paperwork_path(unit)
+    when "FAQ"
+      unit_onboarding_questions_path(unit)
+    when "Policies"
+      unit_onboarding_policies_path(unit)
+    when "Applications"
+      unit_onboarding_apps_path(unit)
+    when "First Day"
+      unit_onboarding_first_day_path(unit)
+    else
+      unit_onboarding_meet_the_management_path(unit)
+    end
+  end
 end
