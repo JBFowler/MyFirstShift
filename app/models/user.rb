@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
   scope :owners, -> { where role: 'owner' }
   scope :progress, -> (progress) { where progress: progress }
   scope :ready_to_schedule, -> { active.where scheduled: false }
+  scope :role, -> (role) { where role: role }
   scope :state_verified, -> (state_verified) { where state_verified: state_verified }
   scope :ten_per_hour, -> { where wage: 10 }
 
