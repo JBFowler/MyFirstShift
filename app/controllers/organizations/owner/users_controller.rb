@@ -13,6 +13,8 @@ class Organizations::Owner::UsersController < ApplicationController
 
     if params[:sort]
       members = members.order(params[:sort]) unless params[:sort].blank?
+    else
+      members = members.order(:last_name)
     end
 
     locals ({

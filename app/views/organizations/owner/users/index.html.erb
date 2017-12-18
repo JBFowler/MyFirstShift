@@ -26,7 +26,7 @@
             <tbody>
               <% members.each do |member| %>
                 <tr class="<%= member.deleted_at.nil? ? '' : 'text-danger' %>">
-                  <td><%= member.full_name %></td>
+                  <td><%= member.last_name %>, <%= member.first_name %></td>
                   <td><%= member.username %></td>
                   <td><%= member.email %></td>
                   <td><%= member.employee_type.try(:capitalize) %></td>

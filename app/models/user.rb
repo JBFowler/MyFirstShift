@@ -33,11 +33,15 @@ class User < ActiveRecord::Base
   after_commit :flush_new_member_cache
 
   scope :active, -> { where progress: 'Complete' }
+  scope :e_verified, -> (e_verified) { where e_verified: e_verified }
   scope :eight_per_hour, -> { where wage: 8 }
+  scope :employee_type, -> (employee_type) { where employee_type: employee_type }
   scope :need_verification, -> { where('state_verified = ? OR e_verified = ?', false, false) }
   scope :new_members_this_month, -> (month) { where('extract(month from created_at) = ?', month) }
   scope :owners, -> { where role: 'owner' }
+  scope :progress, -> (progress) { where progress: progress }
   scope :ready_to_schedule, -> { active.where scheduled: false }
+  scope :state_verified, -> (state_verified) { where state_verified: state_verified }
   scope :ten_per_hour, -> { where wage: 10 }
 
   def self.find_for_authentication(warden_conditions)
@@ -47,6 +51,18 @@ class User < ActiveRecord::Base
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     where(conditions).first
+  end
+
+  def self.to_csv
+    attributes = %w{last_name first_name email username progress employee_type role wage phone ssn e_verified state_verified drivers_license_number drivers_license_expiration passport_number passport_expiration}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |user|
+        csv << attributes.map{ |attr| user.send(attr) }
+      end
+    end
   end
 
   def complete!
