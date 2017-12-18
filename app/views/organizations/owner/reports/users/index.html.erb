@@ -8,33 +8,63 @@
             <li class="nav-item">
               <%= link_to "Member Report", owner_reports_members_path, class: "nav-link active" %>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <%= link_to "Unit Report", owner_reports_units_path, class: "nav-link" %>
-            </li>
+            </li> -->
           </ul>
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-8">
-              <form class="form-inline">
-                <div class="form-group mx-sm-3">
-                  <label class="mr-sm-2" for="inlineFormCustomSelectPref">Filter By:</label>
-                  <select class="custom-select" id="inlineFormCustomSelectPref">
-                    <option selected>Employee Type: Salary</option>
-                    <option value="1">Status: Active</option>
-                  </select>
-                </div>
-                <div class="form-group mx-sm-3">
-                  <label class="mr-sm-2" for="inlineFormCustomSelectPref">Sort By:</label>
-                  <select class="custom-select" id="inlineFormCustomSelectPref">
-                    <option selected>Name</option>
-                    <option value="1">Date of Hire: Desc</option>
-                  </select>
-                </div>
-              </form>
+            <div class="col-1">
+              <label for="inlineFormCustomSelectPref">Filters:</label>
             </div>
-            <div class="col">
-              <button class="pull-right btn btn-info mr-3"><i class="fa fa-table mr-sm-2" aria-hidden="true"></i> Export to Excel</button>
+            <div class="col-9">
+              <%= form_tag owner_reports_members_path, method: :get, class: "form-inline" do |f| %>
+                <div class="col-md-5">
+                  <div class="form-group mx-sm-3">
+                    <%= label_tag 'progress', 'Progress: Intro', class: 'mr-2' %>
+                    <%= check_box_tag 'progress', 'Intro', (params[:progress] == 'Intro') %>
+                  </div>
+                  <div class="form-group mx-sm-3">
+                    <%= label_tag 'progress', 'Progress: Complete', class: 'mr-2' %>
+                    <%= check_box_tag 'progress', 'Complete', (params[:progress] == 'Complete') %>
+                  </div>
+                  <div class="form-group mx-sm-3">
+                    <%= label_tag 'employee_type', 'Employee Type: Hourly', class: 'mr-2' %>
+                    <%= check_box_tag 'employee_type', 'Hourly', (params[:employee_type] == 'Hourly') %>
+                  </div>
+                  <div class="form-group mx-sm-3">
+                    <%= label_tag 'employee_type', 'Employee Type: Salary', class: 'mr-2' %>
+                    <%= check_box_tag 'employee_type', 'Salary', (params[:employee_type] == 'Salary') %>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="form-group mx-sm-3">
+                    <%= label_tag 'role', 'Role: Member', class: 'mr-2' %>
+                    <%= check_box_tag 'role', 'member', (params[:role] == 'member') %>
+                  </div>
+                  <div class="form-group mx-sm-3">
+                    <%= label_tag 'role', 'Role: Unit Leader', class: 'mr-2' %>
+                    <%= check_box_tag 'role', 'unit_leader', (params[:role] == 'unit_leader') %>
+                  </div>
+                  <div class="form-group mx-sm-3">
+                    <%= label_tag 'e_verified', 'E-Verified', class: 'mr-2' %>
+                    <%= check_box_tag 'e_verified', 'true', (params[:e_verified] == 'true') %>
+                  </div>
+                  <div class="form-group mx-sm-3">
+                    <%= label_tag 'state_verified', 'State-Verified', class: 'mr-2' %>
+                    <%= check_box_tag 'state_verified', 'true', (params[:state_verified] == 'true') %>
+                  </div>
+                </div>
+                <div style="right: 0; top: 0; position: absolute;" class="col-md-2">
+                  <%= submit_tag "Filter", class: "btn btn-primary px-4" %>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-2">
+              <%= link_to owner_reports_members_path(format: "csv", params: params), class: "pull-right btn btn-info mr-3" do %>
+                <i class="fa fa-table mr-sm-2" aria-hidden="true"></i> Export to Excel
+              <% end %>
             </div>
           </div>
         </div>
@@ -44,8 +74,8 @@
           <table class="table table-striped">
             <thead class="thead-dark">
               <tr>
-                <th scope="col border-top-0">First Name</th>
                 <th scope="col border-top-0">Last Name</th>
+                <th scope="col border-top-0">First Name</th>
                 <th scope="col border-top-0">Email</th>
                 <th scope="col border-top-0">Employee Type</th>
                 <th scope="col border-top-0">Status</th>
@@ -55,8 +85,8 @@
             <tbody>
               <% members.each do |member| %>
                 <tr>
-                  <td><%= member.first_name %></td>
                   <td><%= member.last_name %></td>
+                  <td><%= member.first_name %></td>
                   <td><%= member.email %></td>
                   <td><%= member.employee_type.try(:capitalize) %></td>
                   <td><%= member.progress.try(:capitalize) %></td>

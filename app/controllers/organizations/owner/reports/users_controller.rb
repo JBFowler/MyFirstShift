@@ -5,11 +5,16 @@ class Organizations::Owner::Reports::UsersController < ApplicationController
   layout 'organizations/owner'
 
   def index
-    members = @organization.members.with_deleted
+    members = ::Services::Reports::MemberReportBuilderService.filter(@organization, params)
 
-    locals ({
-      owner: current_user,
-      members: members
-    })
+    respond_to do |format|
+      format.html do
+        locals ({
+          owner: current_user,
+          members: members
+        })
+      end
+      format.csv { send_data members.to_csv, filename: "members-#{Date.today}.csv" }
+    end
   end
 end
