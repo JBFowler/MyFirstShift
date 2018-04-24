@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg" id="top-nav">
   <div class="container">
     <%= link_to (user_signed_in? ? home_path : root_url(subdomain: "")), class: "navbar-brand" do %>
-      <%= image_tag("https://s3.us-east-2.amazonaws.com/myfirstshift-onboarding-assets-demo/PastedGraphic-1.png", width: 42, height: 42, alt: "Circle Pop") %>
+      <%= image_tag("PastedGraphic-1.png", width: 42, height: 42, alt: "Circle Pop") %>
     <% end %>
 
     <% if current_user %>
